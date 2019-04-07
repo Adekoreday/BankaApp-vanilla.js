@@ -1,0 +1,262 @@
+<html>
+
+
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content="width=device-width, initial-scale=1.0">
+    <title>admin</title>
+    <link rel="stylesheet" href='../css/style.css' type="text/css">
+    <!--font awesome cdn for icons-->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!--google fonts cdn-->
+    <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:700|Roboto:300,400,500" rel="stylesheet">
+
+</head>
+
+<body>
+
+    <div id="sidebars">
+        <div class="toggle-btn" onclick="render()">
+            <i class="fas fa-bars fa-2x"></i>
+        </div>
+        <ul class="nav nav-primary">
+            <li id="profilepix"></li>
+            <li><a href="../index.html"><i class="fas fa-home"></i>Home</a></li>
+            <li onclick="ShowAccount()"><i class="fas fa-sign-in-alt"></i> Account</li>
+            <li><a href="./staffSignUp.html"><i class="fas fa-sign-out-alt"></i> staff Account</a></li>
+            <li> <a href="./user_signIn.html"><i class="fas fa-sign-out-alt"></i> signOut</a></li>
+        </ul>
+    </div>
+    </div>
+    <div class="user-header">
+        <p>welcome</p>
+        <p>korede</p>
+    </div>
+
+
+    <div class="main_container">
+        <div class="overviewcard">
+            <div>Name</div>
+            <div> ALL ACCOUNTS</div>
+            <div><i class="fas fa-pencil-alt"></i></div>
+        </div>
+        <div class="overviewcard">
+            <div>ACTIVATE ACCOUNTS</div>
+            <div></div>
+            <div><i class="fas fa-pencil-alt"></i></div>
+        </div>
+        <div class="overviewcard">
+            <div>DEACTIVATE ACCOUNTS</div>
+            <div></div>
+            <div><i class="fas fa-pencil-alt"></i></div>
+        </div>
+        <div class="overviewcard">
+            <div>DELETE ACCOUNTS</div>
+            <div></div>
+            <div><i class="fas fa-pencil-alt"></i></div>
+        </div>
+    </div>
+    <div class="main-cards">
+        <div id="accountList" class="card">
+            <section>All ACCOUNTS</section>
+            <div class="account">
+                <div>S/N</div>
+                <div>account</div>
+                <div>firstname</div>
+                <div><i class="fas fa-pencil-alt"></i></div>
+            </div>
+            <div class="account">
+                <div>1</div>
+                <div>0121832011</div>
+                <div>adeyemi</div>
+                <div><i class="fas fa-pencil-alt"></i></div>
+            </div>
+
+            <div class="account">
+                <div>2</div>
+                <div>0121832011</div>
+                <div>adeyemi</div>
+                <div><i class="fas fa-pencil-alt"></i></div>
+            </div>
+            <div class="account">
+                <div>2</div>
+                <div>0121832011</div>
+                <div>adeyemi</div>
+                <div><i class="fas fa-pencil-alt"></i></div>
+            </div>
+            <div class="account">
+                <div>2</div>
+                <div>0121832011</div>
+                <div>adeyemi</div>
+                <div><i class="fas fa-pencil-alt"></i></div>
+            </div>
+            <div class="account">
+                <div>2</div>
+                <div>0121832011</div>
+                <div>adeyemi</div>
+                <div><i class="fas fa-pencil-alt"></i></div>
+            </div>
+            <div class="account">
+                <div>3</div>
+                <div>0121832011</div>
+                <div>adeyemi</div>
+                <div><i class="fas fa-pencil-alt"></i></div>
+            </div>
+            <div class="account">
+                <div>4</div>
+                <div>0121832011</div>
+                <div>adeyemi</div>
+                <div><i class="fas fa-pencil-alt"></i></div>
+            </div>
+            <div class="account">
+                <div>5</div>
+                <div>0121832011</div>
+                <div>adeyemi</div>
+                <div><i class="fas fa-pencil-alt"></i></div>
+            </div>
+            <div class="account">
+                <div>6</div>
+                <div>0121832011</div>
+                <div>adeyemi</div>
+                <div><i class="fas fa-pencil-alt"></i></div>
+            </div>
+
+
+        </div>
+        <div class="card">
+            <section>DETAILS OF SELECTED</section>
+            <div class="account-details">
+                <div id="userImage"></div>
+                <div id="userdetailed">
+                    <div>Name: Harry potter</div>
+                    <div>Account no: 0121832011</div>
+                    <div>Address: hogwarts</div>
+                    <div>Type: Savings</div>
+                    <div>Balance: #1000</div>
+                    <div>phone: +2347063584301</div>
+                </div>
+
+            </div>
+        </div>
+        <div id="myicons" class="card">
+            <section>ACTIVATE/DEACTIVATE</section>
+            <div class="media-icons">
+                <div class="icons"><i class="fas fa-user-lock fa-3x"></i></div>
+                <div class="icons"><i class="fas fa-unlock-alt fa-3x"></i></div>
+            </div>
+            <div class="media-icons">
+                <div class="iconsred icons"><i class="fas fa-trash-alt fa-3x"></i></div>
+                <div class="iconsyellow icons"><i class="fas fa-edit fa-3x"></i></div>
+            </div>
+
+        </div>
+    </div>
+    <!--<div id="contain-profile">
+    
+            <div>Name</div>
+            <div>Adeyemi Adekorede</div>
+            <div><i class="fas fa-pencil-alt"></i></div>
+
+            <div>Email</div>
+            <div>adeyemi_adekorede@hotmail.com</div>
+            <div><i class="fas fa-pencil-alt"></i></div>
+
+            <div>Phone</div>
+            <div>+2347063584301</div>
+            <div><i class="fas fa-pencil-alt"></i></div>
+
+            <div>profile pix</div>
+            <div><i class="fas fa-file-upload"></i></div>
+            <div><i class="fas fa-pencil-alt"></i></div>
+        </div>
+
+        <div id="account-profile">
+            <div class="account-details">
+                <div>
+                    <select>
+                        <option>Account1</option>
+                        <option>Account2</option>
+                        <option>Account3</option>
+                    </select>
+                </div>
+                <div>
+                    <p>opening balance</p>
+                    <div>#108,000</div>
+                </div>
+                <div>
+                    <p>closing balance</p>
+                    <div>#648,000</div>
+                </div>
+            </div>
+            <div class="account-history">
+                <div><i class="fas fa-plus-circle"></i></div>
+                <div>
+                    <p>3/10/18</p>
+                    <div>Salary 1/12/18</div>
+                </div>
+                <div> #648,000</div>
+                <div><i class="fas fa-minus-circle"></i></div>
+                <div>
+                    <p>3/10/18</p>
+                    <div>atm withdrawal 12/11/18</div>
+                </div>
+                <div> #48,000</div>
+                <div><i class="fas fa-minus-circle"></i></div>
+                <div>
+                    <p>3/10/18</p>
+                    <div>bank transfer 31/10/18</div>
+                </div>
+                <div> #108,000</div>
+
+                <div><i class="fas fa-plus-circle"></i></div>
+                <div>
+                    <p>03/09/18</p>
+                    <div>credit alert 21/08/18</div>
+                </div>
+                <div> #128,000</div>
+
+                <div><i class="fas fa-plus-circle"></i></div>
+                <div>
+                    <p>3/10/18</p>
+                    <div>Salary 1/08/18</div>
+                </div>
+                <div> #500,000</div>-->
+
+
+    </div>
+    <script src="../js/script.js"></script>
+</body>
+<!---this section contains the footer-->
+<footer>
+    <div class="footer admindashboard-footer">
+
+        <div>
+            <p><i class="fas fa-map-marker-alt fa-2x"></i>Adeyemi Adekorede</p>
+            <p>ALCprebootcamp Lagos state,Nigeria</p>
+
+        </div>
+
+        <div class="telephone">
+            <p><i class="fas fa-phone-square fa-2x"></i>
+                +2347063584301</p>
+            <p><i class="far fa-envelope fa-2x"></i>
+                adeyemi_adekorede@hotmail.com</p>
+        </div>
+
+
+
+        <ul>
+            <li><i class="fab fa-facebook-f fa-2x"></i>
+            </li>
+            <li><a href="https://twitter.com/AdeyemiAdekore2"><i class="fab fa-twitter-square  fa-2x"></i></a></li>
+            <li><i class="fab fa-instagram  fa-2x"></i></li>
+        </ul>
+
+
+
+    </div>
+</footer>
+
+
+</html>
