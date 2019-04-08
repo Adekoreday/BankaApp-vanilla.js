@@ -14,7 +14,7 @@ const userData = [
         firstname: 'muhammed',
         lastname: 'salah',
         email: 'salah@liverpoolfc.com',
-        password: '',
+        password: 'adekoreday',
         Type: 'savings',
         isAdmin: false,
     },

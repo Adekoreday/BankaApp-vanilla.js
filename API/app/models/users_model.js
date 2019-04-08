@@ -11,7 +11,7 @@ class User {
             Type: this.Joi.string().required(),
             isAdmin: this.Joi.boolean().required(),
         };
-        this.UserSignUpSchema = {
+        this.UserSignInSchema = {
             email: Joi.string().email({ minDomainAtoms: 2 }),
             password: this.Joi.string().min(5),
         }
