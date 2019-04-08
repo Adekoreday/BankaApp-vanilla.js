@@ -27,7 +27,7 @@ class UserController {
 
     SignIn(req, res) {
         const userKey = req.body;
-        const userExist = this.UserService.userExistBefore(req.email);
+        const userExist = this.UserService.userExistBefore(userKey.email);
         if (userExist !== undefined) {
             const validatepass = validPassword(userKey.password, userExist.password);
             // eslint-disable-next-line space-before-blocks
@@ -35,17 +35,17 @@ class UserController {
                 const tokens = jwt.sign({ email: userExist.email, id: userExist.id }, process.env.SECRET_KEY, { expiresIn: '1h' });
                 userExist.token = tokens;
                 return res.status(200).json({
-                    msg: 'Auth successful',
+                    status: 200,
                     Data: userExist,
                 });
             }
             return res.status(401).json({
-                msg: 'Auth failed',
+                status: 401,
             });
 
         }
-        return res.status(401).json({
-            msg: 'user does not exist',
+        return res.status(404).json({
+            status: 404,
         });
     }
 

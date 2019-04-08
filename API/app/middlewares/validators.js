@@ -14,7 +14,7 @@ class Validator {
 
     static SignInValidator(req, res, next) {
         const Users = new User();
-        const result = Joi.validate(req.body, Users.UserSignUpSchema);
+        const result = Joi.validate(req.body, Users.UserSignInSchema);
         if (result.error) {
             return res.status(401).send(result.error.details.map(x => x.message));
         }
