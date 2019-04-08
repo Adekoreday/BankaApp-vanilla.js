@@ -26,7 +26,7 @@ class HandleAllRoutes extends Router {
     }
 
     HandleAllRoute() {
-        this.app.post('/api/v1/sign-up', this.Validator.SignUpValidator, hashPassword, (req, res) => {
+        this.app.post('/api/v1/auth/sign-up', this.Validator.SignUpValidator, hashPassword, (req, res) => {
             this.UserController.SignUp(req, res);
         });
         this.app.get('/api/v1/sign-In', this.Validator.SignInValidator, (req, res) => {
