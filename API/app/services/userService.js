@@ -15,7 +15,7 @@ class UserService {
         let { id } = this.data[length - 1];
         id += 1;
         myUser.id = id;
-        this.data.push(newUser);
+        this.data.push(myUser);
         return this.data;
     }
 
@@ -31,8 +31,8 @@ class UserService {
 
     putUser(userput, id) {
         const selectedUser = this.data.find(user => parseInt(user.id, 10) === parseInt(id, 10));
-        selectedUser.firstname = userput.firstname;
-        selectedUser.lastname = userput.lastname;
+        selectedUser.firstName = userput.firstName;
+        selectedUser.lastName = userput.lastName;
         selectedUser.email = userput.email;
         selectedUser.isAdmin = userput.isAdmin;
         return selectedUser;
