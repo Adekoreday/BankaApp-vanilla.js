@@ -1,20 +1,20 @@
 const userData = [
     {
         id: 1,
-        firstname: 'adeyemi',
-        lastname: 'adeseyi',
+        firstName: 'adeyemi',
+        lastName: 'adeseyi',
         email: 'adeyemi_adekorede@hotmail.com',
-        password: '',
+        password: '$2b$15$P7TAti9TARzSun7d1cHSo.5pzFuG20IwPXN0oUdLb.SlFBFCdO4N6',
         Type: 'current',
         isAdmin: true,
     },
 
     {
         id: 2,
-        firstname: 'muhammed',
-        lastname: 'salah',
+        firstName: 'muhammed',
+        lastName: 'salah',
         email: 'salah@liverpoolfc.com',
-        password: 'adekoreday',
+        password: '$2b$15$P7TAti9TARzSun7d1cHSo.5pzFuG20IwPXN0oUdLb.SlFBFCdO4N6',
         Type: 'savings',
         isAdmin: false,
     },

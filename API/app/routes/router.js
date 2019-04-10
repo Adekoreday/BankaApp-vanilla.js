@@ -2,7 +2,10 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import Validator from '../middlewares/validators';
 import UserController from '../controllers/user_controller';
+import AccountController from '../controllers/Account_controller';
 import hashPassword from '../middlewares/hashpassword';
+import AccountScafold from '../middlewares/AccountScafold';
+import verifyToken from '../middlewares/check-auth';
 
 const app = express();
 app.use(bodyParser.json());
@@ -23,6 +26,7 @@ class HandleAllRoutes extends Router {
         super();
         this.Validator = Validator;
         this.UserController = new UserController();
+        this.AccountController = new AccountController();
     }
 
     HandleAllRoute() {
@@ -31,6 +35,9 @@ class HandleAllRoutes extends Router {
         });
         this.app.post('/api/v1/auth/sign-In', this.Validator.SignInValidator, (req, res) => {
             this.UserController.SignIn(req, res);
+        });
+        this.app.post('/api/v1/auth/accounts', verifyToken, AccountScafold, this.Validator.CreateAccountValidator, (req, res) => {
+            this.AccountController.createAccount(req, res);
         });
     }
 

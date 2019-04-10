@@ -41,11 +41,13 @@ class UserController {
             }
             return res.status(401).json({
                 status: 401,
+                msg: 'wrong password.........',
             });
 
         }
         return res.status(404).json({
             status: 404,
+            msg: 'user account not found',
         });
     }
 
