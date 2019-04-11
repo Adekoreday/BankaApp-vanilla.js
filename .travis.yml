@@ -1,11 +1,6 @@
 language: node_js
 node_js:
  - "node"
-<<<<<<< HEAD
-
-=======
- 
->>>>>>> 158bfd42e67910aca8c52c56f3f084e10adfc89a
 before_install: cd API/
 
 cache:
