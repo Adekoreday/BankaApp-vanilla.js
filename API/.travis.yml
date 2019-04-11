@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+ - "node"
+before_install: cd Api/
+
+cache:
+  directories:
+    - "node_modules"
+
+env: 
+  - CODECLIMATE_REPO_TOKEN=157c264c8a63c6cdcc0f2d300fc35f245aa67c3c187d38fc812b7fa703d1ebac
+after_success:
+  - npm run coverage

@@ -19,4 +19,4 @@ class App {
 
 const initialize = new App();
 initialize.init();
-export default initialize.Routerobj;
+export default initialize.Routerobj.app;
