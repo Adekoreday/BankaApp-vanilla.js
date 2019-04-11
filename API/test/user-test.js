@@ -95,19 +95,19 @@ describe('USER TEST   overAll test', () => {
                 });
         });
     });
-    /*
-        describe('SIGN IN USER DOOESNT  EXIST>> POST', () => {
-            it('its expected not to sign-In a User that doesnt exist', (done) => {
-                chai.request(server)
-                    .post('/api/v1/auth/sign-In')
-                    .send(userItems.nonexistLogin)
-                    .end((err, res) => {
-                        expect(res, 'must have a status 404 not found').to.have.status(404);
-                        expect(res.body).to.be.a('object');
-                        expect(res.body).to.have.property('msg');
-                        expect(res.body).to.have.property('status');
-                        done();
-                    });
-            });
-        });*/
+
+    describe('SIGN IN USER DOOESNT  EXIST>> POST', () => {
+        it('its expected not to sign-In a User that doesnt exist', (done) => {
+            chai.request(server)
+                .post('/api/v1/auth/sign-In')
+                .send(userItems.nonexistLogin)
+                .end((err, res) => {
+                    expect(res, 'must have a status 404 not found').to.have.status(404);
+                    expect(res.body).to.be.a('object');
+                    expect(res.body).to.have.property('msg');
+                    expect(res.body).to.have.property('status');
+                    done();
+                });
+        });
+    });
 });
