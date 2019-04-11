@@ -19,4 +19,4 @@ class App {
 
 const initialize = new App();
 initialize.init();
-export default App;
+export default initialize.routeobj.app;
