@@ -2,7 +2,7 @@ language: node_js
 node_js:
  - "node"
  
-before_install: cd Api/
+before_install: cd API/
 
 cache:
   directories:
