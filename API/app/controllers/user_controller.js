@@ -19,8 +19,8 @@ class UserController {
             userList = this.UserService.addNewUser(userdetails);
         }
         return res.status(userList === undefined ? 422 : 201).json({
-            createUserStatus: userList === undefined ? 422 : 201,
-            Data: userList,
+            status: userList === undefined ? 422 : 201,
+            Data: userList === undefined ? 'user already Exists' : userList,
         });
 
     }

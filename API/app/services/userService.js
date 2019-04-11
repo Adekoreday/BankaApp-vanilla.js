@@ -16,7 +16,7 @@ class UserService {
         id += 1;
         myUser.id = id;
         this.data.push(myUser);
-        return this.data;
+        return myUser;
     }
 
     getUserbyId(id) {
