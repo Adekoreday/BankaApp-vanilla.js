@@ -39,6 +39,10 @@ class HandleAllRoutes extends Router {
         this.app.post('/api/v1/auth/accounts', verifyToken, AccountScafold, this.Validator.CreateAccountValidator, (req, res) => {
             this.AccountController.createAccount(req, res);
         });
+        this.app.patch('/api/v1/:id', this.Validator.patchAccountValidator, (req, res) => {
+            this.AccountController.patchAccount(req, res);
+        });
+
     }
 
 }

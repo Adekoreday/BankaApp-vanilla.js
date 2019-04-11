@@ -32,6 +32,15 @@ class Validator {
         next();
     }
 
+    static patchAccountValidator(req, res, next) {
+        const Accounts = new Account();
+        const result = Joi.validate(req.body, Accounts.AccSignInSchema);
+        if (result.error) {
+            return res.status(400).send(result.error.details.map(x => x.message));
+        }
+        next();
+    }
+
 }
 
 export default Validator;

@@ -12,6 +12,9 @@ class Account {
             status: this.Joi.string().required(),
             balance: Joi.number().integer(),
         };
+        this.AccSignInSchema = {
+            status: this.Joi.string().required(),
+        }
     }
 
 }
