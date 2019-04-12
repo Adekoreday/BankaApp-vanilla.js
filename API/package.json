@@ -2,10 +2,14 @@
   "name": "banka_app",
   "version": "1.0.0",
   "description": "a lightweight banking app",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node ./build/app.js",
     "dev": "nodemon --exec babel-node app/app.js",
     "test": "nyc mocha --timeout 30000  -r esm --exit",
+    "clean": "rm -rf build && mkdir build",
+    "build": "npm run clean && npm run build-babel",
+    "build-babel": "babel -d ./build ./app -s",
     "generate-lcov": "nyc report --reporter=text-lcov > lcov.info",
     "codeclimate-coverage": "codeclimate-test-reporter < lcov.info",
     "coveralls-coverage": "coveralls < lcov.info",
@@ -14,6 +18,7 @@
   "author": "adeyemi adekorede",
   "license": "MIT",
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
     "@babel/core": "^7.4.3",
     "@babel/node": "^7.2.2",
     "@babel/preset-env": "^7.4.3",
