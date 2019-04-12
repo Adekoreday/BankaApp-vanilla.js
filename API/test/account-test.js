@@ -103,4 +103,15 @@ describe(' ACCOUNT TEST   overAll test', () => {
         });
     });
 
+    describe('ACCOUNT DELETE TEST', () => {
+        it('its expected to delete an existing account', (done) => {
+            chai.request(server)
+                .delete('/api/v1/1013566778')
+                .end((err, res) => {
+                    expect(res, 'must delete successfully').to.have.status(200);
+                    done();
+                });
+        });
+    })
+
 });
