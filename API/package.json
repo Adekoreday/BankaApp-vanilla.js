@@ -4,6 +4,7 @@
   "description": "a lightweight banking app",
   "main": "app.js",
   "scripts": {
+    "start": "node ./build/app.js",
     "dev": "nodemon --exec babel-node app/app.js",
     "test": "nyc mocha --timeout 30000  -r esm --exit",
     "clean": "rm -rf build && mkdir build",
