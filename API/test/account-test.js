@@ -24,6 +24,9 @@ describe(' ACCOUNT TEST   overAll test', () => {
             balance: 1000,
             password: 'korey',
         },
+        patchpayload: {
+            status: 'draft',
+        },
     }
 
     describe('SIGN-IN USER>> POST', () => {
@@ -47,7 +50,7 @@ describe(' ACCOUNT TEST   overAll test', () => {
     });
 
     describe('ACCOUNT CREATE TEST', () => {
-        it('its expected to create a new account sucessfully', () => {
+        it('its expected to create a new account sucessfully', (done) => {
             chai.request(server)
                 .post('/api/v1/auth/accounts')
                 .set('Authorization', accountCreatedetails.usertoken)
@@ -57,32 +60,46 @@ describe(' ACCOUNT TEST   overAll test', () => {
                     expect(res.body.data).to.have.property('email');
                     expect(res.body.data).to.have.property('accountNumber');
                     expect(res.body.data).to.have.property('status');
+                    done();
                 });
         });
     });
 
     describe('ACCOUNT CREATE TEST FAIL AUTHENTICATION', () => {
-        it('its expected to not to create account', () => {
+        it('its expected to not to create account', (done) => {
             chai.request(server)
                 .post('/api/v1/auth/accounts')
                 .send(accountCreatedetails.createAccount)
                 .end((err, res) => {
                     expect(res, 'must have a status unauthorized 401 ').to.have.status(401);
-
+                    done();
                 });
         });
     });
 
     describe('ACCOUNT CREATE TEST INCOMPLETE INPUT', () => {
-        it('its expected to not to create account', () => {
+        it('its expected to not to create account', (done) => {
             chai.request(server)
                 .post('/api/v1/auth/accounts')
                 .set('Authorization', accountCreatedetails.usertoken)
                 .send(accountCreatedetails.incompleteCreate)
                 .end((err, res) => {
                     expect(res, 'must have a status unauthorized 400 ').to.have.status(400);
+                    done();
                 });
 
+        });
+    });
+
+    describe('ACCOUNT PATCH TEST', () => {
+        it('its expected to modify an account', (done) => {
+            chai.request(server)
+                .patch('/api/v1/1012183201')
+                .send(accountCreatedetails.patchpayload)
+                .end((err, res) => {
+                    expect(res, 'must sucessfully patch').to.have.status(200);
+                    done();
+                });
         });
     });
 
