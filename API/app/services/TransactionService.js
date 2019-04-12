@@ -15,3 +15,4 @@ class TransactionService {
         return myTransaction;
     }
 }
+export default TransactionService;

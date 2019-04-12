@@ -6,7 +6,7 @@ class Transaction {
         this.Joi = Joi;
         this.TransactionSchema = {
             createdOn: this.Joi.string().required(),
-            type: this.Joi.string().required().required(),
+            Transactiontype: this.Joi.string().required().required(),
             accountNumber: Joi.number().integer().min(1000000000).required(),
             cashier: this.Joi.number().integer(),
             amount: this.Joi.number().integer(),
@@ -17,4 +17,4 @@ class Transaction {
 
 }
 
-export default Account;
+export default Transaction;
