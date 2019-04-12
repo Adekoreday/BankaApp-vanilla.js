@@ -1,6 +1,7 @@
 import Joi from 'joi';
 import User from '../models/users_model';
 import Account from '../models/Account_model';
+import Transaction from '../models/transaction';
 
 class Validator {
 
@@ -40,6 +41,16 @@ class Validator {
         }
         next();
     }
+
+    static transactionValidator(req, res, next) {
+        const Transactions = new Transaction();
+        const result = Joi.validate(req.scafoldData, Transactions.TransactionSchema);
+        if (result.error) {
+            return res.status(400).send(result.error.details.map(x => x.message));
+        }
+        next();
+    }
+
 
 }
 
