@@ -42,7 +42,9 @@ class HandleAllRoutes extends Router {
         this.app.patch('/api/v1/:id', this.Validator.patchAccountValidator, (req, res) => {
             this.AccountController.patchAccount(req, res);
         });
-
+        this.app.delete('/api/v1/:id', (req, res) => {
+            this.AccountController.deleteAccount(req, res);
+        })
 
     }
 
