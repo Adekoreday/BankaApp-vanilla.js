@@ -27,7 +27,7 @@ class Validator {
         const Accounts = new Account();
         const result = Joi.validate(req.AccountInput, Accounts.AccountSchema);
         if (result.error) {
-            return res.status(401).send(result.error.details.map(x => x.message));
+            return res.status(400).send(result.error.details.map(x => x.message));
         }
         next();
     }
