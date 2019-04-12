@@ -43,6 +43,7 @@ class HandleAllRoutes extends Router {
             this.AccountController.patchAccount(req, res);
         });
 
+
     }
 
 }
