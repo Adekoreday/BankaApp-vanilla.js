@@ -44,7 +44,13 @@ class HandleAllRoutes extends Router {
         });
         this.app.delete('/api/v1/:id', (req, res) => {
             this.AccountController.deleteAccount(req, res);
-        })
+        });
+        this.app.post('/api/v1/transactions/:accountNumber/credit', this.Validator.transactionValidator, (req, res) => {
+
+        });
+        this.app.post('/api/v1/transactions/:accountNumber/debit', this.Validator.transactionValidator, (req, res) => {
+
+        });
 
     }
 
