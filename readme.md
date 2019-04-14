@@ -17,7 +17,7 @@ npm install
 
 ## Usage
 
-**POST** apiv/v1/_auth/sign up
+**POST** apiv/v1/auth/sign up
 
 payload example
 
@@ -32,7 +32,7 @@ payload example
 }
 
 ```
-**POST** apiv/v1/_auth/sign in
+**POST** apiv/v1/auth/sign in
 
 payload example
 
@@ -43,7 +43,8 @@ payload example
 }
 ```
 
-**POST** api/v1/account 
+**POST** api/v1/auth/account 
+_route requires a bearer token you got when u signed in_
 ```node
 {
 "password": "korey",
@@ -53,7 +54,7 @@ payload example
 
 ```
 
-**PATCH** api_v1/accounts/: account no
+**PATCH** api/v1/accounts/:account number
 ```node
 {
 	"status":"draft"
@@ -88,7 +89,8 @@ payload example
 
 ## By 
 ### Adeyemi Adekorede Adeseyi
-
+Postman documentation
+https://documenter.getpostman.com/view/5907608/S1ENyyam
 
 alc prebootcamp.
 
