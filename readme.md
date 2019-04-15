@@ -93,6 +93,7 @@ Postman documentation
 https://documenter.getpostman.com/view/5907608/S1ENyyam
 
 alc prebootcamp.
-
+github pages : https://adekoreday.github.io/BankaApp/
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
+
