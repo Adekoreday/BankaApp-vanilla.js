@@ -5,17 +5,38 @@
 
 # Banka app
 
-banka is a Light weight banking app
+Banka is a light-weight core banking application that powers banking operations like account creation, customer deposit and withdrawals. This app is meant to support a single bank, where users can signup and create bank accounts online, but must visit the branch to withdraw or deposit money.. 
+
 
 ## Installation
 
-use npm install to install after you downlaod.
 
 ```bash
-npm install
+1. clone or download the repository
+2. cd API
+3. run npm install to install after you downlaod.
+4. run npm run dev (For development)
+5. run npm  run test (For test)
+
+
 ```
 
 ## Usage
+
+
+| S/N| Request type   |  Request API description                                   | Endpoint   			|
+|:--:|:--------------:|:---------------------------------------------------------:|:-----------------------------------:|
+|  1 |  POST	      |    user can sign up using the user sign up API             |  apiv/v1/auth/sign up              |
+|  2 | POST           | user can sign in using user sign in API                    | apiv/v1/auth/sign in               |
+|  3 | POST           |  user can create account using user create account API     |  api/v1/auth/account               |
+|  4 | PATCH          | Admin can create new account using Admin create API        | api/v1/accounts/:account number    |
+|  5 | DELETE	      | Admin can delete existing account using Admin delete API   |  api/v1/accounts/:account number   |
+|  6 | POST	      | Staff/Admin can debit user account using Debit API	   |transaction/account number/debit    |
+|  7 | POST	      | Staff/Admin can credit user account using Credit API	   | transaction/account number/credit  |
+
+
+
+**ENDPOINT PAYLOAD DESCRIPTION**
 
 **POST** apiv/v1/auth/sign up
 
