@@ -26,19 +26,19 @@ Banka is a light-weight core banking application that powers banking operations 
 
 | S/N| Request type   |  Request API description                                   | Endpoint   			|
 |:--:|:--------------:|:---------------------------------------------------------:|:-----------------------------------:|
-|  1 |  POST	      |    user can sign up using the user sign up API             |  apiv/v1/auth/sign up              |
-|  2 | POST           | user can sign in using user sign in API                    | apiv/v1/auth/sign in               |
+|  1 |  POST	      |    user can sign up using the user sign up API             |  apiv/v1/auth/signup              |
+|  2 | POST           | user can sign in using user sign in API                    | apiv/v1/auth/signin               |
 |  3 | POST           |  user can create account using user create account API     |  api/v1/auth/account               |
-|  4 | PATCH          | Admin can create new account using Admin create API        | api/v1/accounts/:account number    |
+|  4 | PATCH          | Admin can create new account using Admin create API        | api/v1/account/:accountnumber    |
 |  5 | DELETE	      | Admin can delete existing account using Admin delete API   |  api/v1/accounts/:account number   |
-|  6 | POST	      | Staff/Admin can debit user account using Debit API	   |transaction/account number/debit    |
-|  7 | POST	      | Staff/Admin can credit user account using Credit API	   | transaction/account number/credit  |
+|  6 | POST	      | Staff/Admin can debit user account using Debit API	   |transaction/:accountnumber/debit    |
+|  7 | POST	      | Staff/Admin can credit user account using Credit API	   | transaction/:accountnumber/credit  |
 
 
 
 **ENDPOINT PAYLOAD DESCRIPTION**
 
-**POST** apiv/v1/auth/sign up
+**POST** apiv/v1/auth/signup
 
 payload example
 
@@ -53,7 +53,7 @@ payload example
 }
 
 ```
-**POST** apiv/v1/auth/sign in
+**POST** apiv/v1/auth/signin
 
 payload example
 
@@ -75,7 +75,7 @@ _route requires a bearer token you got when u signed in_
 
 ```
 
-**PATCH** api/v1/accounts/:account number
+**PATCH** api/v1/accounts/:accountnumber
 ```node
 {
 	"status":"draft"
@@ -83,7 +83,7 @@ _route requires a bearer token you got when u signed in_
 ```
 
 
-**DELETE**  api/v1/accounts/:account number
+**DELETE**  api/v1/accounts/:accountnumber
 
 
 **POST**  transaction/account number/debit
@@ -97,7 +97,7 @@ _route requires a bearer token you got when u signed in_
 ```
 
 
-**POST** transaction/account number/credit
+**POST** transaction/:accountnumber/credit
 
 ```node
 {
