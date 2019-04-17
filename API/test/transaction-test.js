@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import assertArrays from 'chai-arrays';
-import server from '../app/app';
+import server from '../app';
 
 const { expect } = chai;
 chai.use(chaiHttp);
@@ -12,13 +12,13 @@ describe(' ACCOUNT TEST   overAll test', () => {
     const Transaction = {
         amount: 10000,
         cashier: 3,
-        oldBalance: 20000
+        oldBalance: 20000,
     };
 
     describe('TRANSACTION DEBIT TEST>> POST', () => {
         it('its expected to debit an existing User', (done) => {
             chai.request(server)
-                .post('/api/v1/transactions/1012183201/debit')
+                .post('/api/v1/transactions/1013566778/debit')
                 .send(Transaction)
                 .end((err, res) => {
                     expect(res, 'must have a status 200 ok').to.have.status(200);
@@ -39,7 +39,7 @@ describe(' ACCOUNT TEST   overAll test', () => {
     describe('TRANSACTION CREDIT TEST>> POST', () => {
         it('its expected to credit an existing User', (done) => {
             chai.request(server)
-                .post('/api/v1/transactions/1012183201/credit')
+                .post('/api/v1/transactions/1013566778/credit')
                 .send(Transaction)
                 .end((err, res) => {
                     expect(res, 'must have a status 200 ok').to.have.status(200);
@@ -52,6 +52,19 @@ describe(' ACCOUNT TEST   overAll test', () => {
                     expect(res.body.data).to.have.property('accountNumber');
                     expect(res.body.data).to.have.property('newBalance');
                     expect(res.body.data).to.have.property('id');
+                    done();
+                });
+        });
+    });
+
+    describe('TRANSACTION CREDIT TEST>> POST', () => {
+        it('its expected not to credit an account that doesnt exist', (done) => {
+            chai.request(server)
+                .post('/api/v1/transactions/1234567876/credit')
+                .send(Transaction)
+                .end((err, res) => {
+                    expect(res, 'must have a status 404 ok').to.have.status(404);
+
                     done();
                 });
         });

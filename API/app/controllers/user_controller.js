@@ -30,7 +30,6 @@ class UserController {
         const userExist = this.UserService.userExistBefore(userKey.email);
         if (userExist !== undefined) {
             const validatepass = validPassword(userKey.password, userExist.password);
-            // eslint-disable-next-line space-before-blocks
             if (validatepass) {
                 const tokens = jwt.sign({ email: userExist.email, id: userExist.id }, process.env.SECRET_KEY, { expiresIn: '1h' });
                 userExist.token = tokens;
