@@ -1,7 +1,7 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
 import assertArrays from 'chai-arrays';
-import server from '../app';
+import server from '../app/app';
 
 const { expect } = chai;
 chai.use(chaiHttp);
