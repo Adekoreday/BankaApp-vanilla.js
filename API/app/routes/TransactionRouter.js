@@ -1,7 +1,7 @@
 import express from 'express';
-import TransactionController from '../controllers/transaction_controller';
+import TransactionController from '../controllers/TransactionController';
 import TransactionScafolld from '../middlewares/TransactionScafolld';
-import Validator from '../middlewares/validators';
+import Validator from '../middlewares/Validator';
 
 const TransactionControllers = new TransactionController();
 const TransactionRouter = express.Router();

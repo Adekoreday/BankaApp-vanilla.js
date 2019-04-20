@@ -1,4 +1,4 @@
-const userData = [
+const userDatadb = [
     {
         id: 1,
         firstName: 'adeyemi',
@@ -21,4 +21,4 @@ const userData = [
         isAdmin: false,
     },
 ];
-export default userData;
+export default userDatadb;

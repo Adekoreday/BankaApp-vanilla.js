@@ -1,7 +1,7 @@
 import express from 'express';
-import UserController from '../controllers/user_controller';
-import Validator from '../middlewares/validators';
-import HashPassword from '../middlewares/Hashpassword';
+import UserController from '../controllers/UserController';
+import Validator from '../middlewares/Validator';
+import HashPassword from '../middlewares/HashPassword';
 
 const UserControllers = new UserController();
 const userRouter = express.Router();

@@ -1,4 +1,4 @@
-import userData from '../../utils/userdb';
+import userData from '../../utils/userDatadb';
 
 class UserService {
     constructor() {

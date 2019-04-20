@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import UserService from '../services/userService';
-import validPassword from '../../utils/validatepass';
+import UserService from '../services/UserService';
+import validPassword from '../../utils/validPassword';
 
 
 class UserController {

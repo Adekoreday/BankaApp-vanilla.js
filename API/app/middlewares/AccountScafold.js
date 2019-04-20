@@ -1,5 +1,5 @@
-import UserService from '../services/userService';
-import generateAccount from '../../utils/generateAccountNumber';
+import UserService from '../services/UserService';
+import generateAccount from '../../utils/GenAccountNumber';
 
 /**The Account scaffold is reponsible for autogenerating required fields for an account 
  * after the user trys creating account by entering the type of account and password

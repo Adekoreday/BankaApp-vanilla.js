@@ -1,7 +1,7 @@
 import TransactionService from '../services/TransactionService';
 import AccountService from '../services/AccountService';
 
-class Transaction {
+class TransactionController {
     constructor() {
         this.transactionService = new TransactionService();
         this.AccountService = new AccountService();
@@ -20,4 +20,4 @@ class Transaction {
         });
     }
 }
-export default Transaction;
+export default TransactionController;

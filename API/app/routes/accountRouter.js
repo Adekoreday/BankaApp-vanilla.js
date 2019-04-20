@@ -1,6 +1,6 @@
 import express from 'express';
-import Validator from '../middlewares/validators';
-import AccountController from '../controllers/Account_controller';
+import Validator from '../middlewares/Validator';
+import AccountController from '../controllers/AccountController';
 import AccountScafold from '../middlewares/AccountScafold';
 import VerifyToken from '../middlewares/VerifyToken';
 
