@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import UserService from '../services/UserService';
+import UserService from '../services/userService';
 import validPassword from '../../utils/validPassword';
 
 
