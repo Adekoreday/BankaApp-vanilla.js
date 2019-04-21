@@ -28,7 +28,6 @@ class AccountController {
         let patchedAccount;
         if (AccountExist !== undefined) {
             patchedAccount = this.AccountServices.patchAccount(req.body, accountNo);
-            console.log('active status', patchedAccount);
         }
         res.status(AccountExist === undefined ? 404 : 200).json({
             status: AccountExist === undefined ? 404 : 200,
@@ -42,11 +41,11 @@ class AccountController {
     deleteAccount(req, res) {
         const accountNo = req.params.id;
         const AccountExist = this.AccountServices.Existbefore(accountNo);
-        console.log('exist before', AccountExist);
+
         let deleteAcc;
         if (AccountExist !== undefined) {
             deleteAcc = this.AccountServices.deleteAccount(accountNo);
-            console.log('remainig after delete', deleteAcc);
+
         }
 
         res.status(deleteAcc === undefined ? 404 : 200).json({

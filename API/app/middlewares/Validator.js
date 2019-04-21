@@ -5,7 +5,6 @@ import Transaction from '../models/Transaction';
 
 class Validator {
     static SignUpValidator(req, res, next) {
-        console.log(req.body);
         const Users = new User();
         const result = Joi.validate(req.body, Users.UserSchema);
         if (result.error) {

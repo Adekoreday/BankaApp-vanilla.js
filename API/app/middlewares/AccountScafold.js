@@ -30,7 +30,6 @@ class AccountScafold {
         AccountPayload.status = 'active';
         AccountPayload.createdOn = currentDateTime.toString();
         AccountPayload.owner = userdata.id;
-        console.log(AccountPayload);
         req.AccountInput = AccountPayload;
         next();
     };
