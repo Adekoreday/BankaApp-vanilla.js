@@ -1,6 +1,6 @@
 import express from 'express';
 import TransactionController from '../controllers/TransactionController';
-import TransactionScafolld from '../middlewares/transactionScafolld';
+import TransactionScafolld from '../middlewares/TransactionScafolld';
 import Validator from '../middlewares/Validator';
 
 const TransactionControllers = new TransactionController();
