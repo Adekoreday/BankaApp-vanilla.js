@@ -1,7 +1,7 @@
 import { config } from 'dotenv';
 import express from 'express';
 import bodyParser from 'body-parser';
-import Router from './routes/Router';
+import Router from './routes/router';
 
 config();
 
