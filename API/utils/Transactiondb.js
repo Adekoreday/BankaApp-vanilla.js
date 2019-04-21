@@ -1,4 +1,4 @@
-const Transaction = [
+const Transactiondb = [
     {
         id: 1,
         type: 'current',
@@ -20,4 +20,4 @@ const Transaction = [
         newBalance: 19000,
     },
 ]
-export default Transaction;
+export default Transactiondb;

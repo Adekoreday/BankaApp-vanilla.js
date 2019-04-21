@@ -10,7 +10,7 @@ class Account {
             owner: Joi.number().integer().min(1).required(),
             Type: this.Joi.string().required().required(),
             status: this.Joi.string().required(),
-            balance: Joi.number().integer(),
+            balance: Joi.number().integer().required(),
         };
         this.AccSignInSchema = {
             status: this.Joi.string().required(),

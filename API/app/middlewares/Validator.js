@@ -1,11 +1,9 @@
 import Joi from 'joi';
-import User from '../models/users_model';
-import Account from '../models/Account_model';
-import Transaction from '../models/transaction';
+import User from '../models/User';
+import Account from '../models/Account';
+import Transaction from '../models/Transaction';
 
 class Validator {
-
-
     static SignUpValidator(req, res, next) {
         const Users = new User();
         const result = Joi.validate(req.body, Users.UserSchema);

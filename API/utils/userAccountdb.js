@@ -1,6 +1,6 @@
 const currentdateTime = new Date();
 
-const userAccount = [
+const userAccountdb = [
     {
         id: 1,
         accountNumber: 1012183201,
@@ -20,4 +20,4 @@ const userAccount = [
         balance: 2000,
     },
 ];
-export default userAccount;
+export default userAccountdb;

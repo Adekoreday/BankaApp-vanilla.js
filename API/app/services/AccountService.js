@@ -1,4 +1,4 @@
-import AccountData from '../../utils/Accountdb';
+import AccountData from '../../utils/userAccountdb';
 
 class AccountService {
     constructor() {
@@ -17,7 +17,6 @@ class AccountService {
 
     patchAccount(userput, accountNumber) {
         const selectedAccount = this.data.find(user => parseInt(user.accountNumber, 10) === parseInt(accountNumber, 10));
-        console.log('my selected acc', selectedAccount);
         selectedAccount.status = userput.status;
         return selectedAccount;
     }
@@ -26,6 +25,11 @@ class AccountService {
         const selectedAccount = this.data.find(user => parseInt(user.accountNumber, 10) === parseInt(accountNumber, 10));
         this.data.splice(selectedAccount.id - 1, 1);
         return this.data;
+    }
+
+    Existbefore(accountNumber) {
+        const check = this.data.find(account => parseInt(account.accountNumber, 10) === parseInt(accountNumber, 10));
+        return check;
     }
 }
 export default AccountService;

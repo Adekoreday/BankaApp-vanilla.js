@@ -1,22 +1,15 @@
 import { config } from 'dotenv';
+import express from 'express';
+import bodyParser from 'body-parser';
+import Router from './routes/router';
 
 config();
-import { Router, HandleAllRoutes } from './routes/router';
 
+const app = express();
+app.use(bodyParser.json());
 
-class App {
-    constructor() {
-        this.Routerobj = new Router();
+app.use('/api/v1', Router);
+const port = process.env.PORT || 3000;
+app.listen(port, () => { });
 
-    }
-
-    init() {
-        this.Routerobj.init();
-        const handleAllRoutes = new HandleAllRoutes();
-        handleAllRoutes.HandleAllRoute();
-    }
-}
-
-const initialize = new App();
-initialize.init();
-export default initialize.Routerobj.app;
+export default app;

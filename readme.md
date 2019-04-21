@@ -16,7 +16,7 @@ Banka is a light-weight core banking application that powers banking operations 
 2. cd API
 3. run npm install to install after you downlaod.
 4. run npm run dev (For development)
-5. run npm  run test (For test)
+5. run npm  run test (For testing)
 
 
 ```

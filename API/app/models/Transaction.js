@@ -1,5 +1,4 @@
 import Joi from 'joi';
-import AccountNumber from '../../utils/generateAccountNumber';
 
 class Transaction {
     constructor() {
