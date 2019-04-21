@@ -1,4 +1,4 @@
-import UserService from '../services/userService';
+import UserService from '../services/UserService';
 import generateAccount from '../../utils/GenAccountNumber';
 
 /**The Account scaffold is reponsible for autogenerating required fields for an account 
