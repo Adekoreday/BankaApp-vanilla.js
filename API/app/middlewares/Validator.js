@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import User from '../models/User';
 import Account from '../models/Account';
-import Transaction from '../models/Transaction';
+import Transaction from '../models/transaction';
 
 class Validator {
     static SignUpValidator(req, res, next) {
