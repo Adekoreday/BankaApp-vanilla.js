@@ -14,20 +14,32 @@ describe('USER TEST   overAll test', () => {
         UserSignUp: {
             firstName: 'Adeyemi',
             lastName: 'adekorede',
-            email: 'adeyem@hotmail.com',
+            email: 'yemkoh@hotmail.com',
             password: 'korey',
-            Type: 'savings',
+            Type: 'client',
             isAdmin: false,
         },
         userLogin: {
-            email: 'adeyem@hotmail.com',
+            email: 'kaytronics@gmail.com',
             password: 'korey',
         },
-        UserwrongSignUp: {
+        wrongpasswordLogin: {
+            email: ' khord4eng@gmail.com',
+            password: 'koreyttt',
+        },
+        UserwrongSignUp1: {
             firstName: 'Adeyemi',
             lastName: 'adekorede',
             password: 'korey',
-            Type: 'savings',
+            Type: 'staff',      //missing email
+            isAdmin: false,
+        },
+        UserwrongSignUp2: {
+            firstName: 'Adeyemi',
+            lastName: 'adekorede',
+            email: 'yemmo@hotmail.com',
+            password: 'korey',
+            Type: 'savings',     //type incorrect
             isAdmin: false,
         },
         nonexistLogin: {
@@ -43,11 +55,10 @@ describe('USER TEST   overAll test', () => {
                 .end((err, res) => {
                     expect(res, 'must have a status 200 ok').to.have.status(201);
                     expect(res.body.Data).to.be.a('object');
-                    expect(res.body.Data).to.have.property('firstName');
-                    expect(res.body.Data).to.have.property('lastName');
+                    expect(res.body.Data).to.have.property('firstname');
+                    expect(res.body.Data).to.have.property('lastname');
                     expect(res.body.Data).to.have.property('email');
                     expect(res.body.Data).to.have.property('id');
-                    expect(res.body.Data).to.have.property('token').to.be.a('string');
                     expect(res.body.Data).to.have.property('email');
                     done();
                 });
@@ -70,10 +81,22 @@ describe('USER TEST   overAll test', () => {
         it('its expected to throw error on failed input validation', (done) => {
             chai.request(server)
                 .post('/api/v1/auth/signup')
-                .send(userItems.UserwrongSignUp)
+                .send(userItems.UserwrongSignUp1)
                 .end((err, res) => {
                     expect(res, 'must have status 400').to.have.status(400);
                     expect(res.body).to.be.array();
+                    done();
+                });
+        });
+    })
+
+    describe('SIGN-UP FAIL DUE TO DB CONSTRAINTS', () => {
+        it('its expected to throw error on failed input validation', (done) => {
+            chai.request(server)
+                .post('/api/v1/auth/signup')
+                .send(userItems.UserwrongSignUp2)
+                .end((err, res) => {
+                    expect(res, 'must have status 400').to.have.status(400);
                     done();
                 });
         });
@@ -87,8 +110,8 @@ describe('USER TEST   overAll test', () => {
                 .end((err, res) => {
                     expect(res, 'must have a status 200 ok').to.have.status(200);
                     expect(res.body.Data).to.be.a('object');
-                    expect(res.body.Data).to.have.property('firstName');
-                    expect(res.body.Data).to.have.property('lastName');
+                    expect(res.body.Data).to.have.property('firstname');
+                    expect(res.body.Data).to.have.property('lastname');
                     expect(res.body.Data).to.have.property('email');
                     expect(res.body.Data).to.have.property('token').to.be.a('string');
                     done();

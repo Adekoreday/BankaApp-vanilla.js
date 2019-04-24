@@ -4,30 +4,27 @@ import validPassword from '../../utils/validPassword';
 
 
 class UserController {
-    constructor() {
-        this.UserService = new UserService();
-    }
 
-    SignUp(req, res) {
+    static async SignUp(req, res) {
         const userdetails = req.body;
-        const userExist = this.UserService.userExistBefore(userdetails.email);
+        const userExist = await UserService.SignIn(userdetails.email);
         let userList;
         if (userExist === undefined) {
             userdetails.permission = userdetails.isAdmin === true ? 'admin' : 'user';
             const token = jwt.sign({ email: userdetails.email, permission: userdetails.permission }, process.env.SECRET_KEY, { expiresIn: '1h' });
             userdetails.token = token;
-            userList = this.UserService.addNewUser(userdetails);
+            //       userList = this.UserService.addNewUser(userdetails);
+            userList = await UserService.Signup(userdetails, res);
         }
         return res.status(userList === undefined ? 422 : 201).json({
             status: userList === undefined ? 422 : 201,
             Data: userList === undefined ? 'user already Exists' : userList,
         });
-
     }
 
-    SignIn(req, res) {
+    static async SignIn(req, res) {
         const userKey = req.body;
-        const userExist = this.UserService.userExistBefore(userKey.email);
+        const userExist = await UserService.SignIn(userKey.email);
         if (userExist !== undefined) {
             const validatepass = validPassword(userKey.password, userExist.password);
             if (validatepass) {

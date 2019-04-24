@@ -1,49 +1,90 @@
-import userData from '../../utils/userDatadb';
+import User from '../server/models/User';
+import db from '../server/db';
+
 
 class UserService {
-    constructor() {
-        this.data = userData;
-    }
-    /*
-        fetchAllUsers() {
-            return this.data.map(users => users);
-        } */
 
-    addNewUser(newUser) {
-        const myUser = newUser;
-        const { length } = this.data;
-        let { id } = this.data[length - 1];
-        id += 1;
-        myUser.id = id;
-        this.data.push(myUser);
-        return myUser;
+    static SignIn(mail) {
+        return new Promise((resolve, reject) => {
+            db.querydb(User.checkifUserExist(mail))
+                .then((data) => {
+                    if (data.rows.length < 1) {
+                        resolve(undefined);
+                    } else {
+                        const { id, firstname, lastname, email, password, photo, type, isadmin, createdon } = data.rows[0];
+                        const payload = {
+                            id, firstname, lastname, email, password, photo, type, isadmin, createdon,
+                        };
+                        resolve(payload);
+                    }
+                });
+        });
     }
+
+    static Signup(newUser, res) {
+        return new Promise((resolve, reject) => {
+            const { firstName, lastName, email, password, photo, Type, isAdmin } = newUser;
+
+            db.querydb(User.AddnewUser(firstName, lastName, email, password, photo, Type, isAdmin))
+                .then((data) => {
+                    resolve(data.rows[0]);
+                })
+                .catch((err) => {
+
+                    res.status(400).json({
+                        status: 400,
+                        Data: 'you entered wrong Type..',
+                    });
+                    reject(err);
+
+                });
+        });
+    }
+
+
+    static addNewUser(newUser) {
+        const { firstName, lastName, email, password, photo, Type, isAdmin } = newUser;
+
+        db.querydb(User.AddnewUser(firstName, lastName, email, password, photo, Type, isAdmin))
+    }
+
+    /*
+       
+            addNewUser(newUser) {
+                const myUser = newUser;
+                const { length } = this.data;
+                let { id } = this.data[length - 1];
+                id += 1;
+                myUser.id = id;
+                this.data.push(myUser);
+                return myUser;
+            }
+            */
+
+
     /*
         getUserbyId(id) {
             const selectedUser = this.data.find(user => parseInt(user.id, 10) === parseInt(id, 10));
             return selectedUser;
         } */
-
-    userExistBefore(mail) {
-        const check = this.data.find(user => user.email === mail);
-        return check;
-    }
     /*
-        putUser(userput, id) {
-            const selectedUser = this.data.find(user => parseInt(user.id, 10) === parseInt(id, 10));
-            selectedUser.firstName = userput.firstName;
-            selectedUser.lastName = userput.lastName;
-            selectedUser.email = userput.email;
-            selectedUser.isAdmin = userput.isAdmin;
-            return selectedUser;
-        }
-    
-        deleteUser(id) {
-            const selectedUser = this.data.find(user => parseInt(user.id, 10) === parseInt(id, 10));
-            this.data.splice(selectedUser.id - 1, 1);
-            return this.data;
-    
-        } */
+       
+        
+            putUser(userput, id) {
+                const selectedUser = this.data.find(user => parseInt(user.id, 10) === parseInt(id, 10));
+                selectedUser.firstName = userput.firstName;
+                selectedUser.lastName = userput.lastName;
+                selectedUser.email = userput.email;
+                selectedUser.isAdmin = userput.isAdmin;
+                return selectedUser;
+            }
+        
+            deleteUser(id) {
+                const selectedUser = this.data.find(user => parseInt(user.id, 10) === parseInt(id, 10));
+                this.data.splice(selectedUser.id - 1, 1);
+                return this.data;
+        
+            } */
 
 }
 
