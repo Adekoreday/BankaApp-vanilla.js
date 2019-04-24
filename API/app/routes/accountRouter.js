@@ -12,6 +12,7 @@ accountRouter.patch('/account/:id', VerifyToken.verifyToken, Validator.patchAcco
     AccountController.patchAccount(req, res);
 });
 
+
 accountRouter.delete('/accounts/:id', VerifyToken.verifyToken, (req, res) => {
     AccountController.deleteAccount(req, res);
 });

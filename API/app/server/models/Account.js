@@ -33,5 +33,13 @@ class Account {
         }
         return queryString;
     }
+
+    static UpdateAccount(userput, accountNumber) {
+        const queryString = {
+            text: 'UPDATE accounts SET status = $1 WHERE accounts.accountnumber = $2 RETURNING *',
+            values: [userput.status, accountNumber],
+        }
+        return queryString;
+    }
 }
 export default Account;

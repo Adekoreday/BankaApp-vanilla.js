@@ -22,40 +22,43 @@ class AccountController {
         });
 
     }
+
+    static async patchAccount(req, res) {
+        const myaccountNo = req.params.id;
+        const accountNo = parseInt(myaccountNo, 10);
+        const AccountExist = await AccountService.CheckifAccountExist(accountNo);
+        let patchedAccount;
+        if (AccountExist !== undefined) {
+            AccountExist.status = req.body.status;
+            patchedAccount = await AccountService.patchAccount(AccountExist, accountNo, res);
+        }
+        res.status(AccountExist === undefined ? 404 : 200).json({
+            status: AccountExist === undefined ? 404 : 200,
+            data: {
+                accountNumber: (AccountExist === undefined ? 'not exist' : patchedAccount.accountNumber),
+                status: AccountExist === undefined ? 'not exist' : patchedAccount.status,
+            },
+        });
+    }
+
+    deleteAccount(req, res) {
+        const accountNo = req.params.id;
+        const AccountExist = this.AccountServices.Existbefore(accountNo);
+
+        let deleteAcc;
+        if (AccountExist !== undefined) {
+            deleteAcc = this.AccountServices.deleteAccount(accountNo);
+
+        }
+
+        res.status(deleteAcc === undefined ? 404 : 200).json({
+            status: deleteAcc === undefined ? 404 : 200,
+            msg: deleteAcc === undefined ? 'Account does not exist' : 'delete sucessfull',
+        })
+
+    }
     /*  get account details...............
-         patchAccount(req, res) {
-             const accountNo = req.params.id;
-             const AccountExist = this.AccountServices.Existbefore(accountNo);
-             let patchedAccount;
-             if (AccountExist !== undefined) {
-                 patchedAccount = this.AccountServices.patchAccount(req.body, accountNo);
-             }
-             res.status(AccountExist === undefined ? 404 : 200).json({
-                 status: AccountExist === undefined ? 404 : 200,
-                 data: {
-                     accountNumber: (AccountExist === undefined ? 'not exist' : patchedAccount.accountNumber),
-                     status: AccountExist === undefined ? 'not exist' : patchedAccount.status,
-                 },
-             });
-         }
-     
-         deleteAccount(req, res) {
-             const accountNo = req.params.id;
-             const AccountExist = this.AccountServices.Existbefore(accountNo);
-     
-             let deleteAcc;
-             if (AccountExist !== undefined) {
-                 deleteAcc = this.AccountServices.deleteAccount(accountNo);
-     
-             }
-     
-             res.status(deleteAcc === undefined ? 404 : 200).json({
-                 status: deleteAcc === undefined ? 404 : 200,
-                 msg: deleteAcc === undefined ? 'Account does not exist' : 'delete sucessfull',
-             })
-     
-         }
-         */
+    */
 
 }
 export default AccountController;

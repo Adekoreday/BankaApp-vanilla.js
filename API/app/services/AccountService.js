@@ -39,32 +39,38 @@ class AccountService {
                 });
         })
     }
+
+
+    static patchAccount(userput, accountNumber, res) {
+
+        return new Promise((resolve, reject) => {
+            db.querydb(Account.UpdateAccount(userput, accountNumber))
+                .then((result) => {
+                    console.log(' account modified sucessfully');
+
+                    resolve(result.rows[0]);
+                })
+                .catch((err) => {
+                    console.log('account modify failed', err);
+                    res.status(400).json({
+                        status: 400,
+                        Data: 'you may have entered wrong status keyword ..',
+                    });
+                    reject();
+                });
+        });
+    }
+
     /*
-        addNewAccount(newAccount) {
-            const myAccount = newAccount;
-            const { length } = this.data;
-            let { id } = this.data[length - 1];
-            id += 1;
-            myAccount.id = id;
-            this.data.push(myAccount);
-            return myAccount;
-        }
-    
-        patchAccount(userput, accountNumber) {
-            const selectedAccount = this.data.find(user => parseInt(user.accountNumber, 10) === parseInt(accountNumber, 10));
-            selectedAccount.status = userput.status;
-            return selectedAccount;
-        }
-    
         deleteAccount(accountNumber) {
             const selectedAccount = this.data.find(user => parseInt(user.accountNumber, 10) === parseInt(accountNumber, 10));
             this.data.splice(selectedAccount.id - 1, 1);
             return this.data;
         }
-    
-        Existbefore(accountNumber) {
-            const check = this.data.find(account => parseInt(account.accountNumber, 10) === parseInt(accountNumber, 10));
-            return check;
-        } */
+        
+            Existbefore(accountNumber) {
+                const check = this.data.find(account => parseInt(account.accountNumber, 10) === parseInt(accountNumber, 10));
+                return check;
+            } */
 }
 export default AccountService;
