@@ -4,7 +4,7 @@ import db from '../server/db';
 
 class UserService {
 
-    static SignIn(mail) {
+    static CheckifUserExist(mail) {
         return new Promise((resolve, reject) => {
             db.querydb(User.checkifUserExist(mail))
                 .then((data) => {
@@ -39,13 +39,6 @@ class UserService {
 
                 });
         });
-    }
-
-
-    static addNewUser(newUser) {
-        const { firstName, lastName, email, password, photo, Type, isAdmin } = newUser;
-
-        db.querydb(User.AddnewUser(firstName, lastName, email, password, photo, Type, isAdmin))
     }
 
     /*

@@ -6,15 +6,14 @@ import generateAccount from '../../utils/GenAccountNumber';
  */
 
 class AccountScafold {
-    static Scafold(req, res, next) {
+    static async Scafold(req, res, next) {
         const currentDateTime = new Date();
-        const userServices = new UserService();
         const userdetails = req.userData;
-        const userdata = userServices.userExistBefore(userdetails.email);
+        const userdata = await UserService.CheckifUserExist(userdetails.email);
         if (userdata === undefined) {
             res.status(404).json({
                 status: 404,
-                msg: 'wrong email or password',
+                msg: 'user does not exist signup first',
             });
         }
         req.passedUser = userdata;

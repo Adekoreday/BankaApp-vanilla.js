@@ -20,8 +20,16 @@ class Account {
     static AddnewAccount(accountNumber, status, Type, balance, userId) {
         const queryString = {
             text: `INSERT INTO accounts (accountNumber, status, Type, balance, user_id)
-                                     VALUES ($1, $2, $3, $4, $5)`,
+                                     VALUES ($1, $2, $3, $4, $5) RETURNING *`,
             values: [accountNumber, status, Type, balance, userId],
+        }
+        return queryString;
+    }
+
+    static checkifAccountExist(accountNumber) {
+        const queryString = {
+            text: `SELECT * FROM accounts WHERE  accounts.accountnumber = $1`,
+            values: [accountNumber],
         }
         return queryString;
     }
