@@ -47,7 +47,6 @@ class AccountService {
             db.querydb(Account.UpdateAccount(userput, accountNumber))
                 .then((result) => {
                     console.log(' account modified sucessfully');
-
                     resolve(result.rows[0]);
                 })
                 .catch((err) => {
@@ -61,16 +60,52 @@ class AccountService {
         });
     }
 
+    static patchAccountBalance(newbalance, accountNumber, res) {
+
+        return new Promise((resolve, reject) => {
+            db.querydb(Account.UpdateAccountBalance(newbalance, accountNumber))
+                .then((result) => {
+                    console.log(' account updated sucessfully');
+                    resolve(result.rows[0]);
+                })
+                .catch((err) => {
+                    console.log('account update failed', err);
+                    res.status(400).json({
+                        status: 400,
+                        Data: 'you may have entered wrong status keyword ..',
+                    });
+                    reject();
+                });
+        });
+    }
+
+
+    static deleteAccount(accountNumber) {
+        return new Promise((resolve, reject) => {
+            db.querydb(Account.DeleteAccount(accountNumber))
+                .then((result) => {
+                    console.log(' account delete sucessfully');
+                    resolve(result);
+                })
+                .catch((err) => {
+                    console.log('account modify failed', err);
+                    res.status(400).json({
+                        status: 400,
+                        Data: 'error occoured deleting user..',
+                    });
+                    reject();
+                });
+        });
+        /*
+        const selectedAccount = this.data.find(user => parseInt(user.accountNumber, 10) === parseInt(accountNumber, 10));
+        this.data.splice(selectedAccount.id - 1, 1);
+        return this.data;
+        */
+    }
     /*
-        deleteAccount(accountNumber) {
-            const selectedAccount = this.data.find(user => parseInt(user.accountNumber, 10) === parseInt(accountNumber, 10));
-            this.data.splice(selectedAccount.id - 1, 1);
-            return this.data;
-        }
-        
-            Existbefore(accountNumber) {
-                const check = this.data.find(account => parseInt(account.accountNumber, 10) === parseInt(accountNumber, 10));
-                return check;
-            } */
+        Existbefore(accountNumber) {
+            const check = this.data.find(account => parseInt(account.accountNumber, 10) === parseInt(accountNumber, 10));
+            return check;
+        } */
 }
 export default AccountService;

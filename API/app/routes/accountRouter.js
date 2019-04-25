@@ -3,17 +3,18 @@ import Validator from '../middlewares/Validator';
 import AccountController from '../controllers/AccountController';
 import AccountScafold from '../middlewares/AccountScafold';
 import VerifyToken from '../middlewares/VerifyToken';
+import Accountpermission from '../middlewares/permissions/Accountpermission';
 
 const accountRouter = express.Router();
-accountRouter.post('/account', VerifyToken.verifyToken, AccountScafold.Scafold, Validator.CreateAccountValidator, (req, res) => {
+accountRouter.post('/account', VerifyToken.verifyToken, Accountpermission.createAccountpermission, AccountScafold.Scafold, Validator.CreateAccountValidator, (req, res) => {
     AccountController.createAccount(req, res);
 });
-accountRouter.patch('/account/:id', VerifyToken.verifyToken, Validator.patchAccountValidator, (req, res) => {
+accountRouter.patch('/account/:id', VerifyToken.verifyToken, Accountpermission.activateAccountpermission, Validator.patchAccountValidator, (req, res) => {
     AccountController.patchAccount(req, res);
 });
 
 
-accountRouter.delete('/accounts/:id', VerifyToken.verifyToken, (req, res) => {
+accountRouter.delete('/accounts/:id', VerifyToken.verifyToken, Accountpermission.deleteAccountpermission, (req, res) => {
     AccountController.deleteAccount(req, res);
 });
 

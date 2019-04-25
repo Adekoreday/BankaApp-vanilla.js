@@ -41,5 +41,21 @@ class Account {
         }
         return queryString;
     }
+
+    static UpdateAccountBalance(balance, accountNumber) {
+        const queryString = {
+            text: 'UPDATE accounts SET balance = $1 WHERE accounts.accountnumber = $2 RETURNING *',
+            values: [balance, accountNumber],
+        }
+        return queryString;
+    }
+
+    static DeleteAccount(accountNumber) {
+        const queryString = {
+            text: 'DELETE FROM accounts where accounts.accountnumber = $1',
+            values: [accountNumber],
+        }
+        return queryString;
+    }
 }
 export default Account;
