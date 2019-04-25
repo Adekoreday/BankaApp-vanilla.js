@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 
 const validPassword = (password, userPassword) => {
     const isValid = bcrypt.compareSync(password, userPassword);

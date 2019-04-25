@@ -8,10 +8,11 @@ const { TransactionUnMigrate } = TransactionMigration;
 
 async function start() {
     try {
-
-        await AccountUnMigrate();
-        await UserUnMigrate();
-        await TransactionUnMigrate();
+    
+     await TransactionUnMigrate();
+      await AccountUnMigrate();
+      await UserUnMigrate();
+       
         console.log('unmigration sucessfull');
     } catch (e) {
         console.log('error', e);

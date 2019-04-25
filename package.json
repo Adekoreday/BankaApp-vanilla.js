@@ -3,14 +3,14 @@
   "version": "1.0.0",
   "description": "a lightweight banking app",
   "main": "app.js",
-  "scripts": {
+  "scripts": { 
     "start": "node ./build/app.js",
     "test": "npm run db:unmigrate && npm run db:migrate && npm run db:seedAll && npm run testing",
     "dev": "nodemon --exec babel-node app/app.js",
     "db:migrate": "babel-node app/server/migrations/migrate.js",
     "db:unmigrate": "babel-node app/server/migrations/unmigrate.js",
     "db:seedAll": "babel-node app/server/seed/seedAll.js",
-    "testing": "nyc mocha --timeout 30000  -r esm --exit",
+    "testing": "nyc mocha --timeout 50000  -r esm --exit",
     "clean": "rm -rf build && mkdir build",
     "build": "npm run clean && npm run build-babel",
     "build-babel": "babel -d ./build ./app -s",
@@ -37,7 +37,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
-    "bcrypt": "^3.0.5",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "chai-arrays": "^2.0.0",
     "codeclimate-test-reporter": "^0.5.1",
