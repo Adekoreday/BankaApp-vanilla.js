@@ -1,14 +1,18 @@
 language: node_js
 node_js:
- - "node"
+ - "stable"
 before_install: cd API/
+install: npm install
 
 cache:
   directories:
     - "node_modules"
-
 env: 
   - CODECLIMATE_REPO_TOKEN=157c264c8a63c6cdcc0f2d300fc35f245aa67c3c187d38fc812b7fa703d1ebac
-                           
+  - NODE_ENV=TEST
+  - SECRET_KEY=nagasaki-hirosima
+
 after_success:
   - npm run coverage
+
+- 
