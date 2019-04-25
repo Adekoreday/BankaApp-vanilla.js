@@ -111,8 +111,6 @@ _route requires a bearer token you got when u signed in_
 ## By 
 ### Adeyemi Adekorede Adeseyi
 Postman documentation
-https://documenter.getpostman.com/view/5907608/S1ENyyam
-
 alc prebootcamp.
 
 ## License
