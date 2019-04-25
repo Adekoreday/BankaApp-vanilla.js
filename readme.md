@@ -113,7 +113,7 @@ _route requires a bearer token you got when u signed in_
 Postman documentation
 https://documenter.getpostman.com/view/5907608/S1ENyyam
 
-andela Nigeria bootcamp.
+proudly andela Nigeria bootcamp. 
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
