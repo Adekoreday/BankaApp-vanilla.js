@@ -16,7 +16,7 @@
     "generate-lcov": "nyc report --reporter=text-lcov > lcov.info",
     "codeclimate-coverage": "codeclimate-test-reporter < lcov.info",
     "coveralls-coverage": "coveralls < lcov.info",
-    "coverage": "nyc npm test && npm run generate-lcov && npm run coveralls-coverage && npm run codeclimate-coverage"
+    "coverage": "npm run db:unmigrate npm run db:migrate && npm run db:seedAll && nyc npm test && npm run generate-lcov && npm run coveralls-coverage && npm run codeclimate-coverage"
   },
   "author": "adeyemi adekorede",
   "license": "MIT",
