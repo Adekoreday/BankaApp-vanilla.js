@@ -6,20 +6,19 @@ dotenv.config();
 
 const env = process.env.NODE_ENV || 'development';
 const configurations = config[env];
-const TESTDB = 'postgres://lchszjre:KkYtJDx6DxoYQvkWUTgK-bb9ua2Wn0cg@baasu.db.elephantsql.com:5432/lchszjre';
-const productionDB = 'postgres://xibqsmju:ITur0M2dh7v9TFVd-fWe6zJ7ovGoFuru@isilo.db.elephantsql.com:5432/xibqsmju';
+
 const { Pool } = pg;
 let pool;
 
 if (process.env.NODE_ENV === 'TEST') {
     pool = new Pool({
-        connectionString: TESTDB,
+        connectionString: process.env.TESTDB,
     });
     console.log("entered test db");
 }
 if (process.env.NODE_ENV === 'production') {
     pool = new Pool({
-        connectionString: productionDB,
+        connectionString: process.env.productionDB,
     });
 }
 if (process.env.NODE_ENV === 'development') {
