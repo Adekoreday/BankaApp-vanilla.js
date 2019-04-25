@@ -8,6 +8,7 @@ class AccountController {
 
     static async createAccount(req, res) {
         try {
+            console.log("i got here while creating account");
             const AccountExist = await AccountService.CheckifAccountExist(req.AccountInput.accountNumber);
             let createdAcc;
             if (AccountExist === undefined) {

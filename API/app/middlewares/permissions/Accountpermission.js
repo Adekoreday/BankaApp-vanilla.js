@@ -3,6 +3,7 @@ import permissionObj from '../../../utils/permissionObj';
 class Accountpermission {
 
     static createAccountpermission(req, res, next) {
+
         const signedIn = typeof req.userData.permission === 'object' && req.userData.permission instanceof Array && req.userData.permission.length > 0 ? 'true' : 'false';
         if (signedIn === 'true') {
             const { permission } = req.userData;
@@ -57,6 +58,7 @@ class Accountpermission {
     }
 
     static creditAccountpermission(req, res, next) {
+
         const signedIn = typeof req.userData.permission === 'object' && req.userData.permission instanceof Array && req.userData.permission.length > 0 ? 'true' : 'false';
         if (signedIn === 'true') {
             const { permission } = req.userData;

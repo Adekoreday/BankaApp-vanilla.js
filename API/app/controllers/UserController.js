@@ -29,8 +29,6 @@ class UserController {
 
     static async SignIn(req, res) {
         try {
-
-
             const userKey = req.body;
             const userExist = await UserService.CheckifUserExist(userKey.email);
 

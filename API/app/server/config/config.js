@@ -14,11 +14,13 @@ export default {
         idleTimeoutMillis: 30000,
     },
     test: {
-        username: 'postgres',
+        /*username: 'postgres',
         password: '',
         database: 'travis',
         host: '127.0.0.1',
         dialect: 'postgres',
+        */
+
     },
     production: {
         host: 'ec2-50-19-109-120.compute-1.amazonaws.com',

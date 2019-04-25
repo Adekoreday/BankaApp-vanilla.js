@@ -5,18 +5,19 @@
   "main": "app.js",
   "scripts": {
     "start": "node ./build/app.js",
+    "test": "npm run db:unmigrate && npm run db:migrate && npm run db:seedAll && npm run testing",
     "dev": "nodemon --exec babel-node app/app.js",
     "db:migrate": "babel-node app/server/migrations/migrate.js",
     "db:unmigrate": "babel-node app/server/migrations/unmigrate.js",
     "db:seedAll": "babel-node app/server/seed/seedAll.js",
-    "test": "nyc mocha --timeout 30000  -r esm --exit",
+    "testing": "nyc mocha --timeout 30000  -r esm --exit",
     "clean": "rm -rf build && mkdir build",
     "build": "npm run clean && npm run build-babel",
     "build-babel": "babel -d ./build ./app -s",
     "generate-lcov": "nyc report --reporter=text-lcov > lcov.info",
     "codeclimate-coverage": "codeclimate-test-reporter < lcov.info",
     "coveralls-coverage": "coveralls < lcov.info",
-    "coverage": "npm run db:unmigrate npm run db:migrate && npm run db:seedAll && nyc npm test && npm run generate-lcov && npm run coveralls-coverage && npm run codeclimate-coverage"
+    "coverage": "nyc npm test && npm run generate-lcov && npm run coveralls-coverage && npm run codeclimate-coverage"
   },
   "author": "adeyemi adekorede",
   "license": "MIT",

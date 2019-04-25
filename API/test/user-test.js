@@ -20,7 +20,7 @@ describe('USER TEST   overAll test', () => {
             isAdmin: false,
         },
         userLogin: {
-            email: 'kaytronics@gmail.com',
+            email: 'adeyemi_adekorede@hotmail.com',
             password: 'korey',
         },
         wrongpasswordLogin: {
@@ -101,7 +101,6 @@ describe('USER TEST   overAll test', () => {
         expect(res.body.Data).to.be.a('object');
         expect(res.body.Data).to.have.property('firstname');
         expect(res.body.Data).to.have.property('lastname');
-        expect(res.body.Data).to.have.property('email');
         expect(res.body.Data).to.have.property('token').to.be.a('string');
     });
 
