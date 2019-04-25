@@ -15,6 +15,7 @@ if (process.env.NODE_ENV === 'TEST') {
     pool = new Pool({
         connectionString: TESTDB,
     });
+    console.log("entered test db");
 }
 if (process.env.NODE_ENV === 'production') {
     pool = new Pool({
