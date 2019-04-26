@@ -21,5 +21,25 @@ class TransactionService {
                 });
         })
     }
+
+     static async getTransaction(id, res) {
+        return new Promise((resolve, reject) => {  
+            db.querydb(Transaction.GetTransactionById(id))
+                .then((result) => {
+                    console.log(' account created sucessfully');
+                    resolve(result.rows[0]);
+                })
+                .catch((err) => {
+                    console.log('account create failed', err);
+                    res.status(400).json({
+                        status: 400,
+                        Data: 'you may have entered wrong Type..',
+                    });
+                    reject();
+                });
+        })
+    }
+
+
 }
 export default TransactionService;
