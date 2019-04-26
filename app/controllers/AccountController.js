@@ -94,6 +94,20 @@ class AccountController {
     }
 
   }
+    
+      static async getAccounts(req, res) {
+    try {
+        const AlluserAcc = await AccountService.checkAllAccounts();
+        res.status(AlluserAcc === undefined ? 404 : 200).json({
+        status: AlluserAcc === undefined ? 404 : 200,
+        msg: AlluserAcc === undefined ? null : AlluserAcc,
+      });
+    } catch (e) {
+      return res.status(500).json({
+        error: `following server error occourred ${e}`,
+      });
+    }
+  }
   /*  get account details...............
     */
 

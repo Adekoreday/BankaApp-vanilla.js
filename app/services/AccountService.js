@@ -119,5 +119,22 @@ class AccountService {
                 });
         });
     }
+
+       static checkAllAccounts() {
+      return new Promise((resolve, reject) => {
+            db.querydb(Account.GetAllAccounts())
+                .then((result) => {
+                    resolve(result.rows);
+                })
+                .catch((err) => {
+                    console.log('account get failed ', err);
+                    res.status(400).json({
+                        status: 400,
+                        Data: 'error occoured getting user accounts..',
+                    });
+                    reject();
+                });
+        });
+    }
    }
 export default AccountService;

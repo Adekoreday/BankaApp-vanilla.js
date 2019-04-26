@@ -41,6 +41,20 @@ class UserService {
         });
     }
 
+     
+     static CheckifUserExistbyId(myid) {
+         console.log('myid', myid);
+        return new Promise((resolve, reject) => {
+            db.querydb(User.checkifUserExistbyId(myid))
+                .then((data) => {
+                    if (data.rows.length < 1) {
+                        resolve(undefined);
+                    } else {
+                        resolve(data.rows);
+                    }
+                });
+        });
+    }
     /*
        
             addNewUser(newUser) {
