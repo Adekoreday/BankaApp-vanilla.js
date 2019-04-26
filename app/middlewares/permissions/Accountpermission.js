@@ -75,6 +75,24 @@ class Accountpermission {
       });
     }
   }
+
+    static getAllAccountpermission(req, res, next) {
+    const signedIn = typeof req.userData.permission === 'object' && req.userData.permission instanceof Array && req.userData.permission.length > 0 ? 'true' : 'false';
+    if (signedIn === 'true') {
+      const { permission } = req.userData;
+      const confirmPermission = permission.includes(permissionObj.GETALL_ACCOUNT);
+      if (!confirmPermission) {
+        return res.status(403).json({
+          msg: 'You are not authorized to credit/debit an account',
+        });
+      }
+      next();
+    } else {
+      return res.status(403).json({
+        msg: 'You are not signed in kindly sign in',
+      });
+    }
+  }
 }
 export default Accountpermission;
 

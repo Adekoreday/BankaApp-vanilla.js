@@ -16,6 +16,11 @@ accountRouter.patch('/account/:id', VerifyToken.verifyToken, Accountpermission.a
 accountRouter.get('/user/:mail/accounts', VerifyToken.verifyToken, Accountpermission.createAccountpermission, (req, res) => {
   AccountController.getAllUserAccounts(req, res);
 });
+
+accountRouter.get('/accounts', VerifyToken.verifyToken, Accountpermission.getAllAccountpermission, (req, res) => {
+  AccountController.getAccounts(req, res);
+});
+
 accountRouter.delete('/accounts/:id', VerifyToken.verifyToken, Accountpermission.deleteAccountpermission, (req, res) => {
     AccountController.deleteAccount(req, res);
 });

@@ -30,6 +30,11 @@ describe(' ACCOUNT TEST   overAll test', () => {
       balance: 1000,
       password: 'korey',
     },
+    wrongTypeInput:{
+     Type: 'funny',
+     balance: 20000,
+     password: 'korey',
+    },
     incompleteCreate: {
       balance: 1000,
       password: 'korey',
@@ -102,6 +107,17 @@ describe(' ACCOUNT TEST   overAll test', () => {
 
   });
 
+   it('its expected to not create a new account sucessfully', async () => {
+    const res = await chai.request(server)
+      .post('/api/v1/account')
+      .set('Authorization', accountCreatedetails.usertoken)
+      .send(accountCreatedetails.wrongTypeInput);
+      expect(res, 'must have a status 400 ').to.have.status(400);
+      expect(res.body, 'must have a status').to.have.property('status');
+      expect(res.body, 'must have a status').to.have.property('Data');
+
+     });
+
   it('its expected to create a new account sucessfully', async () => {
     const res = await chai.request(server)
       .post('/api/v1/account')
@@ -157,7 +173,6 @@ describe(' ACCOUNT TEST   overAll test', () => {
       .set('Authorization', accountCreatedetails.usertoken)
       .send(accountCreatedetails.patchpayload);
     expect(res, 'must sucessfully patch').to.have.status(200);
-
   });
 
 
@@ -177,7 +192,6 @@ describe(' ACCOUNT TEST   overAll test', () => {
       .send(accountCreatedetails.patchpayload);
     expect(res, 'must not sucessfully patch not autorized').to.have.status(403);
   });
-
 
   it('its not expected to modify  an account that does not exist', async () => {
     const res = await chai.request(server)
@@ -223,4 +237,20 @@ describe(' ACCOUNT TEST   overAll test', () => {
       .set('Authorization', accountCreatedetails.usertoken);
     expect(res, 'must not delete successfully').to.have.status(404);
   });
+
+     it('its expected to get ALL user accounts', async () => {
+    const res = await chai.request(server)
+      .get('/api/v1/accounts')
+      .set('Authorization', accountCreatedetails.usertoken);
+       expect(res, 'must return All accounts').to.have.status(200);
+  });
+
+     it('its expected to get ALL user accounts', async () => {
+    const res = await chai.request(server)
+      .get('/api/v1/accounts')
+      .set('Authorization', accountCreatedetails.endusertoken);
+       expect(res, 'must return All accounts').to.have.status(403);
+  });
+
+
 });
