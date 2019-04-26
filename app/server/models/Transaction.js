@@ -21,7 +21,7 @@ class Transaction {
     static AddnewTransaction(Type, amount, oldbalance, newbalance, cashierId, accountId) {
         const queryString = {
             text: `INSERT INTO transactions (Type, amount, oldbalance, newbalance, cashier_id, account_id)
-                                     VALUES ($1, $2, $3, $4, $5, $6)`,
+                                     VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`,
             values: [Type, amount, oldbalance, newbalance, cashierId, accountId],
         }
         return queryString;
