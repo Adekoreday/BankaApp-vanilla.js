@@ -9,5 +9,8 @@ const TransactionRouter = express.Router();
 TransactionRouter.post('/transactions/:accountNumber/:transactionType', VerifyToken.verifyToken, Accountpermission.creditAccountpermission, TransactionScafolld.transactionScafolld, Validator.transactionValidator, (req, res) => {
     TransactionController.processTransaction(req, res);
 });
+TransactionRouter.get('/transactions/:id', VerifyToken.verifyToken, (req, res) => {
+    TransactionController.getTransaction(req, res);
+});
 
 export default TransactionRouter;
