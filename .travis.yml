@@ -5,9 +5,5 @@ install: npm install
 cache:
   directories:
     - "node_modules"
-env: 
-  - CODECLIMATE_REPO_TOKEN=be3fcca4d68c6d7f19c1ca6b818848d3514c31b401ef1aa76517d6c01e6891b3
-  - NODE_ENV=TEST
-  - SECRET_KEY=nagasaki
 after_success:
   - npm run coverage

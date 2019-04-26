@@ -102,10 +102,22 @@ class AccountService {
         return this.data;
         */
     }
-    /*
-        Existbefore(accountNumber) {
-            const check = this.data.find(account => parseInt(account.accountNumber, 10) === parseInt(accountNumber, 10));
-            return check;
-        } */
-}
+   
+    static checkAccountsOwnedByUser(UserId) {
+      return new Promise((resolve, reject) => {
+            db.querydb(Account.GetAllaccountsWithUserId(UserId))
+                .then((result) => {
+                    resolve(result.rows);
+                })
+                .catch((err) => {
+                    console.log('account get failed ', err);
+                    res.status(400).json({
+                        status: 400,
+                        Data: 'error occoured getting user accounts..',
+                    });
+                    reject();
+                });
+        });
+    }
+   }
 export default AccountService;
