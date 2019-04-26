@@ -57,5 +57,13 @@ class Account {
         }
         return queryString;
     }
+
+    static GetAllaccountsWithUserId(id) {
+        const queryString = {
+            text: 'SELECT * FROM accounts where accounts.user_id = $1',
+            values: [id],
+        }
+        return queryString;
+    }
 }
 export default Account;
