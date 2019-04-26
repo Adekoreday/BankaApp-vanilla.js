@@ -114,6 +114,6 @@ Postman documentation
 https://documenter.getpostman.com/view/5907608/S1ENyyam
 
 proudly andela Nigeria bootcamp. 
-adeyemi_adekorede@hotmail.com
+
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
