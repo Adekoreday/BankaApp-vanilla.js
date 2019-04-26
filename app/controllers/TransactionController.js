@@ -15,7 +15,7 @@ class TransactionController {
       accountNumber: req.params.accountNumber,
       accountBalance: addedtransaction.newbalance,
       amount: addedtransaction.amount,
-      cashier: addedtransaction.cashier,
+      cashier: addedtransaction.cashier_id,
       Transactiontype: addedtransaction.type,
     };
     res.status(200).json({

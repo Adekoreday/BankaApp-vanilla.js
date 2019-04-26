@@ -5,7 +5,6 @@ class TransactionService {
 
     static async addNewTransaction(userdata, res) {
         return new Promise((resolve, reject) => {
-            console.log('user data', userdata);
             const { Type, amount, oldbalance, newbalance, cashier, accountId } = userdata;
             db.querydb(Transaction.AddnewTransaction(Type, amount, oldbalance, newbalance, cashier, accountId))
                 .then((result) => {
