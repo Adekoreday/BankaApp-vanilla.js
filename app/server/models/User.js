@@ -52,6 +52,14 @@ class User {
         return queryString;
     }
 
+     static checkifUserExistbyId(id) {
+        const queryString = {
+            text: `SELECT * FROM users WHERE  users.id = $1`,
+            values: [id],
+        }
+        return queryString;
+    }
+    
     static DeleteUser(id) {
         const queryString = {
             text: `DELETE FROM users WHERE users.id = $1`,

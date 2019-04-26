@@ -33,7 +33,7 @@ class UserController {
 
       if (userExist !== undefined) {
         userKey.permission = userExist.isadmin === true ? 'admin' : 'user';
-        userKey.permission = userKey.permission === 'admin' ? ['postAccount', 'activateAccount', 'deactivateAccount', 'deleteAccount'] : ['postAccount'];
+        userKey.permission = userKey.permission === 'admin' ? ['postAccount', 'activateAccount', 'deactivateAccount', 'deleteAccount', 'getAllAccounts', 'debitAccount', 'creditAccount'] : ['postAccount'];
         if (userExist.type === 'staff' && userExist.isadmin === false) {
           userKey.permission = ['debitAccount', 'creditAccount'];
         }

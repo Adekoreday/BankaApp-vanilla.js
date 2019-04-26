@@ -65,5 +65,12 @@ class Account {
         }
         return queryString;
     }
+
+    static GetAllAccounts(){
+        const queryString = {
+            text: 'SELECT * FROM accounts',
+        }
+        return queryString;
+    }
 }
 export default Account;
