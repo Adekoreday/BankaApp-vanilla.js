@@ -1,5 +1,5 @@
 import TransactionService from '../services/TransactionService';
-
+import AccountService from '../services/AccountService';
 
 class TransactionController {
 
@@ -43,6 +43,26 @@ class TransactionController {
       status: 200,
       data: mydata,
     });
+  }
+
+  static async getTransactionByaccount(req, res) {
+ const AccountExist = await AccountService.CheckifAccountExist(req.params.accountNumber);
+ let Allaccount;
+ if(AccountExist != undefined) {
+ Allaccount = await TransactionService.getTransactionbyAccount(AccountExist.id, res);
+ Allaccount.map((x) => {
+   x.accountNumber = req.params.accountNumber
+   delete x.cashier_id;
+   });
+
+ }
+  return res.status(Allaccount === undefined ? 422 : 200).json({
+        status: Allaccount === undefined ? 422 : 200,
+        Data: Allaccount === undefined ? 'account does not Exists': Allaccount,
+      });
+
+
+
   }
   
 

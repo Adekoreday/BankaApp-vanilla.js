@@ -40,6 +40,24 @@ class TransactionService {
         })
     }
 
+        static async getTransactionbyAccount(id, res) {
+        return new Promise((resolve, reject) => {  
+            db.querydb(Transaction.GetAllUserTransactionbyAccountId(id))
+                .then((result) => {
+                    console.log(' Transaction returned sucessfully');
+                    resolve(result.rows);
+                })
+                .catch((err) => {
+                    console.log('Transaction failed', err);
+                    res.status(500).json({
+                        status: 500,
+                        Data: 'Server error...',
+                    });
+                    reject();
+                });
+        })
+    }
+
 
 }
 export default TransactionService;

@@ -34,5 +34,14 @@ class Transaction {
     };
     return queryString;
   }
+
+    static GetAllUserTransactionbyAccountId(id) {
+    const queryString = {
+      text: 'SELECT * FROM transactions WHERE transactions.account_id = $1',
+      values: [id],
+    };
+    return queryString;
+  }
+
 }
 export default Transaction;

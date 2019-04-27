@@ -6,23 +6,13 @@ import VerifyToken from '../middlewares/VerifyToken';
 import Accountpermission from '../middlewares/permissions/Accountpermission';
 
 const accountRouter = express.Router();
-accountRouter.post('/account', VerifyToken.verifyToken, Accountpermission.createAccountpermission, AccountScafold.Scafold, Validator.CreateAccountValidator, (req, res) => {
-    AccountController.createAccount(req, res);
-});
-accountRouter.patch('/account/:id', VerifyToken.verifyToken, Accountpermission.activateAccountpermission, Validator.patchAccountValidator, (req, res) => {
-    AccountController.patchAccount(req, res);
-});
+accountRouter.post('/account', VerifyToken.verifyToken, Accountpermission.createAccountpermission, AccountScafold.Scafold, Validator.CreateAccountValidator, AccountController.createAccount);
+accountRouter.patch('/account/:id', VerifyToken.verifyToken, Accountpermission.activateAccountpermission, Validator.patchAccountValidator, AccountController.patchAccount);
 
-accountRouter.get('/user/:mail/accounts', VerifyToken.verifyToken, Accountpermission.createAccountpermission, (req, res) => {
-  AccountController.getAllUserAccounts(req, res);
-});
+accountRouter.get('/user/:mail/accounts', VerifyToken.verifyToken, Accountpermission.createAccountpermission, AccountController.getAllUserAccounts);
 
-accountRouter.get('/accounts', VerifyToken.verifyToken, Accountpermission.getAllAccountpermission, (req, res) => {
-  AccountController.getAccounts(req, res);
-});
+accountRouter.get('/accounts', VerifyToken.verifyToken, Accountpermission.getAllAccountpermission, AccountController.getAccounts);
 
-accountRouter.delete('/accounts/:id', VerifyToken.verifyToken, Accountpermission.deleteAccountpermission, (req, res) => {
-    AccountController.deleteAccount(req, res);
-});
+accountRouter.delete('/accounts/:id', VerifyToken.verifyToken, Accountpermission.deleteAccountpermission, AccountController.deleteAccount);
 
 export default accountRouter;
