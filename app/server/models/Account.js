@@ -72,5 +72,6 @@ class Account {
         }
         return queryString;
     }
+
 }
 export default Account;

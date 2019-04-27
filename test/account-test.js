@@ -28,16 +28,13 @@ describe(' ACCOUNT TEST   overAll test', () => {
     createAccount: {
       Type: 'savings',
       balance: 1000,
-      password: 'korey',
     },
     wrongTypeInput:{
      Type: 'funny',
      balance: 20000,
-     password: 'korey',
     },
     incompleteCreate: {
       balance: 1000,
-      password: 'korey',
     },
     patchpayload: {
       status: 'draft',

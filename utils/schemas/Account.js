@@ -6,7 +6,6 @@ class Account {
         this.AccountSchema = {
             accountNumber: Joi.number().integer().min(1000000000).required(),
             createdOn: this.Joi.string().required(),
-            password: this.Joi.string().min(5).required(),
             owner: this.Joi.number().integer().min(1).required(),
             Type: this.Joi.string().required().required(),
             status: this.Joi.string().required(),

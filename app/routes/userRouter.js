@@ -5,12 +5,8 @@ import HashPassword from '../middlewares/hashpassword';
 
 
 const userRouter = express.Router();
-userRouter.post('/auth/signup', Validator.SignUpValidator, HashPassword.hashPassword, (req, res) => {
-    UserController.SignUp(req, res);
-});
+userRouter.post('/auth/signup', Validator.SignUpValidator, HashPassword.hashPassword, UserController.SignUp);
 
-userRouter.post('/auth/signin', Validator.SignInValidator, (req, res) => {
-    UserController.SignIn(req, res);
-});
+userRouter.post('/auth/signin', Validator.SignInValidator, UserController.SignIn);
 
 export default userRouter;
