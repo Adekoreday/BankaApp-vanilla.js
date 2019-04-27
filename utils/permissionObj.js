@@ -6,7 +6,9 @@ const permissionObj = {
     DELETE_ACCOUNT: 'deleteAccount',
     DEBIT_ACCOUNT: 'debitAccount',
     CREDIT_ACCOUNT: 'creditAccount',
-    GETALL_ACCOUNT : 'getAllAccounts',
+    GETALL_ACCOUNT: 'getAllAccounts',
+    GETACCOUNT_STATUS: 'getaccountstatus',
+    GETACCOUNT_TRANSACTION_HISTORY: 'acctransactionhistory',
 };
 
 export default permissionObj;

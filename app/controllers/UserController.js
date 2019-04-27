@@ -33,9 +33,9 @@ class UserController {
 
       if (userExist !== undefined) {
         userKey.permission = userExist.isadmin === true ? 'admin' : 'user';
-        userKey.permission = userKey.permission === 'admin' ? ['postAccount', 'activateAccount', 'deactivateAccount', 'deleteAccount', 'getAllAccounts', 'debitAccount', 'creditAccount'] : ['postAccount'];
+        userKey.permission = userKey.permission === 'admin' ? ['postAccount', 'activateAccount', 'deactivateAccount', 'deleteAccount', 'getAllAccounts', 'debitAccount', 'creditAccount', 'getaccountstatus', 'acctransactionhistory','transactionbyid'] : ['postAccount','acctransactionhistory','transactionbyid'];
         if (userExist.type === 'staff' && userExist.isadmin === false) {
-          userKey.permission = ['debitAccount', 'creditAccount'];
+          userKey.permission = ['debitAccount', 'creditAccount', 'getAllAccounts', 'viewspecificAcc', 'activateAccount', 'deactivateAccount', 'deleteAccount'];
         }
 
         const validatepass = validPassword(userKey.password, userExist.password);

@@ -61,7 +61,6 @@ class AccountService {
     }
 
     static patchAccountBalance(newbalance, accountNumber, res) {
-
         return new Promise((resolve, reject) => {
             db.querydb(Account.UpdateAccountBalance(newbalance, accountNumber))
                 .then((result) => {
@@ -127,12 +126,19 @@ class AccountService {
                     resolve(result.rows);
                 })
                 .catch((err) => {
-                    console.log('account get failed ', err);
-                    res.status(400).json({
-                        status: 400,
-                        Data: 'error occoured getting user accounts..',
-                    });
-                    reject();
+                    reject(err);
+                });
+        });
+    }
+
+           static checkAllAccountStatus(status) {
+      return new Promise((resolve, reject) => {
+            db.querydb(Account.GetAllActiveAccount(status))
+                .then((result) => {
+                    resolve(result.rows);
+                })
+                .catch((err) => {
+                    reject(err);
                 });
         });
     }

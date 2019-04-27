@@ -12,21 +12,18 @@ class TransactionScafolld {
         scafoldData.accountNumber = accountno;
 
         const AccountExist = await AccountService.CheckifAccountExist(accountno);
-        console.log('accountExist', AccountExist);
         if (AccountExist !== undefined) {
             scafoldData.accountId = AccountExist.id;
             scafoldData.oldbalance = AccountExist.balance;
-            if (scafoldData.oldbalance < scafoldData.amount) {
-                res.status(400).json({
+            if (scafoldData.oldbalance < scafoldData.amount || Math.sign(scafoldData.amount) === -1) {
+              return res.status(400).json({
                     status: 400,
-                    data: 'insufficient funds visit the bank !',
+                    data: 'insufficient funds visit the bank do not enter negative numbers!',
                 });
             }
 
             scafoldData.newbalance = scafoldData.Type === 'credit' ? scafoldData.oldbalance + scafoldData.amount : scafoldData.oldbalance - scafoldData.amount;
             await AccountService.patchAccountBalance(scafoldData.newbalance, scafoldData.accountNumber);
-            console.log('new balance', scafoldData.newbalance);
-            console.log('accountNumber', scafoldData.accountNumber);
             req.scafoldData = scafoldData;
             next();
         }

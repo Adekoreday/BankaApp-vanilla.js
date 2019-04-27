@@ -182,12 +182,20 @@ describe(' ACCOUNT TEST   overAll test', () => {
   });
 
 
-  it('its expected to not modify an account staff cannot modify status', async () => {
+  it('its expected to  modify an account staff can modify status', async () => {
     const res = await chai.request(server)
       .patch('/api/v1/account/1012183201')
       .set('Authorization', accountCreatedetails.cashiertoken)
       .send(accountCreatedetails.patchpayload);
-    expect(res, 'must not sucessfully patch not autorized').to.have.status(403);
+    expect(res, 'must sucessfully patch autorized').to.have.status(200);
+  });
+
+    it('its expected to not modify an account user cannot modify status', async () => {
+    const res = await chai.request(server)
+      .patch('/api/v1/account/1012183201')
+      .set('Authorization', accountCreatedetails.endusertoken)
+      .send(accountCreatedetails.patchpayload);
+    expect(res, 'must not sucessfully patch autorized').to.have.status(403);
   });
 
   it('its not expected to modify  an account that does not exist', async () => {

@@ -12,10 +12,9 @@ class TransactionService {
                     resolve(result.rows[0]);
                 })
                 .catch((err) => {
-                    console.log('account create failed', err);
-                    res.status(400).json({
-                        status: 400,
-                        Data: 'you may have entered wrong Type..',
+                    res.status(500).json({
+                        status: 500,
+                        Data: 'you may have entered wrong Type in route..',
                     });
                     reject();
                 });
@@ -26,13 +25,13 @@ class TransactionService {
         return new Promise((resolve, reject) => {  
             db.querydb(Transaction.GetTransactionById(id))
                 .then((result) => {
-                    console.log(' account created sucessfully');
+                    console.log(' transaction get sucessfully', result);
                     resolve(result.rows[0]);
                 })
                 .catch((err) => {
                     console.log('account create failed', err);
-                    res.status(400).json({
-                        status: 400,
+                    res.status(500).json({
+                        status: 500,
                         Data: 'you may have entered wrong Type..',
                     });
                     reject();
@@ -45,13 +44,13 @@ class TransactionService {
             db.querydb(Transaction.GetAllUserTransactionbyAccountId(id))
                 .then((result) => {
                     console.log(' Transaction returned sucessfully');
-                    resolve(result.rows);
+                    resolve(result.rows[0]);
                 })
                 .catch((err) => {
                     console.log('Transaction failed', err);
                     res.status(500).json({
                         status: 500,
-                        Data: 'Server error...',
+                        Data: 'you may have entered wrong Type..',
                     });
                     reject();
                 });
