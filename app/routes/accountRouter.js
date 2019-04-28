@@ -8,11 +8,7 @@ import Accountpermission from '../middlewares/permissions/Accountpermission';
 const accountRouter = express.Router();
 accountRouter.post('/account', VerifyToken.verifyToken, Accountpermission.createAccountpermission, AccountScafold.Scafold, Validator.CreateAccountValidator, AccountController.createAccount);
 accountRouter.patch('/account/:id', VerifyToken.verifyToken, Accountpermission.activateAccountpermission, Validator.patchAccountValidator, AccountController.patchAccount);
-
 accountRouter.get('/user/:mail/accounts', VerifyToken.verifyToken, Accountpermission.createAccountpermission, AccountController.getAllUserAccounts);
-
-accountRouter.get('/accounts', VerifyToken.verifyToken, Accountpermission.getAllAccountpermission, AccountController.getAccounts);
-
+accountRouter.get('/accounts', VerifyToken.verifyToken, Accountpermission.getAllAccountpermission, AccountController.getHelper);
 accountRouter.delete('/accounts/:id', VerifyToken.verifyToken, Accountpermission.deleteAccountpermission, AccountController.deleteAccount);
-
 export default accountRouter;

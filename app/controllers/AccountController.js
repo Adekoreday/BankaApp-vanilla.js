@@ -1,15 +1,20 @@
 import AccountService from '../services/AccountService';
 import UserService from '../services/UserService';
+import AccountgetHelper from '../helpers/AccountgetHelper';
 
 class AccountController {
 
-  constructor() {
-    this.AccountServices = new AccountService();
-  }
-
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AccountController
+   */
   static async createAccount(req, res) {
     try {
-      console.log('i got here while creating account');
       const AccountExist = await AccountService.CheckifAccountExist(req.AccountInput.accountNumber);
       let createdAcc;
       if (AccountExist === undefined) {
@@ -30,6 +35,15 @@ class AccountController {
     }
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AccountController
+   */
   static async patchAccount(req, res) {
     try {
       const myaccountNo = req.params.id;
@@ -54,6 +68,16 @@ class AccountController {
     }
   }
 
+
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @returns
+   * @memberof AccountController
+   */
   static async deleteAccount(req, res) {
     try {
       const accountNo = req.params.id;
@@ -75,7 +99,16 @@ class AccountController {
     }
   }
 
-  static async getAllUserAccounts(req, res) {
+ /**
+  *
+  *
+  * @static
+  * @param {*} req
+  * @param {*} res
+  * @returns
+  * @memberof AccountController
+  */
+ static async getAllUserAccounts(req, res) {
     try {
       let AlluserAcc;
       const userExist = await UserService.CheckifUserExist(req.params.mail);
@@ -92,24 +125,34 @@ class AccountController {
         error: `following server error occourred ${e}`,
       });
     }
-
   }
-    
-      static async getAccounts(req, res) {
-    try {
-        const AlluserAcc = await AccountService.checkAllAccounts();
-        res.status(AlluserAcc === undefined ? 404 : 200).json({
-        status: AlluserAcc === undefined ? 404 : 200,
-        msg: AlluserAcc === undefined ? null : AlluserAcc,
-      });
-    } catch (e) {
-      return res.status(500).json({
-        error: `following server error occourred ${e}`,
-      });
+  
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @memberof AccountController
+   */
+  static async getHelper(req, res) {
+  let data;
+  const { status } = req.query;
+  try{
+    if(status === undefined) {
+    data = await AccountgetHelper.getAccounts();
     }
+    if ((status === 'active') || (status === 'dormant')) {
+    data = await AccountgetHelper.GetAccountstatus(status);
+    }
+    }catch(e) {
+    console.log(`the following error ${e}`);
   }
-  /*  get account details...............
-    */
+        res.status(data === undefined ? 404 : 200).json({
+        status: data === undefined ? 404 : 200,
+        data: data === undefined ? null : data,
+      });
+  }
 
 }
 export default AccountController;

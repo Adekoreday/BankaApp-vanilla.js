@@ -182,12 +182,20 @@ describe(' ACCOUNT TEST   overAll test', () => {
   });
 
 
-  it('its expected to not modify an account staff cannot modify status', async () => {
+  it('its expected to  modify an account staff can modify status', async () => {
     const res = await chai.request(server)
       .patch('/api/v1/account/1012183201')
       .set('Authorization', accountCreatedetails.cashiertoken)
       .send(accountCreatedetails.patchpayload);
-    expect(res, 'must not sucessfully patch not autorized').to.have.status(403);
+    expect(res, 'must sucessfully patch autorized').to.have.status(200);
+  });
+
+    it('its expected to not modify an account user cannot modify status', async () => {
+    const res = await chai.request(server)
+      .patch('/api/v1/account/1012183201')
+      .set('Authorization', accountCreatedetails.endusertoken)
+      .send(accountCreatedetails.patchpayload);
+    expect(res, 'must not sucessfully patch autorized').to.have.status(403);
   });
 
   it('its not expected to modify  an account that does not exist', async () => {
@@ -249,5 +257,29 @@ describe(' ACCOUNT TEST   overAll test', () => {
        expect(res, 'must return All accounts').to.have.status(403);
   });
 
+     it('its expected to get ALL user accounts when logged as cashier or admin', async () => {
+    const res = await chai.request(server)
+      .get('/api/v1/accounts')
+      .set('Authorization', accountCreatedetails.usertoken);
+       expect(res, 'must return All accounts').to.have.status(200);
+        expect(res.body.data[0], 'must return All accounts').to.have.property('createdon');
+         expect(res.body.data[0], 'must return All accountsnumber').to.have.property('accountnumber');
+         expect(res.body.data[0], 'must return All account mail').to.have.property('email');
+         
+  });
+  it('its expected not to get ALL user accounts when wrong query string', async () => {
+    const res = await chai.request(server)
+      .get('/api/v1/accounts?status=korey')
+      .set('Authorization', accountCreatedetails.usertoken);
+       expect(res, 'must return All accounts').to.have.status(404);    
+  });
+   it('its expected not to get Active user accounts using admin token', async () => {
+    const res = await chai.request(server)
+      .get('/api/v1/accounts?status=active')
+      .set('Authorization', accountCreatedetails.usertoken);
+       expect(res, 'must return All accounts').to.have.status(200);    
+       expect(res.body, 'must be an object').to.be.an('object');
+       expect(res.body.data[0]).to.have.property('status');
+  });
 
 });
