@@ -32,7 +32,13 @@ input[type=text] {
     color: grey;
     border: none;
 }
-
+input[type=password] {
+    width: 100%;
+  padding: 12px 20px;
+    background-color: #BCC8E1;
+    color: grey;
+    border: none;
+}
 aside > div {
     cursor: pointer;
     padding: 10px;
