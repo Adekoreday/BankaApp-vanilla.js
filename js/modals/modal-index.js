@@ -48,7 +48,7 @@ document.getElementById('signUp').addEventListener('click', () => {
         
           <input type="text" name="username" placeholder="FirstName" required>
          <input type="text" name="username" placeholder="LastName" required>
-        <input type="text" name="username" placeholder="Username" required>
+        <input type="text" name="username" placeholder="Email" required>
         <input type="password" name="password" placeholder="Password" required>
         <input type="submit" value="Sign Up">
       </div>
