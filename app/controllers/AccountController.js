@@ -13,6 +13,7 @@ class AccountController {
    * @returns
    * @memberof AccountController
    */
+  
   static async createAccount(req, res) {
     try {
       const AccountExist = await AccountService.CheckifAccountExist(req.AccountInput.accountNumber);
@@ -152,6 +153,27 @@ class AccountController {
         status: data === undefined ? 404 : 200,
         data: data === undefined ? null : data,
       });
+  }
+
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @memberof AccountController
+   */
+  static async Accountdetails(req, res) {
+    let Accountdetails;
+       Accountdetails = await AccountService.getAccountsbyAccountNo(req.params.accountNumber);
+       if(Accountdetails === undefined || Accountdetails === null) {
+         Accountdetails = undefined;
+       }
+        res.status(Accountdetails === undefined ? 404 : 200).json({
+        status: Accountdetails === undefined ? 404 : 200,
+        data: Accountdetails === undefined ? 'Accoount does not exist' : Accountdetails,
+      });   
+    
   }
 
 }
