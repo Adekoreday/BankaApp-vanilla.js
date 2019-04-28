@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Adekoreday/BankaApp.svg?branch=develop)](https://travis-ci.org/Adekoreday/BankaApp)   [![Coverage Status](https://coveralls.io/repos/github/Adekoreday/BankaApp/badge.svg)](https://coveralls.io/github/Adekoreday/BankaApp)  
+[![Build Status](https://travis-ci.org/Adekoreday/BankaApp.svg?branch=develop)](https://travis-ci.org/Adekoreday/BankaApp)  [![Coverage Status](https://coveralls.io/repos/github/Adekoreday/BankaApp/badge.svg)](https://coveralls.io/github/Adekoreday/BankaApp)
 <a href="https://codeclimate.com/github/codeclimate/codeclimate/maintainability"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability" /></a>
 <a href="https://codeclimate.com/github/codeclimate/codeclimate/test_coverage"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage" /></a>
 
@@ -23,15 +23,15 @@ Banka is a light-weight core banking application that powers banking operations 
 ## Usage
 
 
-| S/N| Request type   |  Request API description                                   | Endpoint   			|
+| S/N| Request type   |  Request API description                                   | Endpoint                     			|
 |:--:|:--------------:|:---------------------------------------------------------:|:-----------------------------------:|
-|  1 |  POST	      |    user can sign up using the user sign up API             |  apiv/v1/auth/signup              |
-|  2 | POST           | user can sign in using user sign in API                    | apiv/v1/auth/signin               |
+|  1 |  POST	        |    user can sign up using the user sign up API             |  apiv/v1/auth/signup               |
+|  2 | POST           | user can sign in using user sign in API                    | apiv/v1/auth/signin                |
 |  3 | POST           |  user can create account using user create account API     |  api/v1/auth/account               |
-|  4 | PATCH          | Admin can create new account using Admin create API        | api/v1/account/:accountnumber    |
-|  5 | DELETE	      | Admin can delete existing account using Admin delete API   |  api/v1/accounts/:account number   |
-|  6 | POST	      | Staff/Admin can debit user account using Debit API	   |transaction/:accountnumber/debit    |
-|  7 | POST	      | Staff/Admin can credit user account using Credit API	   | transaction/:accountnumber/credit  |
+|  4 | PATCH          | Admin can create new account using Admin create API        | api/v1/account/:accountnumber      |
+|  5 | DELETE	        | Admin can delete existing account using Admin delete API   |  api/v1/accounts/:account number   |
+|  6 | POST	          | Staff/Admin can debit user account using Debit API	       |transaction/:accountnumber/debit    |
+|  7 | POST	          | Staff/Admin can credit user account using Credit API	     | transaction/:accountnumber/credit  |
 
 
 

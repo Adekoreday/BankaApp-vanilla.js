@@ -31,8 +31,8 @@ class AccountService {
                 })
                 .catch((err) => {
                     console.log('account create failed', err);
-                    res.status(400).json({
-                        status: 400,
+                    res.status(500).json({
+                        status: 500,
                         Data: 'you may have entered wrong Type..',
                     });
                     reject();
@@ -64,11 +64,11 @@ class AccountService {
         return new Promise((resolve, reject) => {
             db.querydb(Account.UpdateAccountBalance(newbalance, accountNumber))
                 .then((result) => {
-                    console.log(' account updated sucessfully');
+                    console.log(' account balance updated sucessfully');
                     resolve(result.rows[0]);
                 })
                 .catch((err) => {
-                    console.log('account update failed', err);
+                    console.log('account balance update  failed', err);
                     res.status(400).json({
                         status: 400,
                         Data: 'you may have entered wrong status keyword ..',
@@ -95,11 +95,6 @@ class AccountService {
                     reject();
                 });
         });
-        /*
-        const selectedAccount = this.data.find(user => parseInt(user.accountNumber, 10) === parseInt(accountNumber, 10));
-        this.data.splice(selectedAccount.id - 1, 1);
-        return this.data;
-        */
     }
    
     static checkAccountsOwnedByUser(UserId) {
@@ -142,5 +137,16 @@ class AccountService {
                 });
         });
     }
+
+        static getAccountsbyAccountNo(accountNumber) {
+            return new Promise((resolve, reject) => {
+            db.querydb(Account.GetAccountsByAccountNo(accountNumber))
+            .then((result)=> {
+                resolve(result.rows[0]);})
+            .catch((err) => {
+                reject(err);
+            })
+        })
    }
+}
 export default AccountService;

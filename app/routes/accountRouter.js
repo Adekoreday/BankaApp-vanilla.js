@@ -11,4 +11,5 @@ accountRouter.patch('/account/:id', VerifyToken.verifyToken, Accountpermission.a
 accountRouter.get('/user/:mail/accounts', VerifyToken.verifyToken, Accountpermission.createAccountpermission, AccountController.getAllUserAccounts);
 accountRouter.get('/accounts', VerifyToken.verifyToken, Accountpermission.getAllAccountpermission, AccountController.getHelper);
 accountRouter.delete('/accounts/:id', VerifyToken.verifyToken, Accountpermission.deleteAccountpermission, AccountController.deleteAccount);
+accountRouter.get('/accounts/:accountNumber', VerifyToken.verifyToken, Accountpermission.getAllAccountpermission, AccountController.Accountdetails);
 export default accountRouter;

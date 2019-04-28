@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "a lightweight banking app",
   "main": "app.js",
-  "scripts": { 
+  "scripts": {
     "start": "node ./build/app.js",
     "test": "npm run db:unmigrate && npm run db:migrate && npm run db:seedAll && npm run testing",
     "dev": "nodemon --exec babel-node app/app.js",
