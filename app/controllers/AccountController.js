@@ -154,5 +154,18 @@ class AccountController {
       });
   }
 
+  static async Accountdetails(req, res) {
+    let Accountdetails;
+       Accountdetails = await AccountService.getAccountsbyAccountNo(req.params.accountNumber);
+       if(Accountdetails === undefined || Accountdetails === null) {
+         Accountdetails = undefined;
+       }
+        res.status(Accountdetails === undefined ? 404 : 200).json({
+        status: Accountdetails === undefined ? 404 : 200,
+        data: Accountdetails === undefined ? 'Accoount does not exist' : Accountdetails,
+      });   
+    
+  }
+
 }
 export default AccountController;
