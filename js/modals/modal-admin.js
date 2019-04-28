@@ -266,7 +266,7 @@ document.getElementById('DELETE').addEventListener('click', () => {
     m.html = `
   
  <table>
-  <caption>ACTIVATE</caption>
+  <caption>DELETE</caption>
   <thead>
     <tr>
       <th scope="col">ACCOUNT</th>
