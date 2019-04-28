@@ -81,5 +81,13 @@ class Account {
        return queryString;
    }
 
+   static GetAccountsByAccountNo(acc) {
+       const queryString = {
+           text: `SELECT accounts.id, accounts.accountnumber, accounts.createdon, accounts.type, accounts.status, users.email, accounts.balance FROM accounts JOIN users ON accounts.user_id = users.id WHERE accounts.accountnumber = $1`,
+           values: [acc],
+       }
+       return queryString;
+   }
+
 }
 export default Account;

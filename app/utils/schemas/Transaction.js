@@ -9,10 +9,14 @@ class Transaction {
             accountNumber: this.Joi.number().integer().min(1000000000),
             accountId: this.Joi.number().integer().min(1).required(),
             cashier: this.Joi.number().integer().min(1).required(),
-            amount: this.Joi.number().integer(),
+            amount: this.Joi.number().integer().required(),
             oldbalance: this.Joi.number().integer(),
             newbalance: this.Joi.number().integer(),
         };
+        
+      this.AmountSchema = {
+          amount: this.Joi.number().integer().required(),
+      }
     }
 }
 
