@@ -1,7 +1,7 @@
 import Joi from 'joi';
-import User from '../../utils/schemas/User';
-import Account from '../../utils/schemas/Account';
-import Transaction from '../../utils/schemas/Transaction';
+import User from '../utils/schemas/User';
+import Account from '../utils/schemas/Account';
+import Transaction from '../utils/schemas/Transaction';
 
 class Validator {
     static SignUpValidator(req, res, next) {

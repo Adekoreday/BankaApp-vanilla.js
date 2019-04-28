@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import UserService from '../services/UserService';
-import validPassword from '../../utils/validPassword';
+import validPassword from '../utils/validPassword';
 
 class UserController {
   static async SignUp(req, res) {
