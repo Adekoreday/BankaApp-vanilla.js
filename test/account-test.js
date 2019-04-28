@@ -39,6 +39,9 @@ describe(' ACCOUNT TEST   overAll test', () => {
     patchpayload: {
       status: 'draft',
     },
+    wrongpatchpayload: {
+      status: 'korey',
+    },
   };
 
 
@@ -109,9 +112,9 @@ describe(' ACCOUNT TEST   overAll test', () => {
       .post('/api/v1/account')
       .set('Authorization', accountCreatedetails.usertoken)
       .send(accountCreatedetails.wrongTypeInput);
-      expect(res, 'must have a status 400 ').to.have.status(400);
+      expect(res, 'must have a status 500 ').to.have.status(500);
       expect(res.body, 'must have a status').to.have.property('status');
-      expect(res.body, 'must have a status').to.have.property('Data');
+      expect(res.body, 'must have a data').to.have.property('Data');
 
      });
 
@@ -179,6 +182,14 @@ describe(' ACCOUNT TEST   overAll test', () => {
       .set('Authorization', accountCreatedetails.endusertoken)
       .send(accountCreatedetails.patchpayload);
     expect(res, 'must not sucessfully patch not autorized').to.have.status(403);
+  });
+
+  it('its expected to not modify an account status wrong patch payload', async () => {
+    const res = await chai.request(server)
+      .patch('/api/v1/account/1012183201')
+      .set('Authorization', accountCreatedetails.usertoken)
+      .send(accountCreatedetails.wrongpatchpayload);
+    expect(res, 'must sucessfully patch').to.have.status(400);
   });
 
 
@@ -281,5 +292,19 @@ describe(' ACCOUNT TEST   overAll test', () => {
        expect(res.body, 'must be an object').to.be.an('object');
        expect(res.body.data[0]).to.have.property('status');
   });
+  it('its expected get Account details using admin token', async () => {
+    const res = await chai.request(server)
+      .get('/api/v1/accounts/1012173201')
+      .set('Authorization', accountCreatedetails.usertoken);
+       expect(res, 'must return All accounts').to.have.status(200);    
+       expect(res.body, 'must be an object').to.be.an('object');
+  });
+   it('its expected get Account details using admin token', async () => {
+    const res = await chai.request(server)
+      .get('/api/v1/accounts/101217320')
+      .set('Authorization', accountCreatedetails.usertoken);
+       expect(res, 'must not return All accounts').to.have.status(404);    
+  });
+
 
 });

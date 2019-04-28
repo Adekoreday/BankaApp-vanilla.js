@@ -1,4 +1,4 @@
-import permissionObj from '../../../utils/permissionObj';
+import permissionObj from '../../utils/permissionObj';
 
 class Accountpermission {
   static createAccountpermission(req, res, next) {
