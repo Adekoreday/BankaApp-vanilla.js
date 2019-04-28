@@ -52,20 +52,26 @@ class TransactionController {
   }
 
   static async getTransactionByaccount(req, res) {
+    try{
     const AccountExist = await AccountService.CheckifAccountExist(req.params.accountNumber);
     let Allaccount;
     if (AccountExist != undefined) {
       Allaccount = await TransactionService.getTransactionbyAccount(AccountExist.id, res);
-      Allaccount.map((x) => {
-        x.accountNumber = req.params.accountNumber;
-        delete x.cashier_id;
-      });
-
+      if(Allaccount === undefined || Allaccount === null) { 
+        Allaccount = 'empty';
+      }else{
+      Allaccount.accountNumber = parseInt(req.params.accountNumber, 10);
+      delete Allaccount.user_id;
+      }
     }
     return res.status(Allaccount === undefined ? 422 : 200).json({
       status: Allaccount === undefined ? 422 : 200,
       Data: Allaccount === undefined ? 'account does not Exists' : Allaccount,
     });
+    } catch (e) {
+      console.log('error',e);
+     return res.status(500).json({err: 'internal server error'});
+    }
   }
 }
 

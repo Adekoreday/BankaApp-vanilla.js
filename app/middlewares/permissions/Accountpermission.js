@@ -1,9 +1,7 @@
 import permissionObj from '../../../utils/permissionObj';
 
 class Accountpermission {
-
   static createAccountpermission(req, res, next) {
-
     const signedIn = typeof req.userData.permission === 'object' && req.userData.permission instanceof Array && req.userData.permission.length > 0 ? 'true' : 'false';
     if (signedIn === 'true') {
       const { permission } = req.userData;
@@ -94,25 +92,6 @@ class Accountpermission {
     }
   }
 
-    static getAllAccountStatuspermission(req, res, next) {
-
-    const signedIn = typeof req.userData.permission === 'object' && req.userData.permission instanceof Array && req.userData.permission.length > 0 ? 'true' : 'false';
-    if (signedIn === 'true') {
-      const { permission } = req.userData;
-      const confirmPermission = permission.includes(permissionObj.GETACCOUNT_STATUS);
-      if (!confirmPermission) {
-        return res.status(403).json({
-          msg: 'You are not authorized to perfom task sign in as an admin or user',
-        });
-      }
-      next();
-    } else {
-      return res.status(403).json({
-        msg: 'You are not signed in kindly sign in',
-      });
-    }
-  }
-
       static getSpecificAccountTransactionHistorypermission(req, res, next) {
 
     const signedIn = typeof req.userData.permission === 'object' && req.userData.permission instanceof Array && req.userData.permission.length > 0 ? 'true' : 'false';
@@ -134,14 +113,3 @@ class Accountpermission {
 }
 export default Accountpermission;
 
-/*
-const permissionObj = {
-
-    CREATE_ACCOUNT: 'postAccount',
-    ACTIVATE_ACCOUNT: 'activateAccount',
-    DEACTIVATE_ACCOUNT: 'deactivateAccount',
-    DELETE_ACCOUNT: 'deleteAccount',
-    DEBIT_ACCOUNT: 'debitAccount',
-    CREDIT_ACCOUNT: 'creditAccount',
-
-}; */

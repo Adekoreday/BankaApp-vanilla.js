@@ -4,10 +4,6 @@ import AccountgetHelper from '../helpers/AccountgetHelper';
 
 class AccountController {
 
-  constructor() {
-    this.AccountServices = new AccountService();
-  }
-
   /**
    *
    *
@@ -129,7 +125,6 @@ class AccountController {
         error: `following server error occourred ${e}`,
       });
     }
-
   }
   
   /**
@@ -155,7 +150,7 @@ class AccountController {
   }
         res.status(data === undefined ? 404 : 200).json({
         status: data === undefined ? 404 : 200,
-        msg: data === undefined ? null : data,
+        data: data === undefined ? null : data,
       });
   }
 

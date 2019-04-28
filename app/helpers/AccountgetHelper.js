@@ -12,12 +12,9 @@ class AccountgetHelper {
   }
 
   static async GetAccountstatus(status) {
-    try{
       return await AccountService.checkAllAccountStatus(status);
-      }catch (e) {
-      return undefined;
-         }
+      }
 }
 
-}
+
 export default AccountgetHelper;

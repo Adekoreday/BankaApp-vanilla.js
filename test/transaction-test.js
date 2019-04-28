@@ -124,5 +124,17 @@ describe(' TRANSACTION TEST   overAll test', () => {
       .set('Authorization', accountCreatedetails.usertoken)
     expect(res, 'must have a status 403 ok').to.have.status(403);
   });
+    it('its expected to get an account transaction history', async () => {
+    const res = await chai.request(server)
+      .get('/api/v1/accounts/1012173201/transactions')
+      .set('Authorization', accountCreatedetails.endusertoken)
+    expect(res, 'must have a status 200 ok').to.have.status(200);
+  });
+   it('its expected not  to get an account that does not exist transaction history', async () => {
+    const res = await chai.request(server)
+      .get('/api/v1/accounts/1002183201/transactions')
+      .set('Authorization', accountCreatedetails.endusertoken)
+    expect(res, 'must have a status 200 ok').to.have.status(200);
+  });
 
 });
