@@ -3,20 +3,15 @@ import db from '../server/db';
 
 class TransactionService {
 
-    static async addNewTransaction(userdata, res) {
+    static async addNewTransaction(userdata) {
         return new Promise((resolve, reject) => {
             const { Type, amount, oldbalance, newbalance, cashier, accountId } = userdata;
             db.querydb(Transaction.AddnewTransaction(Type, amount, oldbalance, newbalance, cashier, accountId))
                 .then((result) => {
-                    console.log(' account created sucessfully');
                     resolve(result.rows[0]);
                 })
                 .catch((err) => {
-                    res.status(500).json({
-                        status: 500,
-                        Data: 'you may have entered wrong Type in route..',
-                    });
-                    reject();
+                 reject(err);
                 });
         })
     }

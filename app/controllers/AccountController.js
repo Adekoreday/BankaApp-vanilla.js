@@ -13,6 +13,7 @@ class AccountController {
    * @returns
    * @memberof AccountController
    */
+  
   static async createAccount(req, res) {
     try {
       const AccountExist = await AccountService.CheckifAccountExist(req.AccountInput.accountNumber);

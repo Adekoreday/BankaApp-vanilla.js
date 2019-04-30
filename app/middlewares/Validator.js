@@ -45,8 +45,20 @@ class Validator {
         const result = Joi.validate(req.scafoldData, Transactions.TransactionSchema);
         if (result.error) {
             return res.status(400).send(result.error.details.map(x => x.message));
+        }else{
+    next();
         }
-        next();
+       
+    }
+
+    static amounTvalidator(req, res, next) {
+        const Transactions = new Transaction();
+         const result = Joi.validate(req.body, Transactions.AmountSchema);
+        if (result.error) {
+            return res.status(400).send(result.error.details.map(x => x.message));
+        }else{
+    next();
+        }
     }
 
 

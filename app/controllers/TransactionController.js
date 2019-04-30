@@ -8,7 +8,7 @@ class TransactionController {
     let mydata;
     try {
       const transactionData = req.scafoldData;
-      addedtransaction = await TransactionService.addNewTransaction(transactionData, res);
+      addedtransaction = await TransactionService.addNewTransaction(transactionData);
       mydata = {
         TransactionId: addedtransaction.id,
         accountNumber: req.params.accountNumber,

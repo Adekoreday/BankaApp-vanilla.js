@@ -1,12 +1,13 @@
-function render() {
-    document.getElementById('sidebars').classList.toggle('active');
-}
+const menu = document.querySelector('ul'),
+    menubar = document.querySelector('i'),
+    aside = document.querySelector('main');
 
-function ShowAccount() {
-    document.getElementById("contain-profile").style.visibility = 'hidden';
-    document.getElementById("account-profile").style.visibility = 'visible';
-}
-function showprofile() {
-    document.getElementById("account-profile").style.visibility = "hidden";
-    document.getElementById("contain-profile").style.visibility = "visible";
-}
+menubar.addEventListener('click', (e) => {
+    menu.classList.toggle("active");
+    menubar.classList.toggle("active-bar");
+    e.preventDefault();
+})
+
+aside.addEventListener('click', (e) => {
+    menu.classList.remove("active");
+})

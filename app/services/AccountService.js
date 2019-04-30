@@ -64,11 +64,11 @@ class AccountService {
         return new Promise((resolve, reject) => {
             db.querydb(Account.UpdateAccountBalance(newbalance, accountNumber))
                 .then((result) => {
-                    console.log(' account updated sucessfully');
+                    console.log(' account balance updated sucessfully');
                     resolve(result.rows[0]);
                 })
                 .catch((err) => {
-                    console.log('account update failed', err);
+                    console.log('account balance update  failed', err);
                     res.status(400).json({
                         status: 400,
                         Data: 'you may have entered wrong status keyword ..',

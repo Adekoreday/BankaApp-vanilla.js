@@ -4,97 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name='viewport' content="width=device-width, initial-scale=1.0">
-    <title>home-page</title>
+    <title>banka</title>
     <link rel="stylesheet" href='./css/style.css' type="text/css">
     <!--font awesome cdn for icons-->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css"
         integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <!--google fonts cdn-->
     <link href="https://fonts.googleapis.com/css?family=Nanum+Gothic:700|Roboto:300,400,500" rel="stylesheet">
 
 </head>
 
 <body>
+    <aside>
+        <div id="bar"><i class="fas fa-bars fa-2x"></i></div>
+    
+        <nav>
+            <ul>
+                <li><a href="./admin.html">ADMIN</a></li>
+                <li><a href="./staff.html">STAFF</a></li>
+                <li><a href="./user.html">USER</a></li>
+               
+            </ul>
+        </nav>
+    </aside>
 
+    <main>
+        <h1>WELCOME TO BANKA</h1>
+        <p>your number 1 digital banking platform</p>
 
-    <div id="sidebars">
-        <div class="toggle-btn" onclick="render()">
-            <i class="fas fa-bars fa-2x"></i>
-        </div>
-        <ul class="nav nav-primary">
-            <li><i class="fas fa-home"></i> Home</li>
-            <li><a href="./html/user_signIn.html"><i class="fas fa-sign-out-alt"></i> Sign In</a> </li>
-            <li><a href="./html/adminDashboard.html"><i class="fas fa-sign-out-alt"></i> admin</a> </li>
-            <li><a href="./html/userDasboard.html"><i class="fas fa-sign-out-alt"></i> user</a> </li>
-            <li><a href="./html/staffDasboard.html"><i class="fas fa-sign-out-alt"></i> staff</a> </li>
-        </ul>
-    </div>
-    </div>
-    <div class="mobile-header">
-        Your No1
-        digital Banking App
-    </div>
-    <div class="icons-container">
-        <div class="grid-item">
-            <div class="icon"><i class="fas fa-hands-helping fa-6x"></i>
+        <a id="signUp" href="#" class="cta">Sign Up</a>
+        <a id="signIn" href="#" class="cta signIn">Sign In</a>
+
+        <div class="banka">
+            <div>
+                <i class="fas fa-user fa-4x"></i>
+                <p>Existing User Sign in</p>
             </div>
-            <p class="icon-text">Our Services</p>
-
-        </div>
-        <div class="grid-item">
-            <div class="icon"> <i class="far fa-futbol fa-6x"></i>
+            <div>
+                <i class="fas fa-user-plus fa-4x"></i>
+                <p>New user Sign up</p>
             </div>
-            <p class="icon-text">Our Goals</p>
 
         </div>
-        <div class="grid-item">
-            <div class="icon"><i class="fas fa-users fa-6x"></i></div>
-            <p class="icon-text">The Team</p>
-        </div>
-        <div class="grid-item">
-            <div class="icon"><i class="fas fa-comments-dollar fa-6x"></i></div>
-            <p class="icon-text">Customer care </p>
-        </div>
-        <div class="grid-item">
-            <div class="icon"><i class="fas fa-comment-alt fa-6x"></i></div>
-            <p class="icon-text">Our feedbacks </p>
-        </div>
-        <div class="grid-item">
-            <div class="icon"><i class="fas fa-lock fa-6x"></i></div>
-            <p class="icon-text">Security </p>
-        </div>
-
-    </div>
-    <script src="js/script.js"></script>
+    </main>
+    <script src="./js/script.js"></script>
+    <script src="./js/modals/modal-index.js"></script>
 </body>
-<footer>
-    <div class="footer index-footer">
 
-        <div>
-            <p><i class="fas fa-map-marker-alt fa-2x"></i>Adeyemi Adekorede</p>
-            <p>ALCprebootcamp Lagos state,Nigeria</p>
-
-        </div>
-
-        <div class="telephone">
-            <p><i class="fas fa-phone-square fa-2x"></i>
-                +2347063584301</p>
-            <p><i class="far fa-envelope fa-2x"></i>
-                adeyemi_adekorede@hotmail.com</p>
-        </div>
-
-
-
-        <ul>
-            <li><i class="fab fa-facebook-f fa-2x"></i>
-            </li>
-            <li><a href="https://twitter.com/AdeyemiAdekore2"><i class="fab fa-twitter-square  fa-2x"></i></a></li>
-            <li><i class="fab fa-instagram  fa-2x"></i></li>
-        </ul>
-
-
-
-    </div>
-</footer>
 
 
 </html>
