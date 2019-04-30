@@ -155,14 +155,6 @@ class AccountController {
       });
   }
 
-  /**
-   *
-   *
-   * @static
-   * @param {*} req
-   * @param {*} res
-   * @memberof AccountController
-   */
   static async Accountdetails(req, res) {
     let Accountdetails;
        Accountdetails = await AccountService.getAccountsbyAccountNo(req.params.accountNumber);
