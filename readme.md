@@ -23,15 +23,15 @@ Banka is a light-weight core banking application that powers banking operations 
 ## Usage
 
 
-| S/N| Request type   |  Request API description                                   | Endpoint   			|
+| S/N| Request type   |  Request API description                                   | Endpoint                     			|
 |:--:|:--------------:|:---------------------------------------------------------:|:-----------------------------------:|
-|  1 |  POST	      |    user can sign up using the user sign up API             |  apiv/v1/auth/signup              |
-|  2 | POST           | user can sign in using user sign in API                    | apiv/v1/auth/signin               |
+|  1 |  POST	        |    user can sign up using the user sign up API             |  apiv/v1/auth/signup               |
+|  2 | POST           | user can sign in using user sign in API                    | apiv/v1/auth/signin                |
 |  3 | POST           |  user can create account using user create account API     |  api/v1/auth/account               |
-|  4 | PATCH          | Admin can create new account using Admin create API        | api/v1/account/:accountnumber    |
-|  5 | DELETE	      | Admin can delete existing account using Admin delete API   |  api/v1/accounts/:account number   |
-|  6 | POST	      | Staff/Admin can debit user account using Debit API	   |transaction/:accountnumber/debit    |
-|  7 | POST	      | Staff/Admin can credit user account using Credit API	   | transaction/:accountnumber/credit  |
+|  4 | PATCH          | Admin can create new account using Admin create API        | api/v1/account/:accountnumber      |
+|  5 | DELETE	        | Admin can delete existing account using Admin delete API   |  api/v1/accounts/:account number   |
+|  6 | POST	          | Staff/Admin can debit user account using Debit API	       |transaction/:accountnumber/debit    |
+|  7 | POST	          | Staff/Admin can credit user account using Credit API	     | transaction/:accountnumber/credit  |
 
 
 
