@@ -1,0 +1,946 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "This is an API for BankaApp app at Andela Bootcamp.",
+    "version": "1.0.0",
+    "title": "Banka App API",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "email": "adeyemi_adekorede@hotmail.com"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+    }
+  },
+  "host": "bankaandela.herokuapp.com",
+  "basePath": "/api/v1",
+  "tags": [
+    {
+      "name": "user",
+      "description": "Operations about user"
+    }
+  ],
+  "schemes": [
+    "https"
+  ],
+  "securityDefinitions": {
+    "Bearer": {
+      "type": "apiKey",
+      "name": "Authorization",
+      "in": "header"
+    }
+  },
+  "paths": {
+    "/auth/signup": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "create a new user",
+        "operationId": "SignUpUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User sign-up details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SignUp"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "USER sign up succesfull",
+            "schema": {
+              "$ref": "#/definitions/SignUpResponse"
+            }
+          },
+          "401": {
+            "description": "invalid inputs"
+          },
+          "422": {
+            "description": "user already Exist",
+            "schema": {
+              "$ref": "#/definitions/UserAlreadyExists"
+            }
+          }
+        }
+      }
+    },
+    "/auth/signin": {
+      "post": {
+        "tags": [
+          "user"
+        ],
+        "summary": "create a new user",
+        "operationId": "SignInUser",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "User sign-in details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SignIn"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "USER sign up succesfull",
+            "schema": {
+              "$ref": "#/definitions/SignUpResponse"
+            }
+          },
+          "401": {
+            "description": "wrong password",
+            "schema": {
+              "$ref": "#/definitions/Wrongpassword"
+            }
+          },
+          "404": {
+            "description": "user not found"
+          }
+        }
+      }
+    },
+    "/account": {
+      "post": {
+        "tags": [
+          "account"
+        ],
+        "summary": "create a new account",
+        "operationId": "Creates an account",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Account creation details",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountCreate"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "USER sign up succesfull",
+            "schema": {
+              "$ref": "#/definitions/AccountCreateResponse"
+            }
+          },
+          "404": {
+            "description": "user not found"
+          }
+        }
+      }
+    },
+    "/account/{accountNumber}": {
+      "patch": {
+        "tags": [
+          "account"
+        ],
+        "summary": "activates/deactivates an account",
+        "operationId": "accountStatus",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "accountNumber",
+            "description": "this is the accountNumber of account to be edited",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AccountPatchBody"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Activate/Deactivate successful ",
+            "schema": {
+              "$ref": "#/definitions/Accountpatch"
+            }
+          },
+          "404": {
+            "description": "account not found",
+            "schema": {
+              "$ref": "#/definitions/AccountNotFound"
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{accountNo}": {
+      "delete": {
+        "tags": [
+          "account"
+        ],
+        "summary": "deletes an account",
+        "operationId": "accountdelete",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "accountNo",
+            "description": "this is the accountNumber of account to be deleted",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "delete successful ",
+            "schema": {
+              "$ref": "#/definitions/AccountNotExist"
+            }
+          },
+          "404": {
+            "description": "account not found",
+            "schema": {
+              "$ref": "#/definitions/AccountNotExist"
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{accountNos}/debit": {
+      "post": {
+        "tags": [
+          "transaction"
+        ],
+        "summary": " an account",
+        "operationId": "debitTransaction",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "accountNos",
+            "description": "this is the accountNumber of account to be debited",
+            "in": "path",
+            "required": true,
+            "type": "integer - name: "
+          }
+        ],
+        "body\"": {
+          "description": "amount to be debitted",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/PostAmount"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "debit sucessfull successful ",
+            "schema": {
+              "$ref": "#/definitions/DebitMsg"
+            }
+          },
+          "404": {
+            "description": "account not found",
+            "schema": {
+              "$ref": "#/definitions/DebitMsg"
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{accountNos}/credit": {
+      "post": {
+        "tags": [
+          "transaction"
+        ],
+        "summary": " an account",
+        "operationId": "creditTransaction",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "accountNos",
+            "description": "this is the accountNumber of account to be credited",
+            "in": "path",
+            "required": true,
+            "type": "integer - name: "
+          }
+        ],
+        "body\"": {
+          "description": "amount to be creditted",
+          "in": "body",
+          "required": true,
+          "schema": {
+            "$ref": "#/definitions/PostAmount"
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "debit sucessfull successful ",
+            "schema": {
+              "$ref": "#/definitions/DebitMsg"
+            }
+          },
+          "404": {
+            "description": "account not found",
+            "schema": {
+              "$ref": "#/definitions/DebitMsg"
+            }
+          }
+        }
+      }
+    },
+    "/transactions/{id}": {
+      "get": {
+        "tags": [
+          "transaction"
+        ],
+        "summary": "get a transaction by Id",
+        "operationId": "TransactionGET",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "description": "this is the id of the transaction to be fetched",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return transaction successfully",
+            "schema": {
+              "$ref": "#/definitions/TransactionGETResponse"
+            }
+          },
+          "401": {
+            "description": "invalid inputs"
+          },
+          "403": {
+            "description": "no permission to carry out the action "
+          },
+          "500": {
+            "description": "No transactions yet",
+            "schema": {
+              "$ref": "#/definitions/UserAlreadyExists"
+            }
+          }
+        }
+      }
+    },
+    "/user/{mail}/accounts": {
+      "get": {
+        "tags": [
+          "account"
+        ],
+        "summary": "all accounts associated with a user",
+        "operationId": "AllUserAccount",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "mail",
+            "description": "this is the mail of the user thats accounts is returned",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "return transaction successfully",
+            "schema": {
+              "$ref": "#/definitions/TransactionGETResponse"
+            }
+          },
+          "401": {
+            "description": "invalid inputs"
+          },
+          "403": {
+            "description": "no permission to carry out the action "
+          },
+          "500": {
+            "description": "No transactions yet",
+            "schema": {
+              "$ref": "#/definitions/UserAlreadyExists"
+            }
+          }
+        }
+      }
+    },
+    "/accounts/{accountNum}": {
+      "get": {
+        "tags": [
+          "account"
+        ],
+        "summary": "gets an account that exist before",
+        "operationId": "accounts",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "accountNum",
+            "description": "this is the accountNumber of the account to be gotten",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "get account sucessfully",
+            "schema": {
+              "$ref": "#/definitions/AccountCreated"
+            }
+          },
+          "401": {
+            "description": "invalid inputs"
+          },
+          "403": null,
+          "500": {
+            "description": "No transactions yet",
+            "schema": {
+              "$ref": "#/definitions/UserAlreadyExists"
+            }
+          }
+        }
+      }
+    },
+    "/accounts": {
+      "get": {
+        "tags": [
+          "account"
+        ],
+        "summary": "gets all account that exist before",
+        "operationId": "accounts",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "get account sucessfully",
+            "schema": {
+              "$ref": "#/definitions/GetAccounts"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "no permission to carry out the action"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    },
+    "/accounts?status": {
+      "get": {
+        "tags": [
+          "account"
+        ],
+        "summary": "gets all account based on status",
+        "operationId": "accounts",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "Bearer": []
+          }
+        ],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "schema": {
+              "type": "string",
+              "enum": [
+                "active",
+                "dormant",
+                "draft"
+              ],
+              "example": "active"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "get account sucessfully",
+            "schema": {
+              "$ref": "#/definitions/GetAccounts"
+            }
+          },
+          "401": {
+            "description": "Authentication failed"
+          },
+          "403": {
+            "description": "no permission to carry out the action"
+          },
+          "500": {
+            "description": "Internal server error"
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "SignUp": {
+      "type": "object",
+      "properties": {
+        "firstName": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "password": {
+          "type": "string",
+          "format": "password"
+        },
+        "Type": {
+          "type": "string"
+        },
+        "isAdmin": {
+          "type": "boolean"
+        }
+      }
+    },
+    "SignIn": {
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "password": {
+          "type": "string",
+          "format": "password"
+        }
+      }
+    },
+    "SignUpResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "Data": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int32"
+            },
+            "firstname": {
+              "type": "string"
+            },
+            "lastname": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "password": {
+              "type": "string"
+            },
+            "photo": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            },
+            "isAdmin": {
+              "type": "boolean"
+            },
+            "createdon": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "token": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "UserAlreadyExists": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "Data": {
+          "type": "string"
+        }
+      }
+    },
+    "AccountCreate": {
+      "type": "object",
+      "properties": {
+        "balance": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Type": {
+          "type": "string"
+        }
+      }
+    },
+    "Wrongpassword": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "AccountCreateResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "Data": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            },
+            "accountnumber": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "status": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "type": {
+              "type": "string"
+            },
+            "user_id": {
+              "type": "string"
+            },
+            "balance": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "isAdmin": {
+              "type": "boolean"
+            },
+            "createdon": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "token": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "Accountpatch": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        }
+      }
+    },
+    "AccountPatchBody": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "AccountNotFound": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "status": {
+              "type": "string"
+            },
+            "accountNumber": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "AccountNotExist": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "msg": {
+          "type": "string"
+        }
+      }
+    },
+    "DebitMsg": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "data": {
+          "type": "string"
+        }
+      }
+    },
+    "PostAmount": {
+      "type": "object",
+      "properties": {
+        "amount": {
+          "type": "integer",
+          "format": "int64"
+        }
+      }
+    },
+    "TransactionGETResponse": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "TransactionId": {
+              "type": "string"
+            },
+            "accountBalance": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "amount": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "cashier": {
+              "type": "integer",
+              "format": "email"
+            },
+            "Transactiontype": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "AccountCreated": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer"
+        },
+        "data": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "accountNumber": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "status": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string",
+              "format": "email"
+            },
+            "balance": {
+              "type": "integer",
+              "format": "int64"
+            },
+            "createdon": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      }
+    },
+    "GetAccounts": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "integer"
+        },
+        "Data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "accountnumber": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "email": {
+                "type": "string",
+                "format": "email"
+              },
+              "balance": {
+                "type": "integer",
+                "format": "int64"
+              },
+              "createdon": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "type": {
+                "type": "string"
+              },
+              "status": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
