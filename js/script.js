@@ -11,3 +11,17 @@ menubar.addEventListener('click', (e) => {
 aside.addEventListener('click', (e) => {
     menu.classList.remove("active");
 })
+/*
+    let check = document.getElementsByName("checkbox1");
+    console.log(check[0]);
+    let i;
+for (i = 0; i < check.length; i++) {
+   check[i].addEventListener( 'change', () => {
+    if(check[i].checked) {
+     console.log('account no', check[i].value);
+    } else {
+  console.log('nothing was checked')
+    }
+ });
+}
+  */

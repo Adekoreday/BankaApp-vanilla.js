@@ -24,21 +24,31 @@ aside{
 .deactivate{
     display: none;
 }
-
+.invalid{
+  border: 1px solid red;
+}
+#indicator{
+  color: red;
+}
+.valid{
+  border: none;
+}
+input[type=email],
 input[type=text] {
     width: 100%;
   padding: 12px 20px;
     background-color: #BCC8E1;
     color: grey;
-    border: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+   /* border: none; */
 }
-input[type=password] {
+select, input[type=password] {
     width: 100%;
   padding: 12px 20px;
     background-color: #BCC8E1;
     color: grey;
-    border: none;
 }
+
 aside > div {
     cursor: pointer;
     padding: 10px;
@@ -46,7 +56,7 @@ aside > div {
 }
 aside > p {
  
-    text-align: end;
+    text-align: center;
     font-weight: bold;
 
 }
@@ -210,7 +220,7 @@ ul li{
 .modal .adminmaincontainer {
     background-color: white;
     border-radius: 0.25rem;
-    min-width: 50vw;
+    min-width: 60vw;
     min-height: 30vw;
     padding: 2rem;
     position: relative;
@@ -297,7 +307,9 @@ input[type=submit] {
     width: 100%;
     margin: 0;
   }
-
+  select{
+    display: none;
+  }
   .modal .adminmaincontainer {
 
     min-width: 50vw;
@@ -340,6 +352,7 @@ i{
 body {
   font-family: 'Roboto', sans-serif;
   line-height: 1.25;
+  
 }
 
 table {
@@ -362,13 +375,16 @@ table tr {
 }
 tr:nth-child(even) {
   background-color: #F4BEE1;
-  color:black;
+ 
 }
 
 table th,
 table td {
   padding: 30px;
   text-align: center;
+}
+.big-content{
+ word-wrap: break-word;
 }
 
 
@@ -389,11 +405,21 @@ table th {
    overflow: auto;
   
 }
-
+footer{
+  padding: 0px;
+  display:none;
+}
 @media screen and (max-width: 600px) {
   table {
     border: 0;
   }
+
+footer{
+  text-align: center;
+  color: white;
+  display: block;
+  padding-bottom: 50%;
+}
 
   table caption {
     font-size: 1.3em;
@@ -412,7 +438,6 @@ table th {
   
   table tr {
     border-bottom: 3px solid #ddd;
-
     display: block;
     margin-bottom: .625em;
   }
@@ -420,15 +445,11 @@ table th {
   table td {
     border-bottom: 1px solid #ddd;
     display: block;
-    font-size: .8em;
+    font-size: 1em;
     text-align: right;
   }
   
   table td::before {
-    /*
-    * aria-label has no advantage, it won't be read inside a table
-    content: attr(aria-label);
-    */
     content: attr(data-label);
     float: left;
     font-weight: bold;
@@ -475,7 +496,7 @@ table th {
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: #d42ece;
+  background-color: #fff;
   border-radius: 50%;
   -webkit-transition: .4s;
   transition: .4s;
@@ -488,6 +509,7 @@ input:focus + .slider {
 }
 
 input:checked + .slider:before {
+  background-color: #d42ece;
   -webkit-transform: translateX(26px);
   -ms-transform: translateX(26px);
   transform: translateX(26px);
@@ -497,4 +519,46 @@ input:checked + .slider:before {
 .slider.round {
   border-radius: 34px;
 }
+
+/*progress loading bar*/
+#myProgress {
+  width: 100%;
+  background-color: #ddd;
+}
+
+#myBar {
+  width: 1%;
+  height: 10px;
+  border-radius: 2px;
+ background: linear-gradient(45deg, #4e06fb 0%,#2989d8 50%,#207cca 51%,#d42ece 100%) no-repeat;
+}
+.check{
+  border:none;
+}
+
+#indicator{
+ 
+    background-color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: lighter;
+
+}
+.btn {
+  background-color: red;
+  border: none;
+  align-content: center;
+  display: flex;
+  justify-content: center;
+  color: white;
+  padding: 5px 16px;
+  font-size: 16px;
+  cursor: pointer;
+  width: 30%;
+  transition: all 2s;
+}
+.btn:hover {
+  background-color: #d42ece;
+}
+
+
 
