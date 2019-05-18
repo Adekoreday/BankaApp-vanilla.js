@@ -20,7 +20,6 @@ class TransactionService {
         return new Promise((resolve, reject) => {  
             db.querydb(Transaction.GetTransactionById(id))
                 .then((result) => {
-                    console.log(' transaction get sucessfully', result);
                     resolve(result.rows[0]);
                 })
                 .catch((err) => {
@@ -29,7 +28,6 @@ class TransactionService {
                         status: 500,
                         Data: 'you may have entered wrong Type..',
                     });
-                    reject();
                 });
         })
     }
@@ -50,6 +48,17 @@ class TransactionService {
                     reject();
                 });
         })
+    }
+
+    static async getAlltransactionByUser(userid) {
+        return new Promise((resolve, reject) => {
+        db.querydb(Transaction.GetAllTransactionbyUser(userid))
+        .then((result)=> {
+            resolve(result.rows); })
+        .catch((err) => {
+         reject(err);
+        });
+        });
     }
 
 

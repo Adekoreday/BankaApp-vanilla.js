@@ -119,7 +119,7 @@ class AccountController {
 
       res.status(userExist === undefined ? 404 : 200).json({
         status: userExist === undefined ? 404 : 200,
-        msg: userExist === undefined ? null : AlluserAcc,
+        data: userExist === undefined ? null : AlluserAcc,
       });
     } catch (e) {
       return res.status(500).json({
@@ -155,6 +155,14 @@ class AccountController {
       });
   }
 
+  /**
+   *
+   *
+   * @static
+   * @param {*} req
+   * @param {*} res
+   * @memberof AccountController
+   */
   static async Accountdetails(req, res) {
     let Accountdetails;
        Accountdetails = await AccountService.getAccountsbyAccountNo(req.params.accountNumber);

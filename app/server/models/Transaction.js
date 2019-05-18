@@ -35,6 +35,15 @@ class Transaction {
     return queryString;
   }
 
+  static GetAllTransactionbyUser(userid) {
+    const queryString = {
+      text: `SELECT transactions.createdon,transactions.type, transactions.amount,transactions.oldbalance,transactions.newbalance,accounts.accountnumber FROM transactions
+       JOIN accounts ON accounts.id = transactions.account_id WHERE accounts.user_id = $1`,
+      values: [userid],
+    };
+    return queryString;
+  }
+
     static GetAllUserTransactionbyAccountId(id) {
     const queryString = {
       text: 'SELECT * FROM transactions WHERE transactions.account_id = $1',

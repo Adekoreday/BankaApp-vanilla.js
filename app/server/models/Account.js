@@ -1,7 +1,7 @@
 class Account {
 
     static CreateAccountTable() {
-        return `
+        return `DROP TABLE IF EXISTS accounts CASCADE;
         CREATE TABLE accounts(
             id BIGSERIAL UNIQUE NOT NULL PRIMARY KEY,
             accountNumber BIGINT UNIQUE NOT NULL,

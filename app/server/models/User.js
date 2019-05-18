@@ -28,14 +28,14 @@ class User {
         return queryString;
     }
 
-    static GetALLUser() {
+   /* static GetALLUser() {
         const queryString = {
             text: 'SELECT * FROM users',
         }
         return queryString;
     }
-
-    static UpdateExistingUser(userData, id) {
+*/
+   /* static UpdateExistingUser(userData, id) {
 
         const queryString = {
             text: `UPDATE users SET firstName = $1, lastName =$2, email= $3, password =$4, photo =$5, Type= $6, isAdmin=$7  WHERE id = $8`,
@@ -43,6 +43,7 @@ class User {
         }
         return queryString;
     }
+    */
 
     static checkifUserExist(email) {
         const queryString = {
@@ -52,21 +53,21 @@ class User {
         return queryString;
     }
 
-     static checkifUserExistbyId(id) {
+    /* static checkifUserExistbyId(id) {
         const queryString = {
             text: `SELECT * FROM users WHERE  users.id = $1`,
             values: [id],
         }
         return queryString;
-    }
+    }*/
     
-    static DeleteUser(id) {
+  /*  static DeleteUser(id) {
         const queryString = {
             text: `DELETE FROM users WHERE users.id = $1`,
             values: [id],
         }
         return queryString;
-    }
+    }*/
 
 }
 export default User;

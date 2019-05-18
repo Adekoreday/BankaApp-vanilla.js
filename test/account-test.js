@@ -130,6 +130,14 @@ describe(' ACCOUNT TEST   overAll test', () => {
 
   });
 
+   it('its expected to create a new account sucessfully', async () => {
+    const res = await chai.request(server)
+      .post('/api/v1/account')
+      .set('Authorization', accountCreatedetails.cashiertoken)
+      .send(accountCreatedetails.createAccount);
+    expect(res, 'must have a status 403 ok').to.have.status(403);
+  });
+
   it('its expected to create a new account sucessfully', async () => {
     const res = await chai.request(server)
       .post('/api/v1/account')
@@ -174,6 +182,16 @@ describe(' ACCOUNT TEST   overAll test', () => {
       .send(accountCreatedetails.patchpayload);
     expect(res, 'must sucessfully patch').to.have.status(200);
   });
+
+  it('its expected to modify an account admin can change status', async () => {
+    const res = await chai.request(server)
+      .patch('/api/v1/account/1012183201')
+      .set('Authorization', accountCreatedetails.endusertoken)
+      .send(accountCreatedetails.patchpayload);
+    expect(res, 'must not sucessfully patch').to.have.status(403);
+  });
+
+  
 
 
   it('its expected to not modify an account user cannot modify status', async () => {

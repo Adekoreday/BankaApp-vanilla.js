@@ -75,40 +75,29 @@ class Accountpermission {
   }
 
     static getAllAccountpermission(req, res, next) {
-    const signedIn = typeof req.userData.permission === 'object' && req.userData.permission instanceof Array && req.userData.permission.length > 0 ? 'true' : 'false';
-    if (signedIn === 'true') {
       const { permission } = req.userData;
       const confirmPermission = permission.includes(permissionObj.GETALL_ACCOUNT);
       if (!confirmPermission) {
         return res.status(403).json({
           msg: 'You are not authorized to perfom tis operation, must be a staff or admin',
         });
+      }else{
+        next();
       }
-      next();
-    } else {
-      return res.status(403).json({
-        msg: 'You are not signed in kindly sign in',
-      });
-    }
-  }
+     
+    } 
+  
 
       static getSpecificAccountTransactionHistorypermission(req, res, next) {
-
-    const signedIn = typeof req.userData.permission === 'object' && req.userData.permission instanceof Array && req.userData.permission.length > 0 ? 'true' : 'false';
-    if (signedIn === 'true') {
       const { permission } = req.userData;
       const confirmPermission = permission.includes(permissionObj.GETACCOUNT_TRANSACTION_HISTORY);
       if (!confirmPermission) {
-        return res.status(403).json({
+         return res.status(403).json({
           msg: 'You are not authorized to perfom task sign in as a user or admin',
         });
+      }else{
+        next();
       }
-      next();
-    } else {
-      return res.status(403).json({
-        msg: 'You are not signed in kindly sign in',
-      });
-    }
   }
 }
 export default Accountpermission;

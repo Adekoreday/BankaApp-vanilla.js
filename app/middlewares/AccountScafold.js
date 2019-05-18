@@ -11,7 +11,7 @@ class AccountScafold {
         const userdetails = req.userData;
         const userdata = await UserService.CheckifUserExist(userdetails.email);
         if (userdata === undefined) {
-            res.status(404).json({
+          return res.status(404).json({
                 status: 404,
                 msg: 'user does not exist signup first',
             });

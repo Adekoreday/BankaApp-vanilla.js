@@ -1,0 +1,41 @@
+{
+  "name": "banka_ui",
+  "version": "1.0.0",
+  "description": "banka ui on gh pages",
+  "main": "index.js",
+  "dependencies": {
+    "browserify": "^16.2.3",
+    "cors": "^2.8.5",
+    "swagger-ui-express": "^4.0.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-transform-arrow-functions": "^7.2.0",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/preset-react": "^7.0.0",
+    "babel-plugin-transform-es2015-arrow-functions": "^6.22.0",
+    "babelify": "^10.0.0",
+    "browsify": "0.0.4",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.17.2"
+  },
+  "scripts": {
+    "test": "mocha",
+    "build-one": "browserify ./js/modals/modal-index.js -t babelify --outfile ./js/build/modal/modal-index.js",
+    "build-two": "browserify ./js/modals/modal-admin.js -t babelify --outfile ./js/build/modal/modal-admin.js",
+    "build-three": "browserify ./js/modals/modal-user.js -t babelify --outfile ./js/build/modal/modal-user.js",
+    "build": "npm run build-one && npm run build-two && npm run build-three"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Adekoreday/BankaApp.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Adekoreday/BankaApp/issues"
+  },
+  "homepage": "https://github.com/Adekoreday/BankaApp#readme"
+}

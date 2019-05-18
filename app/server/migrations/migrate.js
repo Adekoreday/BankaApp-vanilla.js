@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import UserMigration from './UserMigration';
 import AccountMigration from './AccountMigration';
 import TransactionMigration from './TransactionMigration';
