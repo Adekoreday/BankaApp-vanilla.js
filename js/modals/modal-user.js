@@ -170,22 +170,15 @@ bar.style.display='block';
 
   const postdata = new Fetch(userdatas.token);
   postdata.PostAuth(url, UserData)
-   .then((response => {
-     const obj = {
-       result: response.json(),
-       status: response.status
-     }
-     return obj;
-     }))
-  .then(obj => {
-    const {result} = obj;
+   .then(response => response.json())
+   .then(result => {
     bar.style.display='none';
     clearTimeout(t);
     let results = result.status;
 console.log('results equals', results);
     console.log('mydata', result);
 
-switch(obj.status) {
+switch(result.status) {
   case 401: 
          console.log(`sign out`);
          window.location.href = '../index.html';
@@ -203,14 +196,9 @@ switch(obj.status) {
 }
 
 })
-
-} 
-
+}
 });
-
-
 });
-
 
 
 
@@ -250,7 +238,7 @@ const myfetch = new Fetch(userdata.token);
   })
       m.html = `
  <table>
-  <caption>Statement Summary</caption>
+  <caption>ALL ACCOUNTS</caption>
   <thead>
     <tr>
       <th scope="col">id</th>

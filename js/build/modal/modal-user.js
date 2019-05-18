@@ -564,20 +564,15 @@ document.getElementById('newAccount').addEventListener('click', function () {
       }, 1000);
       var postdata = new _fetch["default"](userdatas.token);
       postdata.PostAuth(url, UserData).then(function (response) {
-        var obj = {
-          result: response.json(),
-          status: response.status
-        };
-        return obj;
-      }).then(function (obj) {
-        var result = obj.result;
+        return response.json();
+      }).then(function (result) {
         bar.style.display = 'none';
         clearTimeout(t);
         var results = result.status;
         console.log('results equals', results);
         console.log('mydata', result);
 
-        switch (obj.status) {
+        switch (result.status) {
           case 401:
             console.log("sign out");
             window.location.href = '../index.html';
@@ -627,7 +622,7 @@ allaccount.addEventListener('click', function () {
       result.data.map(function (x) {
         mydata += " <tr>\n      <td data-label=\"S/N\">".concat(i++, "</td>\n      <td data-label=\"Account\">").concat(x.accountnumber, "</td>\n      <td data-label=\"DETAILS\">").concat((0, _dateFormater["default"])(x.createdon), "</td>\n      <td data-label=\"TYPE\">").concat(x.type, "</td>\n      <td data-label=\"STATUS\">").concat(x.status, "</td>\n      <td data-label=\"BALANCE\">").concat(x.balance, "</td>\n    </tr>");
       });
-      m.html = "\n <table>\n  <caption>Statement Summary</caption>\n  <thead>\n    <tr>\n      <th scope=\"col\">id</th>\n      <th scope=\"col\">Account</th>\n      <th scope=\"col\">DETAILS</th>\n       <th scope=\"col\">TYPE</th>\n       <th scope=\"col\">STATUS</th>\n      <th scope=\"col\">BALANCE(#)</th>\n    </tr>\n  </thead>\n  <tbody>\n    ".concat(mydata, "\n  </tbody>\n</table>\n    ");
+      m.html = "\n <table>\n  <caption>ALL ACCOUNTS</caption>\n  <thead>\n    <tr>\n      <th scope=\"col\">id</th>\n      <th scope=\"col\">Account</th>\n      <th scope=\"col\">DETAILS</th>\n       <th scope=\"col\">TYPE</th>\n       <th scope=\"col\">STATUS</th>\n      <th scope=\"col\">BALANCE(#)</th>\n    </tr>\n  </thead>\n  <tbody>\n    ".concat(mydata, "\n  </tbody>\n</table>\n    ");
       m.open();
     } else {
       Indicator.innerHTML = result.msg;

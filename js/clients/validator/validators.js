@@ -35,10 +35,6 @@ static validatetNumberOnly(field,  indicator){
   return true;
 }
 
-
-
-
-
 static validateEmail(field, indicator) {
    const myhelpers = new helpers(indicator);
     if (myhelpers.checkIfEmpty(field)) return;

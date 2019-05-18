@@ -748,7 +748,8 @@ document.getElementById('CREDIT').addEventListener('click', function () {
   bar.style.display = 'none';
   console.log(bar);
   creditAccount.addEventListener('click', function () {
-    if (_validators["default"].validateNumberOnly(accountNo, Indicators) && _validators["default"].validateAccountNumberOnly(Amount, Indicators)) {
+    //if(validators.validateNumberOnly(Amount, Indicators) && validators.validateAccountNumberOnly(accountNo, Indicators)) {
+    if (_validators["default"].validateAccountNumberOnly(accountNo, Indicators) && _validators["default"].validatetNumberOnly(Amount, Indicators)) {
       creditAccount.disabled = true;
       var t = setInterval(function () {
         width += 10;
@@ -782,7 +783,8 @@ document.getElementById('CREDIT').addEventListener('click', function () {
           Indicators.innerHTML = result.status;
         }
       })["catch"](function (err) {
-        return console.log(err);
+        bar.style.display = 'none';
+        Indicators.innerHTML = err;
       });
     }
   });
@@ -833,7 +835,8 @@ document.getElementById('DEBIT').addEventListener('click', function () {
           Indicators.innerHTML = result.status;
         }
       })["catch"](function (err) {
-        return console.log(err);
+        bar.style.display = 'none';
+        Indicators.innerHTML = err;
       });
     }
   });

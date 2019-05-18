@@ -443,7 +443,8 @@ bar.style.display = 'none';
 console.log(bar);
 creditAccount.addEventListener('click', () => {
   
-if(validators.validateNumberOnly(accountNo, Indicators) && validators.validateAccountNumberOnly(Amount, Indicators)) {
+//if(validators.validateNumberOnly(Amount, Indicators) && validators.validateAccountNumberOnly(accountNo, Indicators)) {
+  if(validators.validateAccountNumberOnly(accountNo, Indicators) && validators.validatetNumberOnly(Amount, Indicators)) {
   creditAccount.disabled = true;
      const t = setInterval(()=>{width+= 10;
  if(width > 100) {
@@ -472,7 +473,10 @@ if(validators.validateNumberOnly(accountNo, Indicators) && validators.validateAc
         Indicators.innerHTML = result.status;
       }
   })
-  .catch(err => console.log(err));
+  .catch(err => {
+    bar.style.display='none';
+     Indicators.innerHTML = err;
+  });
 
 
 
@@ -538,7 +542,10 @@ if(validators.validateAccountNumberOnly(accountNo, Indicators) && validators.val
         Indicators.innerHTML = result.status;
       }
   })
-  .catch(err => console.log(err));
+  .catch(err => {
+     bar.style.display='none';
+     Indicators.innerHTML = err;
+  });
 }
 });
 
