@@ -485,9 +485,47 @@ window.addEventListener('load', function () {
   var username = document.getElementById('username');
   username.innerHTML = userdata.firstname.toUpperCase();
 });
-document.getElementById('HISTORY').addEventListener('click', function () {
-  m.html = "\n    <table>\n    <tr>\n    <input type=\"text\" placeholder=\"ENTER ACCOUNT\" required>\n    </tr>\n  <tr>\n      <td data-label=\"\"><input type=\"submit\" id=\"submit\" value=\"Search\"></td>\n    </tr>\n    </table>\n\n <table>\n  <caption>TRANSACTION HISTORY</caption>\n  \n  <thead>\n    <tr>\n      <th scope=\"col\">ID</th>\n      <th scope=\"col\">Account</th>\n      <th scope=\"col\">AMOUNT</th>\n      <th scope=\"col\">OLD BALANCE</th>\n      <th scope=\"col\">NEW BALANCE</th>\n      <th scope=\"col\">DATE</th>\n\n    </tr>\n  </thead>\n  <tbody>\n   \n     <tr>\n      <td data-label=\"ID\">1</td>\n      <td data-label=\"Account\">0121832011</td>\n      <td data-label=\"AMOUNT\">2500</td>\n      <td data-label=\"OLD BAL\">#2500</td>\n      <td data-label=\"NEW BAL\">#5000</td>\n      <td data-label=\"DATE\">04/29/2019</td>\n    </tr>\n     <tr>\n      <td data-label=\"ID\">2</td>\n      <td data-label=\"Account\">0121832011</td>\n      <td data-label=\"AMOUNT\">2500</td>\n      <td data-label=\"OLD BAL\">#2500</td>\n      <td data-label=\"NEW BAL\">#5000</td>\n      <td data-label=\"DATE\">04/29/2019</td>\n    </tr>\n     <tr>\n      <td data-label=\"ID\">3</td>\n      <td data-label=\"Account\">0121832011</td>\n      <td data-label=\"AMOUNT\">2500</td>\n      <td data-label=\"OLD BAL\">#2500</td>\n      <td data-label=\"NEW BAL\">#5000</td>\n      <td data-label=\"DATE\">04/29/2019</td>\n    </tr>\n  </tbody>\n</table>\n    ";
-  m.open();
+var history = document.getElementById('HISTORY');
+history.addEventListener('click', function () {
+  Indicator.innerHTML = ' ';
+  history.disabled = true;
+  var mydata = " ";
+  bar.style.display = 'block';
+
+  var userdata = _SessionStorage["default"].getData('UserData');
+
+  var url = 'https://bankaandela.herokuapp.com/api/v1/transactions';
+  var t = setInterval(function () {
+    width += 10;
+
+    if (width > 100) {
+      width = 0;
+    }
+
+    mybar.style.width = "".concat(width, "%");
+  }, 1000);
+  var myfetch = new _fetch["default"](userdata.token);
+  myfetch.get(url).then(function (result) {
+    clearTimeout(t);
+    bar.style.display = 'none';
+    history.disabled = false;
+
+    if (result.status === 200) {
+      var i = 1;
+      result.Data.map(function (x) {
+        mydata += " <tr>\n      <td data-label=\"S/N\">".concat(i++, "</td>\n      <td data-label=\"Account\">").concat(x.accountnumber, "</td>\n      <td data-label=\"DATE\">").concat((0, _dateFormater["default"])(x.createdon), "</td>\n      <td data-label=\"TYPE\">").concat(x.type, "</td>\n      <td data-label=\"PREV BALANCE\">").concat(x.oldbalance, "</td>\n      <td data-label=\"NEW BALANCE\">").concat(x.newbalance, "</td>\n    </tr>");
+      });
+      m.html = "\n <table>\n  <caption>Transaction History</caption>\n  <thead>\n    <tr>\n      <th scope=\"col\">id</th>\n      <th scope=\"col\">Account</th>\n      <th scope=\"col\">DATE</th>\n       <th scope=\"col\">TYPE</th>\n       <th scope=\"col\">PREV BALANCE</th>\n      <th scope=\"col\">NEW BALANCE(#)</th>\n    </tr>\n  </thead>\n  <tbody>\n    ".concat(mydata, "\n  </tbody>\n</table>\n    ");
+      m.open();
+    } else {
+      Indicator.innerHTML = result.msg;
+    }
+  })["catch"](function (err) {
+    clearTimeout(t);
+    bar.style.display = 'none';
+    Indicator.innerHTML = err;
+    history.disabled = false;
+  });
 });
 document.getElementById('newAccount').addEventListener('click', function () {
   m.html = " <div class=\"col icon\">\n    \n        <i class=\"fas fa-female fa-3x \"></i>\n      </div>\n       <div class=\"col\">       \n          <span id=\"indicators\"></span>          \n         <input type=\"text\" id=\"Type\" placeholder=\"ENTER ACCOUNT TYPE\" required>\n        <input type=\"text\" id=\"Balance\" placeholder=\"OPENING BALANCE\" required>\n        <input type=\"submit\" id=\"submit\" value=\"SUBMIT\">\n                      <div id=\"myProgress\" class=\"progress\">\n        <div id=\"myBar\" class=\"bar\"></div>\n      </div>\n      ";
