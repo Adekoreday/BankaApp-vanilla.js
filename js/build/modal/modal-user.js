@@ -486,11 +486,11 @@ window.addEventListener('load', function () {
   username.innerHTML = userdata.firstname.toUpperCase();
 });
 document.getElementById('HISTORY').addEventListener('click', function () {
-  m.html = "\n <table>\n  <caption>TRANSACTION HISTORY</caption>\n  \n  <thead>\n    <tr>\n      <th scope=\"col\">ID</th>\n      <th scope=\"col\">Account</th>\n      <th scope=\"col\">AMOUNT</th>\n      <th scope=\"col\">OLD BALANCE</th>\n      <th scope=\"col\">NEW BALANCE</th>\n      <th scope=\"col\">DATE</th>\n\n    </tr>\n  </thead>\n  <tbody>\n   \n     <tr>\n      <td data-label=\"ID\">1</td>\n      <td data-label=\"Account\">0121832011</td>\n      <td data-label=\"AMOUNT\">2500</td>\n      <td data-label=\"OLD BAL\">#2500</td>\n      <td data-label=\"NEW BAL\">#5000</td>\n      <td data-label=\"DATE\">04/29/2019</td>\n    </tr>\n     <tr>\n      <td data-label=\"ID\">2</td>\n      <td data-label=\"Account\">0121832011</td>\n      <td data-label=\"AMOUNT\">2500</td>\n      <td data-label=\"OLD BAL\">#2500</td>\n      <td data-label=\"NEW BAL\">#5000</td>\n      <td data-label=\"DATE\">04/29/2019</td>\n    </tr>\n     <tr>\n      <td data-label=\"ID\">3</td>\n      <td data-label=\"Account\">0121832011</td>\n      <td data-label=\"AMOUNT\">2500</td>\n      <td data-label=\"OLD BAL\">#2500</td>\n      <td data-label=\"NEW BAL\">#5000</td>\n      <td data-label=\"DATE\">04/29/2019</td>\n    </tr>\n  </tbody>\n</table>\n    ";
+  m.html = "\n    <table>\n    <tr>\n    <input type=\"text\" placeholder=\"ENTER ACCOUNT\" required>\n    </tr>\n  <tr>\n      <td data-label=\"\"><input type=\"submit\" id=\"submit\" value=\"Search\"></td>\n    </tr>\n    </table>\n\n <table>\n  <caption>TRANSACTION HISTORY</caption>\n  \n  <thead>\n    <tr>\n      <th scope=\"col\">ID</th>\n      <th scope=\"col\">Account</th>\n      <th scope=\"col\">AMOUNT</th>\n      <th scope=\"col\">OLD BALANCE</th>\n      <th scope=\"col\">NEW BALANCE</th>\n      <th scope=\"col\">DATE</th>\n\n    </tr>\n  </thead>\n  <tbody>\n   \n     <tr>\n      <td data-label=\"ID\">1</td>\n      <td data-label=\"Account\">0121832011</td>\n      <td data-label=\"AMOUNT\">2500</td>\n      <td data-label=\"OLD BAL\">#2500</td>\n      <td data-label=\"NEW BAL\">#5000</td>\n      <td data-label=\"DATE\">04/29/2019</td>\n    </tr>\n     <tr>\n      <td data-label=\"ID\">2</td>\n      <td data-label=\"Account\">0121832011</td>\n      <td data-label=\"AMOUNT\">2500</td>\n      <td data-label=\"OLD BAL\">#2500</td>\n      <td data-label=\"NEW BAL\">#5000</td>\n      <td data-label=\"DATE\">04/29/2019</td>\n    </tr>\n     <tr>\n      <td data-label=\"ID\">3</td>\n      <td data-label=\"Account\">0121832011</td>\n      <td data-label=\"AMOUNT\">2500</td>\n      <td data-label=\"OLD BAL\">#2500</td>\n      <td data-label=\"NEW BAL\">#5000</td>\n      <td data-label=\"DATE\">04/29/2019</td>\n    </tr>\n  </tbody>\n</table>\n    ";
   m.open();
 });
 document.getElementById('newAccount').addEventListener('click', function () {
-  m.html = " <div class=\"col icon\">\n    \n        <i class=\"fas fa-female fa-3x \"></i>\n      </div>\n       <div class=\"col\">\n        <div class=\"hide-md-lg\">\n         \n          <span id=\"indicators\"></span>          \n         <input type=\"text\" id=\"Type\" placeholder=\"ENTER ACCOUNT TYPE\" required>\n        <input type=\"text\" id=\"Balance\" placeholder=\"OPENING BALANCE\" required>\n        <input type=\"submit\" id=\"submit\" value=\"SUBMIT\">\n                <div class=\"Progress\">\n        <div class=\"Bar\"></div>\n      </div>\n      ";
+  m.html = " <div class=\"col icon\">\n    \n        <i class=\"fas fa-female fa-3x \"></i>\n      </div>\n       <div class=\"col\">       \n          <span id=\"indicators\"></span>          \n         <input type=\"text\" id=\"Type\" placeholder=\"ENTER ACCOUNT TYPE\" required>\n        <input type=\"text\" id=\"Balance\" placeholder=\"OPENING BALANCE\" required>\n        <input type=\"submit\" id=\"submit\" value=\"SUBMIT\">\n                      <div id=\"myProgress\" class=\"progress\">\n        <div id=\"myBar\" class=\"bar\"></div>\n      </div>\n      ";
   m.open();
 
   var userdatas = _SessionStorage["default"].getData('UserData');
@@ -500,8 +500,8 @@ document.getElementById('newAccount').addEventListener('click', function () {
   var CreateUser = document.getElementById('submit');
   var Type = document.getElementById('Type');
   var Balance = document.getElementById('Balance');
-  var bar = document.querySelector(".Progress");
-  var mybar = document.querySelector(".Bar");
+  var bar = document.querySelector(".progress");
+  var mybar = document.querySelector(".bar");
   bar.style.display = 'none'; //check validation if all pass then loads the appopriate page......
 
   var i = 0;
@@ -526,24 +526,35 @@ document.getElementById('newAccount').addEventListener('click', function () {
       }, 1000);
       var postdata = new _fetch["default"](userdatas.token);
       postdata.PostAuth(url, UserData).then(function (response) {
-        return response.json();
-      }).then(function (result) {
+        response.json();
+        var obj = {
+          result: response.json(),
+          status: response.status
+        };
+        return obj;
+      }).then(function (obj) {
+        var result = obj.result;
         bar.style.display = 'none';
         clearTimeout(t);
+        var results = result.status;
+        console.log('results equals', results);
         console.log('mydata', result);
 
-        if (result.status === 201) {
-          Indicators.style.color = "blue";
-          Indicators.innerHTML = "account  ".concat(result.Data.accountnumber, "  created sucessfully");
-          CreateUser.value = 'close';
-          CreateUser.disabled = false;
-          CreateUser.addEventListener('click', function () {
-            m.close();
-          });
-        } else {
-          Indicators.style.color = "red";
-          Indicators.innerHTML = result.statusText;
-          CreateUser.disabled = false;
+        switch (obj.status) {
+          case 401:
+            console.log("sign out");
+            window.location.href = '../index.html';
+            break;
+
+          case 201:
+            Indicators.style.color = "blue";
+            Indicators.innerHTML = "account  ".concat(result.Data.accountnumber, "  created sucessfully");
+            CreateUser.value = 'close';
+            CreateUser.disabled = false;
+            CreateUser.addEventListener('click', function () {
+              m.close();
+            });
+            break;
         }
       });
     }

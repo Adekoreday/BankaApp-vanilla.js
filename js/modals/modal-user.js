@@ -56,6 +56,15 @@ username.innerHTML = userdata.firstname.toUpperCase();
 
 document.getElementById('HISTORY').addEventListener('click', () => {
     m.html = `
+    <table>
+    <tr>
+    <input type="text" placeholder="ENTER ACCOUNT" required>
+    </tr>
+  <tr>
+      <td data-label=""><input type="submit" id="submit" value="Search"></td>
+    </tr>
+    </table>
+
  <table>
   <caption>TRANSACTION HISTORY</caption>
   
@@ -107,15 +116,13 @@ document.getElementById('newAccount').addEventListener('click', () => {
     
         <i class="fas fa-female fa-3x "></i>
       </div>
-       <div class="col">
-        <div class="hide-md-lg">
-         
+       <div class="col">       
           <span id="indicators"></span>          
          <input type="text" id="Type" placeholder="ENTER ACCOUNT TYPE" required>
         <input type="text" id="Balance" placeholder="OPENING BALANCE" required>
         <input type="submit" id="submit" value="SUBMIT">
-                <div class="Progress">
-        <div class="Bar"></div>
+                      <div id="myProgress" class="progress">
+        <div id="myBar" class="bar"></div>
       </div>
       `;
     m.open();
@@ -126,8 +133,8 @@ const Indicators = document.getElementById('indicators');
 const CreateUser = document.getElementById('submit');
 const Type = document.getElementById('Type');
 const Balance = document.getElementById('Balance');
-const bar = document.querySelector(".Progress");  
-const mybar = document.querySelector(".Bar");  
+const bar = document.querySelector(".progress");  
+const mybar = document.querySelector(".bar");  
 bar.style.display='none';
 
 //check validation if all pass then loads the appopriate page......
@@ -151,24 +158,40 @@ bar.style.display='block';
 
   const postdata = new Fetch(userdatas.token);
   postdata.PostAuth(url, UserData)
-   .then((response => response.json()))
-  .then(result => {
+   .then((response => {
+     response.json()
+     const obj = {
+       result: response.json(),
+       status: response.status
+     }
+     return obj;
+     }))
+  .then(obj => {
+    const {result} = obj;
     bar.style.display='none';
     clearTimeout(t);
+    let results = result.status;
+console.log('results equals', results);
     console.log('mydata', result);
-if(result.status === 201){
-  Indicators.style.color = "blue";
+
+switch(obj.status) {
+  case 401: 
+         console.log(`sign out`);
+         window.location.href = '../index.html';
+         break;
+  case 201: 
+            Indicators.style.color = "blue";
   Indicators.innerHTML = `account  ${result.Data.accountnumber}  created sucessfully`;
   CreateUser.value = 'close';
     CreateUser.disabled = false;
   CreateUser.addEventListener('click', () => {
-m.close();
+  m.close();
   });
-}else{
-  Indicators.style.color = "red";
-  Indicators.innerHTML = result.statusText;
-  CreateUser.disabled = false;
-} })
+  break;
+
+}
+
+})
 
 } 
 
