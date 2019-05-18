@@ -206,8 +206,7 @@ switch(obj.status) {
 
 } 
 
-})
-
+});
 
 
 });
