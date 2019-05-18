@@ -171,7 +171,6 @@ bar.style.display='block';
   const postdata = new Fetch(userdatas.token);
   postdata.PostAuth(url, UserData)
    .then((response => {
-     response.json()
      const obj = {
        result: response.json(),
        status: response.status

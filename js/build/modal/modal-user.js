@@ -564,7 +564,6 @@ document.getElementById('newAccount').addEventListener('click', function () {
       }, 1000);
       var postdata = new _fetch["default"](userdatas.token);
       postdata.PostAuth(url, UserData).then(function (response) {
-        response.json();
         var obj = {
           result: response.json(),
           status: response.status
