@@ -1,4 +1,5 @@
 import { config } from 'dotenv';
+import '@babel/polyfill';
 import express from 'express';
 import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
@@ -18,6 +19,7 @@ app.use(bodyParser.urlencoded({extended: false }));
 app.use(bodyParser.json());
 app.use('/upload', express.static(path.join(__dirname, './../uploads')));
 app.use('/api/v1', Router);
+app.get('/', (req, res)=> res.send(`welcome to banka app by Adeyemi Adekorede @Andela`));
 const port = process.env.PORT || 3000;
 app.listen(port, () => { });
 export default app;

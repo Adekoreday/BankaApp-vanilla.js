@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import UserSeed from './UserSeed';
 import AccountSeed from './AccountSeed';
 import Userdata from '../config/userdata';

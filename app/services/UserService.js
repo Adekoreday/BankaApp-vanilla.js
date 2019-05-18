@@ -42,7 +42,7 @@ class UserService {
     }
 
      
-     static CheckifUserExistbyId(myid) {
+   /*  static CheckifUserExistbyId(myid) {
          console.log('myid', myid);
         return new Promise((resolve, reject) => {
             db.querydb(User.checkifUserExistbyId(myid))
@@ -55,6 +55,7 @@ class UserService {
                 });
         });
     }
+    */
 
 }
 

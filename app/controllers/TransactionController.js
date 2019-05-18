@@ -47,19 +47,23 @@ class TransactionController {
     }
     res.status(addedtransaction === undefined ? 500 : 200).json({
       status: addedtransaction === undefined ? 500 : 200,
-      data: addedtransaction === undefined ? 'route doesnt exist' : mydata,
+      data: addedtransaction === undefined ? 'No transactions yet' : mydata,
     });
   }
 
   static async getTransactionByaccount(req, res) {
     try{
     const AccountExist = await AccountService.CheckifAccountExist(req.params.accountNumber);
+    if(parseInt(AccountExist.user_id, 10) !== parseInt(req.userData.id, 10)) return res.status(401).json({
+      status: 401,
+      msg: 'unauthorized can get details of account you didnt create',
+    });
     let Allaccount;
     if (AccountExist != undefined) {
       Allaccount = await TransactionService.getTransactionbyAccount(AccountExist.id, res);
       if(Allaccount === undefined || Allaccount === null) { 
         Allaccount = 'empty';
-      }else{
+      } else {
       Allaccount.accountNumber = parseInt(req.params.accountNumber, 10);
       delete Allaccount.user_id;
       }
@@ -69,9 +73,20 @@ class TransactionController {
       Data: Allaccount === undefined ? 'account does not Exists' : Allaccount,
     });
     } catch (e) {
-      console.log('error',e);
      return res.status(500).json({err: 'internal server error'});
     }
+  }
+
+  static async getAllTransactionbyUser(req, res) {
+    try{
+   const alltransaction = await TransactionService.getAlltransactionByUser(req.userData.id);
+   return res.status(alltransaction === undefined ? 422 : 200).json({
+        status: alltransaction === undefined ? 422 : 200,
+        Data: alltransaction === undefined ? 'cannot get transactions' : alltransaction,
+    });   
+  }catch(err) {   
+     return res.status(500).json({err: 'internal server error' });
+  }
   }
 }
 

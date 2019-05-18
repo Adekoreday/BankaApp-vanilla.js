@@ -78,7 +78,6 @@ class AccountService {
         });
     }
 
-
     static deleteAccount(accountNumber) {
         return new Promise((resolve, reject) => {
             db.querydb(Account.DeleteAccount(accountNumber))

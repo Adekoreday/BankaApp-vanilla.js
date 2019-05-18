@@ -3,7 +3,8 @@ import AccountService from '../services/AccountService';
 class TransactionScafolld {
 
     static async transactionScafolld(req, res, next) {
-        const scafoldData = req.body;
+        const scafoldData = {};
+        scafoldData.amount = parseInt(req.body.amount, 10);
         scafoldData.Type = req.params.transactionType;
         let accountno = req.params.accountNumber;
         accountno = parseInt(accountno, 10);
@@ -12,6 +13,7 @@ class TransactionScafolld {
         scafoldData.accountNumber = accountno;
 
         const AccountExist = await AccountService.CheckifAccountExist(accountno);
+        console.log(AccountExist);
         if (AccountExist !== undefined) {
             scafoldData.accountId = AccountExist.id;
             scafoldData.oldbalance = AccountExist.balance;
