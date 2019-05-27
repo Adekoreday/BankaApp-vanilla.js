@@ -20,6 +20,7 @@ app.use(bodyParser.json());
 app.use('/upload', express.static(path.join(__dirname, './../uploads')));
 app.use('/api/v1', Router);
 app.get('/', (req, res)=> res.send(`welcome to banka app by Adeyemi Adekorede @Andela`));
+app.use('*', (req, res)=> res.send(`404 page not found`));
 const port = process.env.PORT || 3000;
 app.listen(port, () => { });
 export default app;

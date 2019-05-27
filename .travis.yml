@@ -5,5 +5,8 @@ install: npm install
 cache:
   directories:
     - "node_modules"
+addons:
+    code_climate:
+        repo_token: be3fcca4d68c6d7f19c1ca6b818848d3514c31b401ef1aa76517d6c01e6891b3
 after_success:
   - npm run coverage
