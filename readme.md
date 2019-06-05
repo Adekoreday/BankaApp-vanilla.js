@@ -1,6 +1,7 @@
 [![Build Status](https://travis-ci.org/Adekoreday/BankaApp.svg?branch=develop)](https://travis-ci.org/Adekoreday/BankaApp)  [![Coverage Status](https://coveralls.io/repos/github/Adekoreday/BankaApp/badge.svg?branch=develop)](https://coveralls.io/github/Adekoreday/BankaApp?branch=develop)
-<a href="https://codeclimate.com/github/codeclimate/codeclimate/maintainability"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/maintainability" /></a>
-<a href="https://codeclimate.com/github/codeclimate/codeclimate/test_coverage"><img src="https://api.codeclimate.com/v1/badges/a99a88d28ad37a79dbf6/test_coverage" /></a>
+[![Maintainability](https://api.codeclimate.com/v1/badges/5ae99f8d964b493b7656/maintainability)](https://codeclimate.com/github/Adekoreday/BankaApp/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/5ae99f8d964b493b7656/test_coverage)](https://codeclimate.com/github/Adekoreday/BankaApp/test_coverage)
+
 
 # Banka app
 
@@ -46,11 +47,9 @@ Banka is a light-weight core banking application that powers banking operations 
 
 ## By 
 ### Adeyemi Adekorede Adeseyi
-_adeyemi_adekorede@hotmail.com_
-Twitter: _@Adeyemi_Adekore2_
 
+### API documentation on
 
-###API documentation on
 https://bankaandela.herokuapp.com/api-docs/
 
 proudly andela Nigeria bootcamp. 
