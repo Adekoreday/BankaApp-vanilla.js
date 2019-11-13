@@ -5,7 +5,7 @@ import swaggerUi from 'swagger-ui-express';
 import bodyParser from 'body-parser';
 import path from 'path';
 import cors from 'cors';
-import swaggerDocument from './swagger.json';
+import swaggerDocument from '../swagger.json';
 import Router from './routes/router';
 
 const options = {
