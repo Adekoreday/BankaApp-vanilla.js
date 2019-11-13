@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node ./build/app.js",
     "test": "npm run db:unmigrate && npm run db:migrate && npm run db:seedAll && npm run testing",
-    "dev": "nodemon --exec babel-node app/app.js",
+    "start:dev": "nodemon --exec babel-node app/app.js",
     "db:migrate": "babel-node app/server/migrations/migrate.js",
     "db:unmigrate": "babel-node app/server/migrations/unmigrate.js",
     "db:seedAll": "babel-node app/server/seed/seedAll.js",
@@ -22,18 +22,18 @@
   "author": "adeyemi adekorede",
   "license": "MIT",
   "devDependencies": {
-    "@babel/cli": "^7.2.3",
-    "@babel/core": "^7.4.3",
-    "@babel/node": "^7.2.2",
-    "@babel/preset-env": "^7.4.3",
+    "@babel/cli": "^7.7.0",
+    "@babel/core": "^7.7.2",
+    "@babel/node": "^7.7.0",
+    "@babel/preset-env": "^7.7.1",
     "chai": "^4.2.0",
-    "chai-http": "^4.2.1",
+    "chai-http": "^4.3.0",
     "chai-things": "^0.2.0",
     "eslint": "^5.16.0",
-    "eslint-config-airbnb-base": "^13.1.0",
-    "eslint-plugin-import": "^2.16.0",
+    "eslint-config-airbnb-base": "^13.2.0",
+    "eslint-plugin-import": "^2.18.2",
     "mocha": "^6.2.2",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.19.4"
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",

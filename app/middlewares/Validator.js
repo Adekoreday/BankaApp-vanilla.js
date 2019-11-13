@@ -13,6 +13,16 @@ class Validator {
         next();
     }
 
+    static GetUserValidator(req, res, next) {
+        const Users = new User();
+        const result = Joi.validate(req.query.mail, Joi.string().email({ minDomainAtoms: 2 }));
+        if(result.error) {
+            return res.status(400).send(result.error.details.map(x => x.message));
+        }else{
+            next();
+        }
+    }
+
     static SignInValidator(req, res, next) {
         const Users = new User();
         const result = Joi.validate(req.body, Users.UserSignInSchema);

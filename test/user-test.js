@@ -4,6 +4,7 @@ import assertArrays from 'chai-arrays';
 import server from '../app/app';
 
 const { expect } = chai;
+let token;
 chai.use(chaiHttp);
 chai.use(assertArrays);
 
@@ -53,6 +54,10 @@ describe('USER TEST   overAll test', () => {
             .post('/api/v1/auth/signup')
             .send(userItems.UserSignUp)
 
+        token = res.body.Data.token;
+        token = token.replace(/^"(.*)"$/, '$1');
+        token = `Bearer ${token}`;
+
         expect(res, 'must have a status 200 ok').to.have.status(201);
         expect(res.body.Data).to.be.a('object');
         expect(res.body.Data).to.have.property('firstname');
@@ -60,10 +65,7 @@ describe('USER TEST   overAll test', () => {
         expect(res.body.Data).to.have.property('email');
         expect(res.body.Data).to.have.property('id');
         expect(res.body.Data).to.have.property('email');
-
-
     });
-
 
     it('its expected not to sign-up a User', async () => {
         const res = await chai.request(server)
@@ -102,6 +104,7 @@ describe('USER TEST   overAll test', () => {
         expect(res.body.Data).to.have.property('firstname');
         expect(res.body.Data).to.have.property('lastname');
         expect(res.body.Data).to.have.property('token').to.be.a('string');
+
     });
 
 
@@ -115,6 +118,35 @@ describe('USER TEST   overAll test', () => {
         expect(res.body).to.have.property('msg');
         expect(res.body).to.have.property('status');
     });
+
+    it('expected to get the signed up user details', async () => {
+        const res = await chai.request(server)
+                    .get(`/api/v1/user?mail=${userItems.UserSignUp.email}`)
+                    .set('Authorization', token)
+        expect(res, 'must have the status code of 200 ok').to.have.status(200);
+        expect(res.body.Data).to.be.a('object');
+        expect(res.body.Data).to.have.property('lastname');
+        expect(res.body.Data).to.have.property('email');
+        expect(res.body.Data).to.have.property('id');
+        expect(res.body.Data).to.have.property('isadmin');
+    });
+
+    it('fails to get the user details that does not exits', async () => {
+        const res = await chai.request(server)
+                    .get(`/api/v1/user?mail=unknown@gmail.com`)
+                    .set('Authorization', token)
+        expect(res, 'must have the status code of 404 notfound').to.have.status(404);
+
+    });
+
+    it('fails to get the user details on failed validation', async () => {
+        const res = await chai.request(server)
+                    .get(`/api/v1/user?mail=unknowngmai`)
+                    .set('Authorization', token)
+        expect(res, 'must have the status code of 400').to.have.status(400);
+
+    });
+
 
 
 });

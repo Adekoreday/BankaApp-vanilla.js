@@ -21,7 +21,25 @@ class UserController {
       });
     } catch (e) {
       return res.status(500).json({
-        error: 'a lot internal error signing up',
+        error: 'a internal error signing up',
+      });
+    }
+  }
+
+  static async Getuser(req, res) {
+    try{
+      const mail = req.query.mail;
+
+      const userDetails = await UserService.CheckifUserExist(mail);
+      if(userDetails !== undefined) delete userDetails.password;
+      return res.status(userDetails === undefined ? 404 : 200).json({
+        status: userDetails === undefined ? 404 : 200,
+        Data: userDetails === undefined ? 'user not found' : userDetails,
+      });
+    }
+    catch(e){
+      return res.status(500).json({
+        error: 'a internal error getting user',
       });
     }
   }
@@ -59,7 +77,6 @@ class UserController {
         msg: 'user account not found',
       });
     } catch (e) {
-      console.log('error encountered', e);
       return res.status(500).json({
         error: 'internal error signing in',
       });
