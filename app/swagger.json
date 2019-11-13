@@ -116,6 +116,27 @@
             "description": "user not found"
           }
         }
+      },
+      "paths": null
+    },
+    "/users/{email}": {
+      "get": {
+        "summary": "Returns a user by mail.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "email",
+            "required": true,
+            "type": "string",
+            "minimum": 1,
+            "description": "the email is required to get the user."
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
       }
     },
     "/account": {
