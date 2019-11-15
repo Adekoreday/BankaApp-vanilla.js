@@ -61,7 +61,6 @@ class UserController {
           const tokens = jwt.sign({ email: userExist.email, permission: userKey.permission, id: userExist.id }, process.env.SECRET_KEY, { expiresIn: '1h' });
           userExist.token = tokens;
           delete userExist.password;
-          delete userExist.email;
           return res.status(200).json({
             status: 200,
             Data: userExist,
