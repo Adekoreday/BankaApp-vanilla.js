@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Adekoreday/BankaApp.svg?branch=develop)](https://travis-ci.org/Adekoreday/BankaApp)  [![Coverage Status](https://coveralls.io/repos/github/Adekoreday/BankaApp/badge.svg?branch=develop)](https://coveralls.io/github/Adekoreday/BankaApp?branch=develop)
+[![Build Status](https://travis-ci.org/Adekoreday/BankaApp-vanilla.js.svg?branch=develop)](https://travis-ci.org/Adekoreday/BankaApp-vanilla.js)
 [![Maintainability](https://api.codeclimate.com/v1/badges/5ae99f8d964b493b7656/maintainability)](https://codeclimate.com/github/Adekoreday/BankaApp/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/5ae99f8d964b493b7656/test_coverage)](https://codeclimate.com/github/Adekoreday/BankaApp/test_coverage)
 
