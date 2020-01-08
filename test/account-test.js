@@ -11,17 +11,17 @@ describe(' ACCOUNT TEST   overAll test', () => {
 
   const userLogin = {
     email: 'adeyemi_adekorede@hotmail.com',
-    password: 'korey',
+    password: 'korede',
   };
 
   const cahsierLogin = {
     email: 'kaytronics@gmail.com',
-    password: 'korey',
+    password: 'korede',
   };
 
   const enduserLogin = {
     email: 'khord4eng@gmail.com',
-    password: 'korey',
+    password: 'korede',
   };
 
   const accountCreatedetails = {

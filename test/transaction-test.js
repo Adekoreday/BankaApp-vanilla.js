@@ -19,11 +19,11 @@ describe(' TRANSACTION TEST   overAll test', () => {
   }
   const userLogin = {
     email: 'khord4eng@gmail.com',
-    password: 'korey',
+    password: 'korede',
   };
   const staffLogin = {
     email: 'kaytronics@gmail.com',
-    password: 'korey',
+    password: 'korede',
   }
   const accountCreatedetails = {};
 

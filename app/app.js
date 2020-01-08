@@ -22,5 +22,5 @@ app.use('/api/v1', Router);
 app.get('/', (req, res)=> res.send(`welcome to banka app by Adeyemi Adekorede @Andela`));
 app.use('*', (req, res)=> res.send(`404 page not found`));
 const port = process.env.PORT || 3003;
-app.listen(port, () => { });
+app.listen(port, () => {console.log("app listening on port", port) });
 export default app;
