@@ -1,9 +1,11 @@
+const bcrypt = require('bcryptjs');
+
 const Userdata = {
     admin: {
         firstName: 'Adeyemi',
         lastName: 'Adekorede',
         email: 'adeyemi_adekorede@hotmail.com',
-        password: '$2b$15$2CBjFfy8lkKWsILtDPWnVO3a9Twm4jGmo8x10zdGMD9UCZ.8sy3wq',
+        password: bcrypt.hashSync('korede', 10),
         photo: '',
         Type: 'staff',
         isAdmin: true,
@@ -12,7 +14,7 @@ const Userdata = {
         firstName: 'Adeseyi',
         lastName: 'Joseph',
         email: 'khord4eng@gmail.com',
-        password: '$2b$15$2CBjFfy8lkKWsILtDPWnVO3a9Twm4jGmo8x10zdGMD9UCZ.8sy3wq',
+        password: bcrypt.hashSync('korede', 10),
         photo: '',
         Type: 'client',
         isAdmin: false,
@@ -21,7 +23,7 @@ const Userdata = {
         firstName: 'Adekorede',
         lastName: 'Adeseyi',
         email: 'kaytronics@gmail.com',
-        password: '$2b$15$2CBjFfy8lkKWsILtDPWnVO3a9Twm4jGmo8x10zdGMD9UCZ.8sy3wq',
+        password: bcrypt.hashSync('korede', 10),
         photo: '',
         Type: 'staff',
         isAdmin: false,

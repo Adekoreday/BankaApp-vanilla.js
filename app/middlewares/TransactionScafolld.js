@@ -5,7 +5,7 @@ class TransactionScafolld {
     static async transactionScafolld(req, res, next) {
         const scafoldData = {};
         scafoldData.amount = parseInt(req.body.amount, 10);
-        scafoldData.Type = req.params.transactionType;
+        scafoldData.Type = req.params.transactionType.toString();
         let accountno = req.params.accountNumber;
         accountno = parseInt(accountno, 10);
         const userdetails = req.userData;
@@ -13,7 +13,6 @@ class TransactionScafolld {
         scafoldData.accountNumber = accountno;
 
         const AccountExist = await AccountService.CheckifAccountExist(accountno);
-        console.log(AccountExist);
         if (AccountExist !== undefined) {
             scafoldData.accountId = AccountExist.id;
             scafoldData.oldbalance = AccountExist.balance;
@@ -23,7 +22,7 @@ class TransactionScafolld {
                     data: 'do not enter negative numbers!',
                 });
             }
-            if(scafoldData.oldbalance < scafoldData.amount) {
+            if( scafoldData.Type === 'debit' && scafoldData.oldbalance < scafoldData.amount) {
                   return res.status(400).json({
                     status: 400,
                     data: 'insufficient funds visit the bank',

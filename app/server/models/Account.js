@@ -9,7 +9,7 @@ class Account {
             Type VARCHAR(10) NOT NULL CONSTRAINT acc_type_match CHECK(Type = 'savings' OR Type = 'current' OR Type = 'loan' ),
             balance FLOAT NOT NULL,
             user_id BIGINT NOT NULL REFERENCES users (id),
-            createdOn DATE DEFAULT CURRENT_DATE);
+            createdOn TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP);
         `;
     }
 
@@ -60,7 +60,7 @@ class Account {
 
     static GetAllaccountsWithUserId(id) {
         const queryString = {
-            text: 'SELECT * FROM accounts where accounts.user_id = $1',
+            text: 'SELECT * FROM accounts where accounts.user_id = $1 ORDER BY accounts.createdon DESC',
             values: [id],
         }
         return queryString;
