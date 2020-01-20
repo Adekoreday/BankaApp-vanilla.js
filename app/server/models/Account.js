@@ -68,14 +68,14 @@ class Account {
 
     static GetAllAccounts(){
         const queryString = {
-            text: `SELECT accounts.createdon, accounts.accountnumber, users.email, accounts.type, accounts.balance, accounts.status FROM accounts JOIN users ON accounts.user_id = users.id`,
+            text: `SELECT accounts.createdon, accounts.accountnumber, users.email, accounts.type, accounts.balance, accounts.status FROM accounts JOIN users ON accounts.user_id = users.id  ORDER BY accounts.createdon DESC`,
         }
         return queryString;
     }
 
    static GetAllActiveAccount(status) {
     const queryString = { 
-        text: 'SELECT accounts.id, accounts.accountnumber, accounts.createdon, accounts.type, accounts.status, users.email, accounts.balance FROM accounts JOIN users ON accounts.user_id = users.id WHERE accounts.status = $1',
+        text: 'SELECT accounts.id, accounts.accountnumber, accounts.createdon, accounts.type, accounts.status, users.email, accounts.balance FROM accounts JOIN users ON accounts.user_id = users.id WHERE accounts.status = $1  ORDER BY accounts.createdon DESC',
         values: [status],
        }
        return queryString;

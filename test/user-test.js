@@ -16,22 +16,22 @@ describe('USER TEST   overAll test', () => {
             firstName: 'Adeyemi',
             lastName: 'adekorede',
             email: 'yemkkfkloh@hotmail.com',
-            password: 'korede',
+            password: 'Kore@123',
             Type: 'client',
             isAdmin: false,
         },
         userLogin: {
             email: 'adeyemi_adekorede@hotmail.com',
-            password: 'korede',
+            password: 'Kore@123',
         },
         wrongpasswordLogin: {
             email: ' khord4eng@gmail.com',
-            password: 'koreyttt',
+            password: 'Kore@12',
         },
         UserwrongSignUp1: {
             firstName: 'Adeyemi',
             lastName: 'adekorede',
-            password: 'korede',
+            password: 'Kore@123',
             Type: 'staff',      //missing email
             isAdmin: false,
         },
@@ -39,13 +39,13 @@ describe('USER TEST   overAll test', () => {
             firstName: 'Adeyemi',
             lastName: 'adekorede',
             email: 'yemmo@hotmail.com',
-            password: 'korede',
+            password: 'Kore@123',
             Type: 'savings',     //type incorrect
             isAdmin: false,
         },
         nonexistLogin: {
             email: 'aa@hotmail.com',
-            password: 'korede',
+            password: 'Kore@123',
         },
     };
 
