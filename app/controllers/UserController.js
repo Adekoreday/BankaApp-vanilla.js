@@ -27,17 +27,30 @@ class UserController {
   }
 
   static async Getuser(req, res) {
-    try{
-      const mail = req.query.mail;
+    try {
+      const { mail } = req.query;
 
       const userDetails = await UserService.CheckifUserExist(mail);
-      if(userDetails !== undefined) delete userDetails.password;
+      if (userDetails !== undefined) delete userDetails.password;
       return res.status(userDetails === undefined ? 404 : 200).json({
         status: userDetails === undefined ? 404 : 200,
         Data: userDetails === undefined ? 'user not found' : userDetails,
       });
+    } catch (e) {
+      return res.status(500).json({
+        error: 'a internal error getting user',
+      });
     }
-    catch(e){
+  }
+
+  static async GetAllUsers(req, res) {
+    try {
+      const allUsers = await UserService.getAllUsers();
+      return res.status(allUsers === undefined ? 404 : 200).json({
+        status: allUsers === undefined ? 404 : 200,
+        Data: allUsers === undefined ? 'user not found' : allUsers,
+      });
+    } catch (e) {
       return res.status(500).json({
         error: 'a internal error getting user',
       });
@@ -51,7 +64,7 @@ class UserController {
 
       if (userExist !== undefined) {
         userKey.permission = userExist.isadmin === true ? 'admin' : 'user';
-        userKey.permission = userKey.permission === 'admin' ? ['postAccount', 'activateAccount', 'deactivateAccount', 'deleteAccount', 'getAllAccounts', 'debitAccount', 'creditAccount', 'getaccountstatus', 'acctransactionhistory','transactionbyid'] : ['postAccount','acctransactionhistory','transactionbyid'];
+        userKey.permission = userKey.permission === 'admin' ? ['postAccount', 'activateAccount', 'deactivateAccount', 'deleteAccount', 'getAllAccounts', 'debitAccount', 'creditAccount', 'getaccountstatus', 'acctransactionhistory', 'transactionbyid'] : ['postAccount', 'acctransactionhistory', 'transactionbyid'];
         if (userExist.type === 'staff' && userExist.isadmin === false) {
           userKey.permission = ['debitAccount', 'creditAccount', 'getAllAccounts', 'viewspecificAcc', 'activateAccount', 'deactivateAccount', 'deleteAccount'];
         }
