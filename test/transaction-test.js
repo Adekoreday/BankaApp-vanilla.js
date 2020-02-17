@@ -11,12 +11,12 @@ describe(' TRANSACTION TEST   overAll test', () => {
   const Transaction = {
     amount: 10000,
   };
-  const insufficientTransaction ={
-   amount: 20000000,
+  const insufficientTransaction = {
+    amount: 20000000,
   };
   const wrongTransaction = {
     amount: -400,
-  }
+  };
   const userLogin = {
     email: 'khord4eng@gmail.com',
     password: 'Kore@123',
@@ -24,13 +24,13 @@ describe(' TRANSACTION TEST   overAll test', () => {
   const staffLogin = {
     email: 'kaytronics@gmail.com',
     password: 'Kore@123',
-  }
+  };
   const accountCreatedetails = {};
 
-   accountCreatedetails.createAccount = {
-      Type: 'savings',
-      balance: 50000,
-    }
+  accountCreatedetails.createAccount = {
+    Type: 'savings',
+    balance: 50000,
+  };
 
   it('its expected to sign-in an existing  User', async () => {
     const res = await chai.request(server)
@@ -46,7 +46,7 @@ describe(' TRANSACTION TEST   overAll test', () => {
     accountCreatedetails.endusertoken = `Bearer ${accountCreatedetails.endusertoken}`;
   });
 
-    it('its expected to sign-in an existing  Staff', async () => {
+  it('its expected to sign-in an existing  Staff', async () => {
     const res = await chai.request(server)
       .post('/api/v1/auth/signin')
       .send(staffLogin);
@@ -70,8 +70,6 @@ describe(' TRANSACTION TEST   overAll test', () => {
     expect(res.body.Data).to.have.property('accountnumber');
     expect(res.body.Data).to.have.property('status');
     accountCreatedetails.testaccount = res.body.Data.accountnumber;
-
-
   });
 
   it('its expected that a user create a new account sucessfully', async () => {
@@ -84,8 +82,6 @@ describe(' TRANSACTION TEST   overAll test', () => {
     expect(res.body.Data).to.have.property('accountnumber');
     expect(res.body.Data).to.have.property('status');
     accountCreatedetails.testaccount1 = res.body.Data.accountnumber;
-
-
   });
 
   it('its expected not to debit an existing lacks token User', async () => {
@@ -154,7 +150,7 @@ describe(' TRANSACTION TEST   overAll test', () => {
     expect(res, 'must have a status 404 ok').to.have.status(404);
   });
 
-    it('its expected not to credit an account that doesnt have a right route', async () => {
+  it('its expected not to credit an account that doesnt have a right route', async () => {
     const res = await chai.request(server)
       .post('/api/v1/transactions/1002183201/redit')
       .set('Authorization', accountCreatedetails.usertoken)
@@ -162,67 +158,70 @@ describe(' TRANSACTION TEST   overAll test', () => {
     expect(res, 'must have a status 500 ok').to.have.status(500);
   });
 
-   it('its expected to get the transaction by id ', async () => {
+  it('its expected to get the transaction by id ', async () => {
     const res = await chai.request(server)
       .get('/api/v1/transactions/1')
-      .set('Authorization', accountCreatedetails.endusertoken)
+      .set('Authorization', accountCreatedetails.endusertoken);
     expect(res, 'must have a status 200 ok').to.have.status(200);
   });
 
-     it('its expected staff not to get the transaction by id ', async () => {
+  it('its expected staff not to get the transaction by id ', async () => {
     const res = await chai.request(server)
       .get('/api/v1/transactions/1')
-      .set('Authorization', accountCreatedetails.usertoken)
+      .set('Authorization', accountCreatedetails.usertoken);
     expect(res, 'must have a status 403 ok').to.have.status(403);
   });
 
-     it('its expected not  to get the transaction that does not have id  that exist', async () => {
+  it('its expected not  to get the transaction that does not have id  that exist', async () => {
     const res = await chai.request(server)
       .get('/api/v1/transactions/100')
-      .set('Authorization', accountCreatedetails.endusertoken)
+      .set('Authorization', accountCreatedetails.endusertoken);
     expect(res, 'must have a status 500 ok').to.have.status(500);
   });
-     it('its expected not  to get an account transaction history', async () => {
+  it('its expected not  to get an account transaction history', async () => {
     const res = await chai.request(server)
       .get('/api/v1/accounts/1002183201/transactions')
-      .set('Authorization', accountCreatedetails.usertoken)
+      .set('Authorization', accountCreatedetails.usertoken);
     expect(res, 'must have a status 403 ok').to.have.status(403);
   });
-    it('its expected not to get  transaction history of account not created by user', async () => {
+  it('its expected not to get  transaction history of account not created by user', async () => {
     const res = await chai.request(server)
       .get('/api/v1/accounts/1012173201/transactions')
-      .set('Authorization', accountCreatedetails.endusertoken)
+      .set('Authorization', accountCreatedetails.endusertoken);
     expect(res, 'must have a status 401 ok').to.have.status(401);
   });
-   it('its expected not  to get an account that does not exist transaction history', async () => {
+  it('its expected not  to get an account that does not exist transaction history', async () => {
     const res = await chai.request(server)
       .get('/api/v1/accounts/1002183201/transactions')
-      .set('Authorization', accountCreatedetails.endusertoken)
+      .set('Authorization', accountCreatedetails.endusertoken);
     expect(res, 'must have a status 401 ok').to.have.status(401);
   });
 
   it('its expected to get all the user transaction ', async () => {
     const res = await chai.request(server)
       .get('/api/v1/transactions')
-      .set('Authorization', accountCreatedetails.endusertoken)
+      .set('Authorization', accountCreatedetails.endusertoken);
     expect(res, 'must have a status 200 ok').to.have.status(200);
   });
 
-   it('its expected   to get an account that exist transaction history', async () => {
+  it('its expected   to get an account that exist transaction history', async () => {
     const res = await chai.request(server)
       .get(`/api/v1/accounts/${accountCreatedetails.testaccount1}/transactions`)
-      .set('Authorization', accountCreatedetails.endusertoken)
+      .set('Authorization', accountCreatedetails.endusertoken);
     expect(res, 'must have a status 200 ok').to.have.status(200);
   });
 
-     it('its expected   to get an account that exist transaction history', async () => {
+  it('its expected   to get an account that exist transaction history', async () => {
     const res = await chai.request(server)
       .get(`/api/v1/accounts/${accountCreatedetails.testaccount}/transactions`)
-      .set('Authorization', accountCreatedetails.endusertoken)
+      .set('Authorization', accountCreatedetails.endusertoken);
     expect(res, 'must have a status 200 ok').to.have.status(200);
   });
 
-
-  
-
+  it('expected to get all account transactions', async () => {
+    const res = await chai.request(server)
+      .get('/api/v1/transaction')
+      .set('Authorization', accountCreatedetails.usertoken);
+    expect(res, 'must have a status 200 ok').to.have.status(200);
+  });
 });

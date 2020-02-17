@@ -1,5 +1,4 @@
 class Transaction {
-
   static CreatetransactionTable() {
     return `
         CREATE TABLE transactions(
@@ -44,7 +43,7 @@ class Transaction {
     return queryString;
   }
 
-    static GetAllUserTransactionbyAccountId(id) {
+  static GetAllUserTransactionbyAccountId(id) {
     const queryString = {
       text: 'SELECT * FROM transactions WHERE transactions.account_id = $1 ORDER BY transactions.createdon DESC',
       values: [id],
@@ -52,5 +51,11 @@ class Transaction {
     return queryString;
   }
 
+  static GetAllTransactions() {
+    const queryString = {
+      text: 'SELECT * FROM transactions',
+    };
+    return queryString;
+  }
 }
 export default Transaction;
